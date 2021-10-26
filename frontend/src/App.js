@@ -7,17 +7,16 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <Switch>
           <Route exact path="/">
-            <Navbar />
-            
+            <Home />
           </Route>
           <Route path="/find">
             <FindPage />
           </Route>
+          <Route path="/review"></Route>
           <Route path="/dashboard"></Route>
-          <Route path="/1"></Route>
-          <Route path="/2"></Route>
         </Switch>
       </Router>
     </div>

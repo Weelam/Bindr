@@ -1,0 +1,47 @@
+.nav {
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 5rem; */
+    /* background-color: #606C38; */
+}
+
+.logo {
+    margin-right: 222px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    /* color: #FEFAE0; */
+    color: black;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.link:active {
+    color: #15cdfc;
+}
+
+.navMenu {
+    display: flex;
+    align-items: center;
+
+}
+
+.linkMenu {
+    margin-left: 20px;
+    display: flex;
+}
+.navButton {
+    display: flex;
+    align-items: center;
+}
+
+.login {
+    color: #FEFAE0;
+    background: green;
+    padding: 10px 20px;
+    border-radius: 30px;
+}
