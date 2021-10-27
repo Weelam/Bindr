@@ -21,7 +21,7 @@
 }
 
 .link:active {
-    color: #15cdfc;
+    color: #606C38;
 }
 
 .navMenu {
@@ -41,7 +41,20 @@
 
 .login {
     color: #FEFAE0;
-    background: green;
+    background: #606C38;
     padding: 10px 20px;
     border-radius: 30px;
+}
+
+.line {
+    background-color: grey;
+}
+
+.bellIcon {
+    font-size: 25px;
+    margin-right: 25px;
+}
+
+.profileIcon {
+    font-size: 25px;
 }
