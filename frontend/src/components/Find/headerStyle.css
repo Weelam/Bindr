@@ -1,0 +1,60 @@
+.header {
+  display: flex;
+  padding: 0 3rem;
+
+}
+
+.bigProfilePic {
+  width: 9rem;
+  height: auto;
+  border-radius: 100%;
+  border: solid #606C38;
+}
+
+.nameCourses {
+  margin-left: 2rem;
+}
+
+.bio {
+  margin-left: 2rem;
+}
+
+.match {
+  margin-left: 2rem;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: inherit;
+  margin-bottom: 3rem;
+}
+
+.matchIcon  {
+    color: #606C38;
+    font-size: 5.5rem;
+    margin-top: 0;
+}
+
+.lines {
+  display: flex;
+  position: relative;
+}
+.line1 {
+    position: absolute;
+    /* margin: 0; */
+    /* align-self: stretch; */
+    width: 2.5rem;
+    top: -40px;
+}
+
+.line2 {
+    /* margin: 0; */
+    /* align-self: stretch; */
+    position: absolute;
+    top: -40px;
+    left: 13rem;
+    width: 58rem;
+    overflow: hidden;
+
+}
