@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Roboto:wght@100&display=swap');
+
+
+.smallProfile {
+    width: 50px;
+    height: auto;
+    border-radius: 100%;
+}
+
+p, h3 {
+    font-family: "Arvo";
+}
+.username {
+    display: flex;
+}
+
+.username p {
+    margin-left: 1rem;
+}
+
+.paper {
+    width: 100;
+}
+
+.tableContainer {
+    height: 300px;
+}
+
+.MuiTableRow-hover:hover	{
+    background-color: #606C38 !important;
+}

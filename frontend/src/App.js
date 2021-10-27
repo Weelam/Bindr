@@ -7,7 +7,7 @@ import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
-  // username is gonna be unique, we can use that to fetch users info
+  // user(email probably) is gonna be unique, we can use that to fetch users info
   // default value is "", this means they're not signed in
   const [user, setUser] = useState("");
   const [auth, setAuth] = useState(false);

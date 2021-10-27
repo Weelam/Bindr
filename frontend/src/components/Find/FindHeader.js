@@ -1,34 +1,39 @@
 import React from "react";
-import "./style.css";
-import { AiFillCheckCircle } from 'react-icons/ai';
+import "./headerStyle.css";
+import { AiFillCheckCircle } from "react-icons/ai";
 
-function FindHeader({ img, user }) {
+function FindHeader({ selectedUser }) {
+  const handleMatch = () => {
+    alert("match sent");
+  };
 
-	const handleMatch = () => {
-		alert("match sent")
-	}
+  const parseCourses = (courses) => {
+    let coursesParsed = "";
+    courses.forEach((element, i) => {
+      if (i !== courses.length - 1) {
+        coursesParsed = coursesParsed + element + ", ";
+      } else {
+        coursesParsed = coursesParsed + element;
+      }
+    });
+    return <p className="courses">{coursesParsed}</p>;
+  };
   return (
     <>
       <div className="header">
         <div className="bigProfilePicContainer">
-          <img
-            className="bigProfilePic"
-            src="https://images.mubicdn.net/images/avatars/108776/cache-108776-1523899185/images-large.png"
-          />
+          <img className="bigProfilePic" src={selectedUser["profileImg"]} />
         </div>
         <div className="nameCourses">
-          <h3 className="name">Joseph</h3>
-          <p className="courses">CSC309, CSC373</p>
+          <h3 className="name">{selectedUser["username"]}</h3>
+          {parseCourses(selectedUser["courses"])}
         </div>
         <div className="bio">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dicta
-            minus molestiae vel beatae natus eveniet ratione temporibus aperiam
-            harum alias officiis assumenda officia quibusdam deleniti eos
-            cupiditate dolore doloribus!
-          </p>
+          <p>{selectedUser["bio"]}</p>
         </div>
-        <button onClick={handleMatch} className="match"><AiFillCheckCircle className="matchIcon"/></button>
+        <button onClick={handleMatch} className="match">
+          <AiFillCheckCircle className="matchIcon" />
+        </button>
       </div>
       <div className="lines">
         <hr className="line1" />
