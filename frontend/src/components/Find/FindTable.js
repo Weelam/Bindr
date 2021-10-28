@@ -48,7 +48,7 @@ function FindTable({ users, handleSelect }) {
       <TableContainer className="tableContainer">  
         <Table stickyHeader>
           <TableHead>
-            <TableRow>
+            <TableRow size="small">
               {columns.map((header, index) => (
                 <TableCell size="small" key={index}>
                   <h3>{header.label}</h3>

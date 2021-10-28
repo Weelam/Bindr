@@ -1,6 +1,7 @@
 import React from "react";
 import "./headerStyle.css";
 import { AiFillCheckCircle } from "react-icons/ai";
+import Divider from "@mui/material/Divider";
 
 function FindHeader({ selectedUser }) {
   const handleMatch = () => {
@@ -20,24 +21,26 @@ function FindHeader({ selectedUser }) {
   };
   return (
     <>
-      <div className="header">
-        <div className="bigProfilePicContainer">
-          <img className="bigProfilePic" src={selectedUser["profileImg"]} />
+      <div className="FindHeader-root">
+        <div className="header">
+          <div className="bigProfilePicContainer">
+            <img className="bigProfilePic" src={selectedUser["profileImg"]} />
+          </div>
+          <div className="nameCourses">
+            <h3 className="name">{selectedUser["username"]}</h3>
+            {parseCourses(selectedUser["courses"])}
+          </div>
+          <div className="bio">{selectedUser["bio"]}</div>
+          <div className="matchContainer">
+            <button onClick={handleMatch} className="match">
+              <AiFillCheckCircle className="matchIcon" />
+            </button>
+          </div>
         </div>
-        <div className="nameCourses">
-          <h3 className="name">{selectedUser["username"]}</h3>
-          {parseCourses(selectedUser["courses"])}
+        <div className="lines">
+          <Divider className="line1" />
+          <Divider className="line2" />
         </div>
-        <div className="bio">
-          <p>{selectedUser["bio"]}</p>
-        </div>
-        <button onClick={handleMatch} className="match">
-          <AiFillCheckCircle className="matchIcon" />
-        </button>
-      </div>
-      <div className="lines">
-        <hr className="line1" />
-        <hr className="line2" />
       </div>
     </>
   );
