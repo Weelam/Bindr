@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import FindHeader from "../components/Find/FindHeader";
-import { useTable } from "react-table";
-import FindTable from "../components/Find/FindTable";
+import FindBody from "../components/Find/FindBody"
 
 const users = [
   {
@@ -46,14 +45,15 @@ const FindPage = () => {
   const [selectedUser, setSelectedUser] = useState(users[0]);
 
   const handleSelect = (index) => {
-    console.log(index)
-    setSelectedUser(users[index])
-  }
+    console.log(index);
+    setSelectedUser(users[index]);
+  };
   return (
     <div>
-      {selectedUser["username"]}
-      <FindHeader selectedUser={selectedUser}/>
-      <FindTable users={users} handleSelect={handleSelect}/>
+      {/* {selectedUser["username"]} */}
+      <FindHeader selectedUser={selectedUser} />
+      <FindBody users={users} handleSelect={handleSelect}/>
+
     </div>
   );
 };
