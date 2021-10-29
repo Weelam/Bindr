@@ -5,6 +5,7 @@ import FindPage from "./pages/FindPage";
 import Home from "./pages/Home";
 import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   // user(email probably) is gonna be unique, we can use that to fetch users info
@@ -35,7 +36,9 @@ function App() {
             <FindPage user={user} changeUser={setUser} />
           </Route>
           <Route path="/review"></Route>
-          <Route path="/dashboard"></Route>
+          <Route path="/dashboard">
+            <DashboardPage user={user}/>
+          </Route>
         </Switch>
       </Router>
     </div>
