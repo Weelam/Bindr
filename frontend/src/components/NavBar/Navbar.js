@@ -16,6 +16,12 @@ function Navbar({ auth }) {
             <Link className="link" to="find">
               Find
             </Link>
+
+            <Link className="link" to="dashboard">
+              Dashboard
+            </Link>
+
+
             <Link className="link" to="review">
               Reviews
             </Link>
