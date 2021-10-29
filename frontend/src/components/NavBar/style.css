@@ -1,9 +1,16 @@
 :root {
-    --primary: #606C38
+    --primary: #606C38;
+    --secondary: #FFFEF8;
+    --nav-height: 60px;
+    --speed: 500ms;
+    --border: 1px solid #606C38;
+    --border-radius: 8px;
+
 }
 
 .nav {
-    height: 80px;
+    height: var(--nav-height);
+    margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
     /* padding: 0 5rem; */
@@ -22,10 +29,37 @@
     color: black;
     cursor: pointer;
     margin-right: 20px;
+    transition: filter 300ms;
+}
+
+.link:hover {
+    filter: brightness(1.2);
+    /* background-color: #ddd; */
 }
 
 .link:active {
     color: var(--primary);
+}
+
+/* .navItem {
+
+} */
+
+
+.iconButton {
+    --iconButton-size: calc(var(var(--nav-height) * 0.8));
+    width: var(--iconButton-size);
+    height: var(--iconButton-size);
+    border-radius: 50%;
+    padding: 8px;
+    margin: 2px;
+    font-size: 25px;
+    transition: filter 300ms;
+}
+
+.iconButton:hover {
+    filter: brightness(1.1);
+    background-color: #ddd;
 }
 
 .navMenu {
@@ -44,7 +78,7 @@
 }
 
 .login {
-    color: #FFFEF8;
+    color: var(--secondary);
     background: var(--primary);
     padding: 10px 20px;
     border-radius: 30px;
@@ -55,20 +89,42 @@
 }
 
 .bellIcon {
-    font-size: 25px;
-    margin-right: 25px;
-}
-
-.profileIcon {
-    font-size: 25px;
-}
-
-.iconButton {
-    transition: filter 300ms;
     
 }
 
-.iconButton:hover {
-    filter: brightness(1.2);
-    background-color: #ddd;
+.profileIcon {
+    
+}
+
+/* profile menu */
+
+.profileDiv {
+    /* display: flex; */
+    position: relative;
+}
+
+.profileMenu {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    width: 200px;
+    /* border: var(--border); */
+    border-radius: var(--border-radius);
+    background-color: var(--secondary);
+    box-shadow: 0 0 3px #ccc;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.profileItem {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: primary var(--speed);
+    padding: 0.5rem;
+} 
+
+.profileItem:hover {
+    background-color:#ddd;
 }

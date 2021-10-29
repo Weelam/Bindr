@@ -1,50 +1,37 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { AiFillBell } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { Divider } from "@mui/material";
-
+import NavItem from "./NavItem";
+import ProfileMenu from "./ProfileMenu";
 function Navbar({ auth }) {
+  
   return (
     <>
       <div className="nav">
         <div className="navMenu">
-          <Link className="link" to="/">
-            <h3 className="logo">Logo</h3>
-          </Link>
+          <NavItem to="/" linkClass="link"  item={<h3 className="logo">Logo</h3>}/>
           <div className="linkMenu">
-            <Link className="link" to="find">
-              Find
-            </Link>
-
-            <Link className="link" to="dashboard">
-              Dashboard
-            </Link>
-
-
-            <Link className="link" to="review">
-              Reviews
-            </Link>
-            <Link className="link" to="about">
-              About
-            </Link>
+            <NavItem to="find" linkClass="link" item="Find"/>
+            
+            <NavItem to="review" linkClass="link" item="Reviews"/>
+            <NavItem to="about" linkClass="link" item="About"/>
           </div>
         </div>
-        {auth ? (
+        {!auth ? (
           <div className="navButton">
-            <Link className="iconButton"><AiFillBell className="bellIcon"/> </Link>
-						
-						<Link className="iconButton"><CgProfile className="profileIcon"/></Link>
+            <NavItem to="#" linkClass="link iconButton" item={<AiFillBell className="bellIcon"/>  }/>
+            <NavItem to="#" profileDiv="profileDiv" linkClass="link iconButton" item={<CgProfile className="profileIcon"/>}>  
+              {/* dropdown */}
+              <ProfileMenu/>
+            
+            </NavItem>
 					</div>
         ) : (
           <div className="navButton">
-            <Link className="link iconButton" to="signup">
-              Sign up
-            </Link>
-            <Link className="link login iconButton" to="login">
-              Login
-            </Link>
+            <NavItem to="signup" linkClass="link" item="Sign up"/>
+            <NavItem to="login" linkClass="link login" item="Login"/>
           </div>
         )}
       </div>

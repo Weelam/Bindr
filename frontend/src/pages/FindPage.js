@@ -1,8 +1,18 @@
 import React, { useState, useEffect, useMemo } from "react";
 import FindHeader from "../components/Find/FindHeader";
 import FindBody from "../components/Find/FindBody"
+import "./findStyle.css";
 
 const users = [
+  {
+    profileImg:
+      "https://i.insider.com/59ca65fefca6e427008b4776?width=700",
+    username: "Joseph",
+    courses: ["CSC309", "CSC373"],
+    program: "Political Science",
+    year: "First",
+    bio: "Eiusmod qui mollit cillum dolore. Excepteur ut laborum veniam eu. Nulla nostrud officia mollit non elit magna qui adipisicing culpa fugiat sunt nostrud culpa. Pariatur tempor voluptate veniam commodo quis veniam commodo ex consectetur. Tempor cillum qui eiusmod sit minim velit laboris consequat duis.",
+  },
   {
     profileImg:
       "https://i.insider.com/59ca65fefca6e427008b4776?width=700",
@@ -49,7 +59,7 @@ const FindPage = () => {
     setSelectedUser(users[index]);
   };
   return (
-    <div>
+    <div className="FindPage-root">
       {/* {selectedUser["username"]} */}
       <FindHeader selectedUser={selectedUser} />
       <FindBody users={users} handleSelect={handleSelect}/>

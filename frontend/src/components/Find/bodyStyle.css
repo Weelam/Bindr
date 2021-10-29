@@ -8,6 +8,6 @@
     width: 25%;
 }
 
-.FindBody-root .FindTable-root {
-    width: 75%;
+.FindBody-root {
+    width: 100%;
 }
