@@ -21,12 +21,12 @@ p, h3 {
 }
 
 .paper {
-    width: 75%;
-    height: 70%;
+    /* width: 75%; */
+    /* height: 70%; */
 }
 
 .tableContainer {
-    height: 400px;
+    height: 70%;
    
 }
 
@@ -38,4 +38,8 @@ p, h3 {
 .MuiTableRow-root {
     /* height: 20px; */
     /* background-color: hotpink; */
+}
+
+.FindTable-root h1 {
+    margin-top: 0;
 }

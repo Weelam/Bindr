@@ -44,40 +44,42 @@ function FindTable({ users, handleSelect }) {
   };
 
   return (
-    <Paper className="paper">
-      <TableContainer className="tableContainer">  
-        <Table stickyHeader>
-          <TableHead>
-            <TableRow size="small">
-              {columns.map((header, index) => (
-                <TableCell size="small" key={index}>
-                  <h3>{header.label}</h3>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, index) => (
-              <TableRow key={index} hover onClick={() => handleSelect(index)}>
-                <TableCell component="th" scope="row">
-                  <div className="username">
-                    <img className="smallProfile" src={row["profileImg"]} />
-                    <p>{row["username"]}</p>
-                  </div>
-                </TableCell>
-                {parseCourses(row["courses"])}
-                <TableCell align="left">
-                  <p>{row["program"]}</p>
-                </TableCell>
-                <TableCell align="left">
-                  <p>{row["year"]}</p>
-                </TableCell>
+    <div className="FindTable-root">
+      <Paper className="paper" >
+        <TableContainer className="tableContainer">
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow size="small">
+                {columns.map((header, index) => (
+                  <TableCell size="small" key={index}>
+                    <h3>{header.label}</h3>
+                  </TableCell>
+                ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Paper>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, index) => (
+                <TableRow key={index} hover onClick={() => handleSelect(index)}>
+                  <TableCell component="th" scope="row">
+                    <div className="username">
+                      <img className="smallProfile" src={row["profileImg"]} />
+                      <p>{row["username"]}</p>
+                    </div>
+                  </TableCell>
+                  {parseCourses(row["courses"])}
+                  <TableCell align="left">
+                    <p>{row["program"]}</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p>{row["year"]}</p>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </div>
   );
 }
 

@@ -8,12 +8,12 @@
   display: flex;
   padding: 0 3rem;
   /* overflow: hidden; */
-  height: 8rem;
+  height: 9rem;
 }
 
 .bigProfilePic {
-  width: auto;
-  height: 95%;
+  width: 130px;
+  height: 130px;
   border-radius: 100%;
   border: solid #606C38;
 }

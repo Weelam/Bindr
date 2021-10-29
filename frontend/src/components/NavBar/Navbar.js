@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { AiFillBell } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
+import { Divider } from "@mui/material";
 
 function Navbar({ auth }) {
   return (
@@ -10,7 +11,7 @@ function Navbar({ auth }) {
       <div className="nav">
         <div className="navMenu">
           <Link className="link" to="/">
-            <h3>Logo</h3>
+            <h3 className="logo">Logo</h3>
           </Link>
           <div className="linkMenu">
             <Link className="link" to="find">
@@ -32,21 +33,22 @@ function Navbar({ auth }) {
         </div>
         {auth ? (
           <div className="navButton">
-						<AiFillBell className="bellIcon"/>
-						<CgProfile className="profileIcon"/>
+            <Link className="iconButton"><AiFillBell className="bellIcon"/> </Link>
+						
+						<Link className="iconButton"><CgProfile className="profileIcon"/></Link>
 					</div>
         ) : (
           <div className="navButton">
-            <Link className="link" to="signup">
+            <Link className="link iconButton" to="signup">
               Sign up
             </Link>
-            <Link className="link login" to="login">
+            <Link className="link login iconButton" to="login">
               Login
             </Link>
           </div>
         )}
       </div>
-      {/* <hr className="line"/> */}
+      {/* <Divider className="navBar-Divider"/> */}
     </>
   );
 }
