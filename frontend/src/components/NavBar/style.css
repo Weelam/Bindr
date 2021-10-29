@@ -123,8 +123,15 @@
     border-radius: var(--border-radius);
     transition: primary var(--speed);
     padding: 0.5rem;
+    text-decoration: none;
+    color: black;
 } 
 
 .profileItem:hover {
     background-color:#ddd;
+}
+
+.leftIcon {
+    font-size: 25px;
+    margin-right: 10px;
 }
