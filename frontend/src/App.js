@@ -14,10 +14,12 @@ function App() {
 
   return (
     <div className="App">
+      <p style={{backgroundColor: "#ddd", margin: 0}}>
+      {user}
+      {auth ? "logged in" : "not logged in"}</p>
       <Router>
         <Navbar auth={auth} />
-        {user}
-        {auth ? "logged in" : "not logged in"}
+
         <Switch>
           <Route exact path="/">
             {!auth ? (

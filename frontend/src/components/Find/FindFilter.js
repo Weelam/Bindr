@@ -2,8 +2,8 @@ import React from 'react'
 
 function FindFilter() {
     return (
-        <div>
-            This is the Filter
+        <div className="FindFilter-root">
+            This is the Filter. And it does nothing atm.
         </div>
     )
 }

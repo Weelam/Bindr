@@ -6,6 +6,7 @@ import "./bodyStyle.css";
 function FindBody({ users, handleSelect }) {
   return (
     <div className="FindBody-root">
+        
       <FindFilter />
       <FindTable users={users} handleSelect={handleSelect} />
     </div>

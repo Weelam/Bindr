@@ -3,3 +3,11 @@
     justify-content: space-between;
     margin-top: 2rem;
 }
+
+.FindBody-root .FindFilter-root {
+    width: 25%;
+}
+
+.FindBody-root .FindTable-root {
+    width: 75%;
+}
