@@ -1,0 +1,178 @@
+/* No CSS */
+.profileImgContainer {
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 5px 5px;
+}
+
+.profileImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.MuiGrid-container {
+  --delay: 100ms;
+}
+
+@-webkit-keyframes itemAnimation {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+            transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes itemAnimation {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.4);
+            transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.MuiGrid-item {
+  height: 300px;
+  -webkit-animation: itemAnimation ease-out 700ms;
+          animation: itemAnimation ease-out 700ms;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+}
+
+.MuiGrid-item:nth-child(1) {
+  -webkit-animation-delay: calc(1 * var(--delay));
+          animation-delay: calc(1 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(2) {
+  -webkit-animation-delay: calc(2 * var(--delay));
+          animation-delay: calc(2 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(3) {
+  -webkit-animation-delay: calc(3 * var(--delay));
+          animation-delay: calc(3 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(4) {
+  -webkit-animation-delay: calc(4 * var(--delay));
+          animation-delay: calc(4 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(5) {
+  -webkit-animation-delay: calc(5 * var(--delay));
+          animation-delay: calc(5 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(6) {
+  -webkit-animation-delay: calc(6 * var(--delay));
+          animation-delay: calc(6 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(7) {
+  -webkit-animation-delay: calc(7 * var(--delay));
+          animation-delay: calc(7 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(8) {
+  -webkit-animation-delay: calc(8 * var(--delay));
+          animation-delay: calc(8 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(9) {
+  -webkit-animation-delay: calc(9 * var(--delay));
+          animation-delay: calc(9 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(10) {
+  -webkit-animation-delay: calc(10 * var(--delay));
+          animation-delay: calc(10 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(11) {
+  -webkit-animation-delay: calc(11 * var(--delay));
+          animation-delay: calc(11 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(12) {
+  -webkit-animation-delay: calc(12 * var(--delay));
+          animation-delay: calc(12 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(13) {
+  -webkit-animation-delay: calc(13 * var(--delay));
+          animation-delay: calc(13 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(14) {
+  -webkit-animation-delay: calc(14 * var(--delay));
+          animation-delay: calc(14 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(15) {
+  -webkit-animation-delay: calc(15 * var(--delay));
+          animation-delay: calc(15 * var(--delay));
+}
+
+.itemContainer {
+  height: 100%;
+}
+
+.itemFooter {
+  position: relative;
+  z-index: 99;
+  /* display: inline; */
+  color: white;
+  margin-left: 5%;
+  font-family: "Roboto";
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+}
+
+.itemFooter h3 {
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.itemFooter p {
+  margin: 0;
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+
+.itemFooter ul {
+  margin: 0;
+  font-size: 0.9rem;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.itemFooter * {
+  text-shadow: 0 0 2px black;
+}
+
+.itemCourses {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 3px;
+}
+
+.itemCourses span {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=itemStyle.css.map */

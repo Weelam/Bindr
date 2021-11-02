@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Arvo&family=Roboto:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 body {
   margin: 0;
   padding: 0 5%;
-  font-family: 'Arvo', serif;
-  background-color: #FFFEF8;
+
+  /* background-color: #FFFEF8; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body,
+body * {
+  font-family: "Roboto";
 }
