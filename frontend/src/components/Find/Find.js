@@ -43,7 +43,7 @@ const Find = ({ users }) => {
 
   return (
     <div>
-      <Grid container columns={5} rowSpacing={2} columnSpacing={2}>
+      <Grid container columns={{xs:5, md: 8}} rowSpacing={2} columnSpacing={2}>
         {displayedUsers.map((item, index) => {
           if (index === displayedUsers.length - 1) {
             return (
