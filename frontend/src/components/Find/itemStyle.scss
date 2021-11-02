@@ -14,7 +14,7 @@
 }
 
 .MuiGrid-container {
-  --delay: 100ms;
+  --delay: 50ms;
 }
 
 @keyframes itemAnimation {
@@ -34,10 +34,10 @@
   animation-fill-mode: backwards;
 }
 
-@for $i from 1 through 15 {
-    .MuiGrid-item:nth-child(#{$i}) {
-        animation-delay: calc(#{$i} * var(--delay));
-    }
+@for $i from 1 through 50 {
+  .MuiGrid-item:nth-child(#{$i}) {
+    animation-delay: calc(#{$i} * var(--delay));
+  }
 }
 
 .itemContainer {
