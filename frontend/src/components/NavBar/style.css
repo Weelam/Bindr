@@ -105,6 +105,7 @@
 
 .profileMenu {
     position: absolute;
+    z-index: 9999;
     top: 45px;
     right: 0px;
     width: 200px;
@@ -117,7 +118,7 @@
 }
 
 .profileItem {
-    height: 50px;
+    height: 40px;
     display: flex;
     align-items: center;
     border-radius: var(--border-radius);
@@ -134,4 +135,9 @@
 .leftIcon {
     font-size: 25px;
     margin-right: 10px;
+}
+
+.profileMenu hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

@@ -19,7 +19,7 @@ function Navbar({ auth }) {
             <NavItem to="about" linkClass="link" item="About"/>
           </div>
         </div>
-        {!auth ? (
+        {auth ? (
           <div className="navButton">
             <NavItem to="#" linkClass="link iconButton" item={<AiFillBell className="bellIcon"/>  }/>
             <NavItem to="#" profileDiv="profileDiv" linkClass="link iconButton" item={<CgProfile className="profileIcon"/>}>  

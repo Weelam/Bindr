@@ -26,7 +26,7 @@ function App() {
             {!auth ? (
               <Home user={user} changeUser={setUser} />
             ) : (
-              <FindPage user={user} changeUser={setUser} />
+              <DashboardPage user={user}/>
             )}
           </Route>
           <Route path="/login">
