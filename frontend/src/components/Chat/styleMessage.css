@@ -7,12 +7,12 @@
 }
 
 .senderAvatar {
-  width: 50px;
+  width: 40px;
 }
 
 .senderAvatar img {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   -webkit-box-shadow: 0 0 5px #ddd;
           box-shadow: 0 0 5px #ddd;
