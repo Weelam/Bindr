@@ -32,6 +32,7 @@ const FindFilter = ({filter, setfilter}) => {
     e.preventDefault();
     setfilter((prev) => ({ ...prev, courses: [...prev["courses"], course] }));
     handleClose(setAnchor1);
+		setCourse("");
   };
 
   const handleProgram = (e) => {
@@ -41,6 +42,7 @@ const FindFilter = ({filter, setfilter}) => {
       programs: [...prev["programs"], program],
     }));
     handleClose(setAnchor2);
+		setProgram("");
   };
 
   const filterYear = (year) => {
