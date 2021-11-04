@@ -27,11 +27,11 @@
 
 .filterRoot div p {
   margin: 0;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .filterRoot div svg {
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin-left: 10px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -87,6 +87,6 @@
 
 .filterYear div label {
   margin-left: 5px;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 /*# sourceMappingURL=filterStyle.css.map */

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styleChat.css";
 import data from "./Messages.js";
+import SendIcon from "@mui/icons-material/Send";
+import IconButton from "@mui/material/IconButton";
+import Message from "./Message";
 
 const messageData = data["data"];
 
@@ -10,6 +13,13 @@ const Chat = ({ currentUser }) => {
   const [messages, setMessages] = useState(messageData);
   const [yourMessages, setYourMessages] = useState("");
   const [othersMessages, setOtherMessages] = useState("");
+  const [messagesEnd, setMessagesEnd] = useState();
+
+  const scrollToBottom = () => {
+    if (messagesEnd) {
+      messagesEnd.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -28,11 +38,11 @@ const Chat = ({ currentUser }) => {
     }
   };
 
-  const formatDate = (date) => {
-    console.log(date);
-    return date.toLocaleString("en-US");
-  };
-  console.log(messages);
+  useEffect(() => {
+    console.log(messages);
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="messageRoot">
       <div className="chatContainer">
@@ -40,18 +50,16 @@ const Chat = ({ currentUser }) => {
           {messages.map((msg, index) => {
             let isYourMessage = msg["sender"] === currentUser["userID"];
             return (
-              <li
-                key={index}
-                className={
-                  isYourMessage ? "message yourMessage" : "message otherMessage"
-                }
-              >
-                <p>{msg["content"]}</p>
-                <p>{`${formatDate(msg["time"])}`}</p>
-              </li>
+              <Message index={index} isYourMessage={isYourMessage} msg={msg} />
             );
           })}
         </ul>
+        <div
+          style={{ float: "left", clear: "both" }}
+          ref={(r) => {
+            setMessagesEnd(r);
+          }}
+        ></div>
       </div>
       <div className="chatForm">
         <form onSubmit={handleSend}>
@@ -59,10 +67,13 @@ const Chat = ({ currentUser }) => {
             className="messageContent"
             onChange={(e) => setMessage(e.target.value)}
             value={message}
-            placeholder="message"
+            placeholder="Message"
             type="text"
           />
-          <input className="chatSubmit" type="submit" value="Send" />
+          <input className="messageSend" type="submit" />
+          <IconButton onClick={(e) => handleSend(e)} className="sendIcon">
+            <SendIcon fontSize="small" />
+          </IconButton>
         </form>
       </div>
     </div>

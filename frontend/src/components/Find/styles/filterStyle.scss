@@ -1,35 +1,35 @@
 .filterRoot {
   height: 100%;
-	width: 10%;
+  width: 10%;
   display: flex;
   flex-direction: column;
-	
-	h4 {
-		margin-bottom: 10px;
-		margin-top: 0px;
-	}
 
-	div {
-		display: flex;
-		align-items: center;
-		margin: 8px 0px;
-	}
-	div p {
-		margin: 0;
-		font-size: .9rem;
-	}
+  h4 {
+    margin-bottom: 10px;
+    margin-top: 0px;
+  }
 
-	div svg {
-		font-size: .9rem;
-		margin-left: 10px;
-		align-self: center;
-		border-radius: 50%;
-		padding: 3px;
-		&:hover {
-			background-color: #ddd;
-			cursor: pointer;
-		}
-	}
+  div {
+    display: flex;
+    align-items: center;
+    margin: 8px 0px;
+  }
+  div p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  div svg {
+    font-size: 0.9rem;
+    margin-left: 10px;
+    align-self: center;
+    border-radius: 50%;
+    padding: 3px;
+    &:hover {
+      background-color: #ddd;
+      cursor: pointer;
+    }
+  }
 }
 
 .filterSubmit {
@@ -54,10 +54,10 @@
   cursor: pointer;
   outline: inherit;
   margin: auto;
-	margin-top: 8px;
+  margin-top: 8px;
   border-radius: 100%;
   // transition: filter 300ms;
-	margin-bottom: 10px;
+  margin-bottom: 10px;
   &:hover {
     background-color: #ddd;
     filter: brightness(1.1);
@@ -68,8 +68,8 @@
   div {
     display: flex;
     label {
-			margin-left: 5px;
-			font-size: .9rem;
+      margin-left: 5px;
+      font-size: 0.9rem;
     }
   }
 }

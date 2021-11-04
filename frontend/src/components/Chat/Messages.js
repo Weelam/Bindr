@@ -16,7 +16,7 @@ const data = {
       content: "hi hi hi",
     },
     {
-      sender: 2,
+      sender: 0,
       time: new Date(2021, 3, 1, 9, 10, 4),
       content: "What's good",
     },
