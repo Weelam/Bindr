@@ -7,7 +7,7 @@
 .profileImgContainer {
   height: 100%;
   overflow: hidden;
-  background-color: white;
+  background-color: #b3b3b3;
   border-radius: 10px 10px;
 }
 
@@ -27,6 +27,7 @@
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  opacity: 0.9;
 }
 
 .MuiGrid-container {
@@ -2651,7 +2652,7 @@
 }
 
 .itemFooter * {
-  text-shadow: 0 0 2px black;
+  text-shadow: 0 0 8px black;
 }
 
 .itemCourses {
