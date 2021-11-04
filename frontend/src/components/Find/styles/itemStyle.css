@@ -1,5 +1,9 @@
 /* No CSS */
 @import url(/home/weelam/team58/frontend/src/components/Find/styles/modalStyle.css);
+.findRoot {
+  display: "flex";
+}
+
 .profileImgContainer {
   height: 100%;
   overflow: hidden;
@@ -2593,7 +2597,7 @@
   -webkit-box-shadow: 0 0 3px #ddd;
           box-shadow: 0 0 3px #ddd;
   border-radius: 5px 5px;
-  background: #ff3661;
+  background: rgba(255, 54, 97, 0.5);
 }
 
 .itemContainer-accepted {
@@ -2602,7 +2606,7 @@
   -webkit-box-shadow: 0 0 3px #ddd;
           box-shadow: 0 0 3px #ddd;
   border-radius: 5px 5px;
-  background: #52b788;
+  background: rgba(82, 183, 136, 0.8);
 }
 
 .itemContainer-lowOpac {

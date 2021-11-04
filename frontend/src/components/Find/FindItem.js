@@ -1,5 +1,4 @@
 import React from "react";
-import "./styles/itemStyle.css";
 
 const FindItem = ({ user, opacity }) => {
   return (
