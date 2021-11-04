@@ -1,16 +1,27 @@
 import React from "react";
+import "./styleMessage.css";
 
-const Message = ({ index, isYourMessage, msg }) => {
+const Message = ({ isYourMessage, msg, sender }) => {
   const formatDate = (date) => {
     return date.toLocaleString("en-US");
   };
   return (
     <li
-      key={index}
+
       className={isYourMessage ? "message yourMessage" : "message otherMessage"}
     >
-      <p>{msg["content"]}</p>
-      <p>{`${formatDate(msg["time"])}`}</p>
+      <div className="senderAvatar">
+        <img src={sender["profileImg"]}/>
+      </div>
+      <div className="msgRightSide">
+        <div className="msgHeader">
+          <p>{sender["firstName"]}</p>
+          <span>{`${formatDate(msg["time"])}`}</span>
+        </div>
+        <div className="msgContent">
+          <p>{msg["content"]}</p>
+        </div>
+      </div>
     </li>
   );
 };

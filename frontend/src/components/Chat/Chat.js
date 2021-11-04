@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styleChat.css";
 import data from "./Messages.js";
 import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
 import Message from "./Message";
 
+// this is the mock data for messages (Message.js for more detail)
 const messageData = data["data"];
 
-const Chat = ({ currentUser }) => {
+const Chat = ({ currentUser, users }) => {
   // As for now the chat only works one way since we need a backend in order to make this functional
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(messageData);
   const [yourMessages, setYourMessages] = useState("");
   const [othersMessages, setOtherMessages] = useState("");
-  const [messagesEnd, setMessagesEnd] = useState();
+  const messagesEnd = useRef(null);
 
   const scrollToBottom = () => {
     if (messagesEnd) {
-      messagesEnd.scrollIntoView({ behavior: "smooth" });
+      messagesEnd.current.scrollIntoView({
+        block: "nearest",
+        inline: "center",
+        behavior: "smooth",
+        alignToTop: false,
+      });
     }
   };
 
@@ -36,12 +42,23 @@ const Chat = ({ currentUser }) => {
       });
       setMessage("");
     }
+    
+  };
+
+  const findSender = (id) => {
+    console.log(id, users.filter((user) => user["userID"] === id)[0]);
+    return users.filter((user) => user["userID"] === id)[0];
   };
 
   useEffect(() => {
     console.log(messages);
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    // scroll to bottom on load
+    scrollToBottom();
+  }, []);
 
   return (
     <div className="messageRoot">
@@ -50,16 +67,17 @@ const Chat = ({ currentUser }) => {
           {messages.map((msg, index) => {
             let isYourMessage = msg["sender"] === currentUser["userID"];
             return (
-              <Message index={index} isYourMessage={isYourMessage} msg={msg} />
+              <Message
+                key={index}
+                isYourMessage={isYourMessage}
+                msg={msg}
+                sender={findSender(msg["sender"])}
+                // ref={index===messages.length-1 ? messagesEnd : null}
+              />
             );
           })}
         </ul>
-        <div
-          style={{ float: "left", clear: "both" }}
-          ref={(r) => {
-            setMessagesEnd(r);
-          }}
-        ></div>
+        <div style={{ float: "left", clear: "both" }} ref={messagesEnd}></div>
       </div>
       <div className="chatForm">
         <form onSubmit={handleSend}>

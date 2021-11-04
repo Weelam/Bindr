@@ -1,10 +1,10 @@
 $primary: #52b788;
+$globalPadding: 10px;
 
 .messageRoot {
   transform: translateZ(0);
-  width: 300px;
+  width: 50%;
   height: 400px;
-
   box-shadow: 0 0 4px #ddd;
 }
 
@@ -16,7 +16,7 @@ $primary: #52b788;
   form {
 		display: flex;
 		justify-content: space-between;
-		padding: 5px;
+		padding: $globalPadding;
   }
 }
 
@@ -28,6 +28,7 @@ $primary: #52b788;
     display: none;
   }
   ul {
+		padding: $globalPadding;
   }
 }
 
@@ -35,8 +36,15 @@ $primary: #52b788;
 	width: 100%;
 	flex-grow: 1;
 	border-radius: 13px;
+	border: none;
+	box-shadow: 0 0 4px #ddd;
+	background: #ddd;
 	padding: 5px 10px;
 	margin-right: 1%;
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
 }
 
 .messageSend {
@@ -49,3 +57,4 @@ $primary: #52b788;
 	color: white !important;
 	font-size: 1rem;
 }
+

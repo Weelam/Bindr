@@ -17,6 +17,12 @@
   display: none;
 }
 
+.innerModalContainer:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .modalImageContainer {
   height: 50%;
   width: 100%;

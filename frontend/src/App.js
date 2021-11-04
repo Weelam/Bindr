@@ -62,11 +62,8 @@ function App() {
               />
             )}
           </Route>
-          <Route path="/chat">
-            <Chat currentUser={currentUser}/>
-          </Route>
           <Route path="/dashboard">
-            <DashboardPage currentUser={currentUser}/>
+            <DashboardPage currentUser={currentUser} users={users}/>
           </Route>
         </Switch>
       </Router>
