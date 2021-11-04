@@ -8,7 +8,6 @@ import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import data from "./users.js";
-import Chat from "./components/Chat/Chat";
 
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 const users = data["data"]; 
@@ -43,7 +42,7 @@ function App() {
         <Switch>
           {/* not secure atm, we'll add that in phase 2 */}
           <Route exact path="/">
-            {!auth ? <Redirect to="/" /> : <DashboardPage currentUser={currentUser}/>}
+            {!auth ? <Redirect to="/" /> : <DashboardPage currentUser={currentUser} users={users}/>}
           </Route>
           <Route path="/login">
             <LoginPage
