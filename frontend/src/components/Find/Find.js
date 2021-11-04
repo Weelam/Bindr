@@ -3,12 +3,21 @@ import Grid from "@mui/material/Grid";
 import FindItem from "./FindItem";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import FindModal from "./FindModal";
 
-const Find = ({ users }) => {
+
+
+const Find = ({ users, currentUserSet }) => {
+
+  const {currentUser, setCurrentUser} = currentUserSet;
+  
   const obs = useRef();
   const [displayedUsers, setDisplayedUsers] = useState([]);
   const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 1 });
   const [loading, setLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -31,7 +40,7 @@ const Find = ({ users }) => {
     }
     obs.current = new IntersectionObserver((x) => {
       if (x[0].isIntersecting) {
-        console.log("visible");
+        console.log("at bottom");
         setDisplayPointer((prev) => {
           return { start: prev["end"], end: prev["end"] + 10 };
         });
@@ -41,25 +50,69 @@ const Find = ({ users }) => {
     if (node) obs.current.observe(node);
   }, []);
 
+  const handleModal = (index) => {
+    setSelectedUser(displayedUsers[index]);
+    setOpenModal(true);
+  };
+
+  const handleRejectAccept = (accepted, chosenUser) => {
+    const otherUserID = chosenUser["userID"];
+    console.log(accepted, otherUserID);
+    if (accepted) {
+      // user accepted
+      console.log("Match sent to: ", otherUserID)
+      setCurrentUser(prev => ({...prev, wantToMatch: [...prev["wantToMatch"], otherUserID]}))
+    } else {
+      // user rejected
+
+    }
+  }
+
+  useEffect(() => {
+    console.log(currentUser)
+
+  }, [currentUser])
+
   return (
     <div>
-      <Grid container columns={5} rowSpacing={2} columnSpacing={2}>
+      <Grid
+        container
+        columns={{ xs: 5, md: 8 }}
+        rowSpacing={1}
+        columnSpacing={1}
+      >
         {displayedUsers.map((item, index) => {
           if (index === displayedUsers.length - 1) {
             return (
-              <Grid ref={lastUserRef} item xs={1} key={index}>
+              <Grid
+                onClick={() => {
+                  handleModal(index);
+                }}
+                ref={lastUserRef}
+                item
+                xs={1}
+                key={index}
+              >
                 <FindItem user={item} />
               </Grid>
             );
           }
           return (
-            <Grid item xs={1} key={index}>
+            <Grid
+              onClick={() => {
+                handleModal(index);
+              }}
+              item
+              xs={1}
+              key={index}
+            >
               <FindItem user={item} />
             </Grid>
           );
         })}
+        {/* {loading && <Grid item xs={1}><CircularProgress style={{ height: "45px" }} /></Grid>} */}
       </Grid>
-      {loading && <CircularProgress style={{ height: "100%" }} />}
+      {openModal && <FindModal handleRejectAccept={handleRejectAccept} openModal={openModal} setOpenModal={setOpenModal} user={selectedUser} />}
     </div>
   );
 };

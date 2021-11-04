@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
-function LoginPage({ user, changeUser, setAuth }) {
+function LoginPage({ currentUser, changeCurrentUser, setAuth }) {
   const [info, setInfo] = useState({ username: "", password: "" });
   const history = useHistory();
 
@@ -11,7 +11,7 @@ function LoginPage({ user, changeUser, setAuth }) {
     // check for user authentications
     if (info["username"] === "user" && info["password"] === "user") {
       // change the global user of the application
-      changeUser(info["username"]);
+      changeCurrentUser(info["username"]);
 			setAuth(true)
 			history.push("/")
 

@@ -1,5 +1,6 @@
 import React from "react";
-import "./itemStyle.css";
+import "./styles/itemStyle.css";
+
 const FindItem = ({ user }) => {
   return (
     <div className="itemContainer">
@@ -8,7 +9,7 @@ const FindItem = ({ user }) => {
       </div>
       <div className="itemFooter">
         <div>
-          <h3>{user["username"]}</h3>
+          <h3>{user["firstName"]}</h3>
           <span> {user["year"]}</span>
         </div>
         <p>{user["program"]}</p>
@@ -18,7 +19,7 @@ const FindItem = ({ user }) => {
               <span key={index}>{item}</span>
             )
           })}
-        </div>
+        </div>        
       </div>
     </div>
   );
