@@ -1,0 +1,2641 @@
+/* No CSS */
+@import url(/home/weelam/team58/frontend/src/components/Find/styles/modalStyle.css);
+.profileImgContainer {
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 10px 10px;
+}
+
+.profileImgContainer:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  color: #fff;
+  z-index: 999999;
+}
+
+.profileImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.MuiGrid-container {
+  --delay: 50ms;
+}
+
+@-webkit-keyframes itemAnimation {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes itemAnimation {
+  from {
+    opacity: 0;
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+.MuiGrid-item {
+  height: 300px;
+  -webkit-animation: itemAnimation ease-out 700ms;
+          animation: itemAnimation ease-out 700ms;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+}
+
+.MuiGrid-item:nth-child(1) {
+  -webkit-animation-delay: calc(1 * var(--delay));
+          animation-delay: calc(1 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(2) {
+  -webkit-animation-delay: calc(2 * var(--delay));
+          animation-delay: calc(2 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(3) {
+  -webkit-animation-delay: calc(3 * var(--delay));
+          animation-delay: calc(3 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(4) {
+  -webkit-animation-delay: calc(4 * var(--delay));
+          animation-delay: calc(4 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(5) {
+  -webkit-animation-delay: calc(5 * var(--delay));
+          animation-delay: calc(5 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(6) {
+  -webkit-animation-delay: calc(6 * var(--delay));
+          animation-delay: calc(6 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(7) {
+  -webkit-animation-delay: calc(7 * var(--delay));
+          animation-delay: calc(7 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(8) {
+  -webkit-animation-delay: calc(8 * var(--delay));
+          animation-delay: calc(8 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(9) {
+  -webkit-animation-delay: calc(9 * var(--delay));
+          animation-delay: calc(9 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(10) {
+  -webkit-animation-delay: calc(10 * var(--delay));
+          animation-delay: calc(10 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(11) {
+  -webkit-animation-delay: calc(11 * var(--delay));
+          animation-delay: calc(11 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(12) {
+  -webkit-animation-delay: calc(12 * var(--delay));
+          animation-delay: calc(12 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(13) {
+  -webkit-animation-delay: calc(13 * var(--delay));
+          animation-delay: calc(13 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(14) {
+  -webkit-animation-delay: calc(14 * var(--delay));
+          animation-delay: calc(14 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(15) {
+  -webkit-animation-delay: calc(15 * var(--delay));
+          animation-delay: calc(15 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(16) {
+  -webkit-animation-delay: calc(16 * var(--delay));
+          animation-delay: calc(16 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(17) {
+  -webkit-animation-delay: calc(17 * var(--delay));
+          animation-delay: calc(17 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(18) {
+  -webkit-animation-delay: calc(18 * var(--delay));
+          animation-delay: calc(18 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(19) {
+  -webkit-animation-delay: calc(19 * var(--delay));
+          animation-delay: calc(19 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(20) {
+  -webkit-animation-delay: calc(20 * var(--delay));
+          animation-delay: calc(20 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(21) {
+  -webkit-animation-delay: calc(21 * var(--delay));
+          animation-delay: calc(21 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(22) {
+  -webkit-animation-delay: calc(22 * var(--delay));
+          animation-delay: calc(22 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(23) {
+  -webkit-animation-delay: calc(23 * var(--delay));
+          animation-delay: calc(23 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(24) {
+  -webkit-animation-delay: calc(24 * var(--delay));
+          animation-delay: calc(24 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(25) {
+  -webkit-animation-delay: calc(25 * var(--delay));
+          animation-delay: calc(25 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(26) {
+  -webkit-animation-delay: calc(26 * var(--delay));
+          animation-delay: calc(26 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(27) {
+  -webkit-animation-delay: calc(27 * var(--delay));
+          animation-delay: calc(27 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(28) {
+  -webkit-animation-delay: calc(28 * var(--delay));
+          animation-delay: calc(28 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(29) {
+  -webkit-animation-delay: calc(29 * var(--delay));
+          animation-delay: calc(29 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(30) {
+  -webkit-animation-delay: calc(30 * var(--delay));
+          animation-delay: calc(30 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(31) {
+  -webkit-animation-delay: calc(31 * var(--delay));
+          animation-delay: calc(31 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(32) {
+  -webkit-animation-delay: calc(32 * var(--delay));
+          animation-delay: calc(32 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(33) {
+  -webkit-animation-delay: calc(33 * var(--delay));
+          animation-delay: calc(33 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(34) {
+  -webkit-animation-delay: calc(34 * var(--delay));
+          animation-delay: calc(34 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(35) {
+  -webkit-animation-delay: calc(35 * var(--delay));
+          animation-delay: calc(35 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(36) {
+  -webkit-animation-delay: calc(36 * var(--delay));
+          animation-delay: calc(36 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(37) {
+  -webkit-animation-delay: calc(37 * var(--delay));
+          animation-delay: calc(37 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(38) {
+  -webkit-animation-delay: calc(38 * var(--delay));
+          animation-delay: calc(38 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(39) {
+  -webkit-animation-delay: calc(39 * var(--delay));
+          animation-delay: calc(39 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(40) {
+  -webkit-animation-delay: calc(40 * var(--delay));
+          animation-delay: calc(40 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(41) {
+  -webkit-animation-delay: calc(41 * var(--delay));
+          animation-delay: calc(41 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(42) {
+  -webkit-animation-delay: calc(42 * var(--delay));
+          animation-delay: calc(42 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(43) {
+  -webkit-animation-delay: calc(43 * var(--delay));
+          animation-delay: calc(43 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(44) {
+  -webkit-animation-delay: calc(44 * var(--delay));
+          animation-delay: calc(44 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(45) {
+  -webkit-animation-delay: calc(45 * var(--delay));
+          animation-delay: calc(45 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(46) {
+  -webkit-animation-delay: calc(46 * var(--delay));
+          animation-delay: calc(46 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(47) {
+  -webkit-animation-delay: calc(47 * var(--delay));
+          animation-delay: calc(47 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(48) {
+  -webkit-animation-delay: calc(48 * var(--delay));
+          animation-delay: calc(48 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(49) {
+  -webkit-animation-delay: calc(49 * var(--delay));
+          animation-delay: calc(49 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(50) {
+  -webkit-animation-delay: calc(50 * var(--delay));
+          animation-delay: calc(50 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(51) {
+  -webkit-animation-delay: calc(51 * var(--delay));
+          animation-delay: calc(51 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(52) {
+  -webkit-animation-delay: calc(52 * var(--delay));
+          animation-delay: calc(52 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(53) {
+  -webkit-animation-delay: calc(53 * var(--delay));
+          animation-delay: calc(53 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(54) {
+  -webkit-animation-delay: calc(54 * var(--delay));
+          animation-delay: calc(54 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(55) {
+  -webkit-animation-delay: calc(55 * var(--delay));
+          animation-delay: calc(55 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(56) {
+  -webkit-animation-delay: calc(56 * var(--delay));
+          animation-delay: calc(56 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(57) {
+  -webkit-animation-delay: calc(57 * var(--delay));
+          animation-delay: calc(57 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(58) {
+  -webkit-animation-delay: calc(58 * var(--delay));
+          animation-delay: calc(58 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(59) {
+  -webkit-animation-delay: calc(59 * var(--delay));
+          animation-delay: calc(59 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(60) {
+  -webkit-animation-delay: calc(60 * var(--delay));
+          animation-delay: calc(60 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(61) {
+  -webkit-animation-delay: calc(61 * var(--delay));
+          animation-delay: calc(61 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(62) {
+  -webkit-animation-delay: calc(62 * var(--delay));
+          animation-delay: calc(62 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(63) {
+  -webkit-animation-delay: calc(63 * var(--delay));
+          animation-delay: calc(63 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(64) {
+  -webkit-animation-delay: calc(64 * var(--delay));
+          animation-delay: calc(64 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(65) {
+  -webkit-animation-delay: calc(65 * var(--delay));
+          animation-delay: calc(65 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(66) {
+  -webkit-animation-delay: calc(66 * var(--delay));
+          animation-delay: calc(66 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(67) {
+  -webkit-animation-delay: calc(67 * var(--delay));
+          animation-delay: calc(67 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(68) {
+  -webkit-animation-delay: calc(68 * var(--delay));
+          animation-delay: calc(68 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(69) {
+  -webkit-animation-delay: calc(69 * var(--delay));
+          animation-delay: calc(69 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(70) {
+  -webkit-animation-delay: calc(70 * var(--delay));
+          animation-delay: calc(70 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(71) {
+  -webkit-animation-delay: calc(71 * var(--delay));
+          animation-delay: calc(71 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(72) {
+  -webkit-animation-delay: calc(72 * var(--delay));
+          animation-delay: calc(72 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(73) {
+  -webkit-animation-delay: calc(73 * var(--delay));
+          animation-delay: calc(73 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(74) {
+  -webkit-animation-delay: calc(74 * var(--delay));
+          animation-delay: calc(74 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(75) {
+  -webkit-animation-delay: calc(75 * var(--delay));
+          animation-delay: calc(75 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(76) {
+  -webkit-animation-delay: calc(76 * var(--delay));
+          animation-delay: calc(76 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(77) {
+  -webkit-animation-delay: calc(77 * var(--delay));
+          animation-delay: calc(77 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(78) {
+  -webkit-animation-delay: calc(78 * var(--delay));
+          animation-delay: calc(78 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(79) {
+  -webkit-animation-delay: calc(79 * var(--delay));
+          animation-delay: calc(79 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(80) {
+  -webkit-animation-delay: calc(80 * var(--delay));
+          animation-delay: calc(80 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(81) {
+  -webkit-animation-delay: calc(81 * var(--delay));
+          animation-delay: calc(81 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(82) {
+  -webkit-animation-delay: calc(82 * var(--delay));
+          animation-delay: calc(82 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(83) {
+  -webkit-animation-delay: calc(83 * var(--delay));
+          animation-delay: calc(83 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(84) {
+  -webkit-animation-delay: calc(84 * var(--delay));
+          animation-delay: calc(84 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(85) {
+  -webkit-animation-delay: calc(85 * var(--delay));
+          animation-delay: calc(85 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(86) {
+  -webkit-animation-delay: calc(86 * var(--delay));
+          animation-delay: calc(86 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(87) {
+  -webkit-animation-delay: calc(87 * var(--delay));
+          animation-delay: calc(87 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(88) {
+  -webkit-animation-delay: calc(88 * var(--delay));
+          animation-delay: calc(88 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(89) {
+  -webkit-animation-delay: calc(89 * var(--delay));
+          animation-delay: calc(89 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(90) {
+  -webkit-animation-delay: calc(90 * var(--delay));
+          animation-delay: calc(90 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(91) {
+  -webkit-animation-delay: calc(91 * var(--delay));
+          animation-delay: calc(91 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(92) {
+  -webkit-animation-delay: calc(92 * var(--delay));
+          animation-delay: calc(92 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(93) {
+  -webkit-animation-delay: calc(93 * var(--delay));
+          animation-delay: calc(93 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(94) {
+  -webkit-animation-delay: calc(94 * var(--delay));
+          animation-delay: calc(94 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(95) {
+  -webkit-animation-delay: calc(95 * var(--delay));
+          animation-delay: calc(95 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(96) {
+  -webkit-animation-delay: calc(96 * var(--delay));
+          animation-delay: calc(96 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(97) {
+  -webkit-animation-delay: calc(97 * var(--delay));
+          animation-delay: calc(97 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(98) {
+  -webkit-animation-delay: calc(98 * var(--delay));
+          animation-delay: calc(98 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(99) {
+  -webkit-animation-delay: calc(99 * var(--delay));
+          animation-delay: calc(99 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(100) {
+  -webkit-animation-delay: calc(100 * var(--delay));
+          animation-delay: calc(100 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(101) {
+  -webkit-animation-delay: calc(101 * var(--delay));
+          animation-delay: calc(101 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(102) {
+  -webkit-animation-delay: calc(102 * var(--delay));
+          animation-delay: calc(102 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(103) {
+  -webkit-animation-delay: calc(103 * var(--delay));
+          animation-delay: calc(103 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(104) {
+  -webkit-animation-delay: calc(104 * var(--delay));
+          animation-delay: calc(104 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(105) {
+  -webkit-animation-delay: calc(105 * var(--delay));
+          animation-delay: calc(105 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(106) {
+  -webkit-animation-delay: calc(106 * var(--delay));
+          animation-delay: calc(106 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(107) {
+  -webkit-animation-delay: calc(107 * var(--delay));
+          animation-delay: calc(107 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(108) {
+  -webkit-animation-delay: calc(108 * var(--delay));
+          animation-delay: calc(108 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(109) {
+  -webkit-animation-delay: calc(109 * var(--delay));
+          animation-delay: calc(109 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(110) {
+  -webkit-animation-delay: calc(110 * var(--delay));
+          animation-delay: calc(110 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(111) {
+  -webkit-animation-delay: calc(111 * var(--delay));
+          animation-delay: calc(111 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(112) {
+  -webkit-animation-delay: calc(112 * var(--delay));
+          animation-delay: calc(112 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(113) {
+  -webkit-animation-delay: calc(113 * var(--delay));
+          animation-delay: calc(113 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(114) {
+  -webkit-animation-delay: calc(114 * var(--delay));
+          animation-delay: calc(114 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(115) {
+  -webkit-animation-delay: calc(115 * var(--delay));
+          animation-delay: calc(115 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(116) {
+  -webkit-animation-delay: calc(116 * var(--delay));
+          animation-delay: calc(116 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(117) {
+  -webkit-animation-delay: calc(117 * var(--delay));
+          animation-delay: calc(117 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(118) {
+  -webkit-animation-delay: calc(118 * var(--delay));
+          animation-delay: calc(118 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(119) {
+  -webkit-animation-delay: calc(119 * var(--delay));
+          animation-delay: calc(119 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(120) {
+  -webkit-animation-delay: calc(120 * var(--delay));
+          animation-delay: calc(120 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(121) {
+  -webkit-animation-delay: calc(121 * var(--delay));
+          animation-delay: calc(121 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(122) {
+  -webkit-animation-delay: calc(122 * var(--delay));
+          animation-delay: calc(122 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(123) {
+  -webkit-animation-delay: calc(123 * var(--delay));
+          animation-delay: calc(123 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(124) {
+  -webkit-animation-delay: calc(124 * var(--delay));
+          animation-delay: calc(124 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(125) {
+  -webkit-animation-delay: calc(125 * var(--delay));
+          animation-delay: calc(125 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(126) {
+  -webkit-animation-delay: calc(126 * var(--delay));
+          animation-delay: calc(126 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(127) {
+  -webkit-animation-delay: calc(127 * var(--delay));
+          animation-delay: calc(127 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(128) {
+  -webkit-animation-delay: calc(128 * var(--delay));
+          animation-delay: calc(128 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(129) {
+  -webkit-animation-delay: calc(129 * var(--delay));
+          animation-delay: calc(129 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(130) {
+  -webkit-animation-delay: calc(130 * var(--delay));
+          animation-delay: calc(130 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(131) {
+  -webkit-animation-delay: calc(131 * var(--delay));
+          animation-delay: calc(131 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(132) {
+  -webkit-animation-delay: calc(132 * var(--delay));
+          animation-delay: calc(132 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(133) {
+  -webkit-animation-delay: calc(133 * var(--delay));
+          animation-delay: calc(133 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(134) {
+  -webkit-animation-delay: calc(134 * var(--delay));
+          animation-delay: calc(134 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(135) {
+  -webkit-animation-delay: calc(135 * var(--delay));
+          animation-delay: calc(135 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(136) {
+  -webkit-animation-delay: calc(136 * var(--delay));
+          animation-delay: calc(136 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(137) {
+  -webkit-animation-delay: calc(137 * var(--delay));
+          animation-delay: calc(137 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(138) {
+  -webkit-animation-delay: calc(138 * var(--delay));
+          animation-delay: calc(138 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(139) {
+  -webkit-animation-delay: calc(139 * var(--delay));
+          animation-delay: calc(139 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(140) {
+  -webkit-animation-delay: calc(140 * var(--delay));
+          animation-delay: calc(140 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(141) {
+  -webkit-animation-delay: calc(141 * var(--delay));
+          animation-delay: calc(141 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(142) {
+  -webkit-animation-delay: calc(142 * var(--delay));
+          animation-delay: calc(142 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(143) {
+  -webkit-animation-delay: calc(143 * var(--delay));
+          animation-delay: calc(143 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(144) {
+  -webkit-animation-delay: calc(144 * var(--delay));
+          animation-delay: calc(144 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(145) {
+  -webkit-animation-delay: calc(145 * var(--delay));
+          animation-delay: calc(145 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(146) {
+  -webkit-animation-delay: calc(146 * var(--delay));
+          animation-delay: calc(146 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(147) {
+  -webkit-animation-delay: calc(147 * var(--delay));
+          animation-delay: calc(147 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(148) {
+  -webkit-animation-delay: calc(148 * var(--delay));
+          animation-delay: calc(148 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(149) {
+  -webkit-animation-delay: calc(149 * var(--delay));
+          animation-delay: calc(149 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(150) {
+  -webkit-animation-delay: calc(150 * var(--delay));
+          animation-delay: calc(150 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(151) {
+  -webkit-animation-delay: calc(151 * var(--delay));
+          animation-delay: calc(151 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(152) {
+  -webkit-animation-delay: calc(152 * var(--delay));
+          animation-delay: calc(152 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(153) {
+  -webkit-animation-delay: calc(153 * var(--delay));
+          animation-delay: calc(153 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(154) {
+  -webkit-animation-delay: calc(154 * var(--delay));
+          animation-delay: calc(154 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(155) {
+  -webkit-animation-delay: calc(155 * var(--delay));
+          animation-delay: calc(155 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(156) {
+  -webkit-animation-delay: calc(156 * var(--delay));
+          animation-delay: calc(156 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(157) {
+  -webkit-animation-delay: calc(157 * var(--delay));
+          animation-delay: calc(157 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(158) {
+  -webkit-animation-delay: calc(158 * var(--delay));
+          animation-delay: calc(158 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(159) {
+  -webkit-animation-delay: calc(159 * var(--delay));
+          animation-delay: calc(159 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(160) {
+  -webkit-animation-delay: calc(160 * var(--delay));
+          animation-delay: calc(160 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(161) {
+  -webkit-animation-delay: calc(161 * var(--delay));
+          animation-delay: calc(161 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(162) {
+  -webkit-animation-delay: calc(162 * var(--delay));
+          animation-delay: calc(162 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(163) {
+  -webkit-animation-delay: calc(163 * var(--delay));
+          animation-delay: calc(163 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(164) {
+  -webkit-animation-delay: calc(164 * var(--delay));
+          animation-delay: calc(164 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(165) {
+  -webkit-animation-delay: calc(165 * var(--delay));
+          animation-delay: calc(165 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(166) {
+  -webkit-animation-delay: calc(166 * var(--delay));
+          animation-delay: calc(166 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(167) {
+  -webkit-animation-delay: calc(167 * var(--delay));
+          animation-delay: calc(167 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(168) {
+  -webkit-animation-delay: calc(168 * var(--delay));
+          animation-delay: calc(168 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(169) {
+  -webkit-animation-delay: calc(169 * var(--delay));
+          animation-delay: calc(169 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(170) {
+  -webkit-animation-delay: calc(170 * var(--delay));
+          animation-delay: calc(170 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(171) {
+  -webkit-animation-delay: calc(171 * var(--delay));
+          animation-delay: calc(171 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(172) {
+  -webkit-animation-delay: calc(172 * var(--delay));
+          animation-delay: calc(172 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(173) {
+  -webkit-animation-delay: calc(173 * var(--delay));
+          animation-delay: calc(173 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(174) {
+  -webkit-animation-delay: calc(174 * var(--delay));
+          animation-delay: calc(174 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(175) {
+  -webkit-animation-delay: calc(175 * var(--delay));
+          animation-delay: calc(175 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(176) {
+  -webkit-animation-delay: calc(176 * var(--delay));
+          animation-delay: calc(176 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(177) {
+  -webkit-animation-delay: calc(177 * var(--delay));
+          animation-delay: calc(177 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(178) {
+  -webkit-animation-delay: calc(178 * var(--delay));
+          animation-delay: calc(178 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(179) {
+  -webkit-animation-delay: calc(179 * var(--delay));
+          animation-delay: calc(179 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(180) {
+  -webkit-animation-delay: calc(180 * var(--delay));
+          animation-delay: calc(180 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(181) {
+  -webkit-animation-delay: calc(181 * var(--delay));
+          animation-delay: calc(181 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(182) {
+  -webkit-animation-delay: calc(182 * var(--delay));
+          animation-delay: calc(182 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(183) {
+  -webkit-animation-delay: calc(183 * var(--delay));
+          animation-delay: calc(183 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(184) {
+  -webkit-animation-delay: calc(184 * var(--delay));
+          animation-delay: calc(184 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(185) {
+  -webkit-animation-delay: calc(185 * var(--delay));
+          animation-delay: calc(185 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(186) {
+  -webkit-animation-delay: calc(186 * var(--delay));
+          animation-delay: calc(186 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(187) {
+  -webkit-animation-delay: calc(187 * var(--delay));
+          animation-delay: calc(187 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(188) {
+  -webkit-animation-delay: calc(188 * var(--delay));
+          animation-delay: calc(188 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(189) {
+  -webkit-animation-delay: calc(189 * var(--delay));
+          animation-delay: calc(189 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(190) {
+  -webkit-animation-delay: calc(190 * var(--delay));
+          animation-delay: calc(190 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(191) {
+  -webkit-animation-delay: calc(191 * var(--delay));
+          animation-delay: calc(191 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(192) {
+  -webkit-animation-delay: calc(192 * var(--delay));
+          animation-delay: calc(192 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(193) {
+  -webkit-animation-delay: calc(193 * var(--delay));
+          animation-delay: calc(193 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(194) {
+  -webkit-animation-delay: calc(194 * var(--delay));
+          animation-delay: calc(194 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(195) {
+  -webkit-animation-delay: calc(195 * var(--delay));
+          animation-delay: calc(195 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(196) {
+  -webkit-animation-delay: calc(196 * var(--delay));
+          animation-delay: calc(196 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(197) {
+  -webkit-animation-delay: calc(197 * var(--delay));
+          animation-delay: calc(197 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(198) {
+  -webkit-animation-delay: calc(198 * var(--delay));
+          animation-delay: calc(198 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(199) {
+  -webkit-animation-delay: calc(199 * var(--delay));
+          animation-delay: calc(199 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(200) {
+  -webkit-animation-delay: calc(200 * var(--delay));
+          animation-delay: calc(200 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(201) {
+  -webkit-animation-delay: calc(201 * var(--delay));
+          animation-delay: calc(201 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(202) {
+  -webkit-animation-delay: calc(202 * var(--delay));
+          animation-delay: calc(202 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(203) {
+  -webkit-animation-delay: calc(203 * var(--delay));
+          animation-delay: calc(203 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(204) {
+  -webkit-animation-delay: calc(204 * var(--delay));
+          animation-delay: calc(204 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(205) {
+  -webkit-animation-delay: calc(205 * var(--delay));
+          animation-delay: calc(205 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(206) {
+  -webkit-animation-delay: calc(206 * var(--delay));
+          animation-delay: calc(206 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(207) {
+  -webkit-animation-delay: calc(207 * var(--delay));
+          animation-delay: calc(207 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(208) {
+  -webkit-animation-delay: calc(208 * var(--delay));
+          animation-delay: calc(208 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(209) {
+  -webkit-animation-delay: calc(209 * var(--delay));
+          animation-delay: calc(209 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(210) {
+  -webkit-animation-delay: calc(210 * var(--delay));
+          animation-delay: calc(210 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(211) {
+  -webkit-animation-delay: calc(211 * var(--delay));
+          animation-delay: calc(211 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(212) {
+  -webkit-animation-delay: calc(212 * var(--delay));
+          animation-delay: calc(212 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(213) {
+  -webkit-animation-delay: calc(213 * var(--delay));
+          animation-delay: calc(213 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(214) {
+  -webkit-animation-delay: calc(214 * var(--delay));
+          animation-delay: calc(214 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(215) {
+  -webkit-animation-delay: calc(215 * var(--delay));
+          animation-delay: calc(215 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(216) {
+  -webkit-animation-delay: calc(216 * var(--delay));
+          animation-delay: calc(216 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(217) {
+  -webkit-animation-delay: calc(217 * var(--delay));
+          animation-delay: calc(217 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(218) {
+  -webkit-animation-delay: calc(218 * var(--delay));
+          animation-delay: calc(218 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(219) {
+  -webkit-animation-delay: calc(219 * var(--delay));
+          animation-delay: calc(219 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(220) {
+  -webkit-animation-delay: calc(220 * var(--delay));
+          animation-delay: calc(220 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(221) {
+  -webkit-animation-delay: calc(221 * var(--delay));
+          animation-delay: calc(221 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(222) {
+  -webkit-animation-delay: calc(222 * var(--delay));
+          animation-delay: calc(222 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(223) {
+  -webkit-animation-delay: calc(223 * var(--delay));
+          animation-delay: calc(223 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(224) {
+  -webkit-animation-delay: calc(224 * var(--delay));
+          animation-delay: calc(224 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(225) {
+  -webkit-animation-delay: calc(225 * var(--delay));
+          animation-delay: calc(225 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(226) {
+  -webkit-animation-delay: calc(226 * var(--delay));
+          animation-delay: calc(226 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(227) {
+  -webkit-animation-delay: calc(227 * var(--delay));
+          animation-delay: calc(227 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(228) {
+  -webkit-animation-delay: calc(228 * var(--delay));
+          animation-delay: calc(228 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(229) {
+  -webkit-animation-delay: calc(229 * var(--delay));
+          animation-delay: calc(229 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(230) {
+  -webkit-animation-delay: calc(230 * var(--delay));
+          animation-delay: calc(230 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(231) {
+  -webkit-animation-delay: calc(231 * var(--delay));
+          animation-delay: calc(231 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(232) {
+  -webkit-animation-delay: calc(232 * var(--delay));
+          animation-delay: calc(232 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(233) {
+  -webkit-animation-delay: calc(233 * var(--delay));
+          animation-delay: calc(233 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(234) {
+  -webkit-animation-delay: calc(234 * var(--delay));
+          animation-delay: calc(234 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(235) {
+  -webkit-animation-delay: calc(235 * var(--delay));
+          animation-delay: calc(235 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(236) {
+  -webkit-animation-delay: calc(236 * var(--delay));
+          animation-delay: calc(236 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(237) {
+  -webkit-animation-delay: calc(237 * var(--delay));
+          animation-delay: calc(237 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(238) {
+  -webkit-animation-delay: calc(238 * var(--delay));
+          animation-delay: calc(238 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(239) {
+  -webkit-animation-delay: calc(239 * var(--delay));
+          animation-delay: calc(239 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(240) {
+  -webkit-animation-delay: calc(240 * var(--delay));
+          animation-delay: calc(240 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(241) {
+  -webkit-animation-delay: calc(241 * var(--delay));
+          animation-delay: calc(241 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(242) {
+  -webkit-animation-delay: calc(242 * var(--delay));
+          animation-delay: calc(242 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(243) {
+  -webkit-animation-delay: calc(243 * var(--delay));
+          animation-delay: calc(243 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(244) {
+  -webkit-animation-delay: calc(244 * var(--delay));
+          animation-delay: calc(244 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(245) {
+  -webkit-animation-delay: calc(245 * var(--delay));
+          animation-delay: calc(245 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(246) {
+  -webkit-animation-delay: calc(246 * var(--delay));
+          animation-delay: calc(246 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(247) {
+  -webkit-animation-delay: calc(247 * var(--delay));
+          animation-delay: calc(247 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(248) {
+  -webkit-animation-delay: calc(248 * var(--delay));
+          animation-delay: calc(248 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(249) {
+  -webkit-animation-delay: calc(249 * var(--delay));
+          animation-delay: calc(249 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(250) {
+  -webkit-animation-delay: calc(250 * var(--delay));
+          animation-delay: calc(250 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(251) {
+  -webkit-animation-delay: calc(251 * var(--delay));
+          animation-delay: calc(251 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(252) {
+  -webkit-animation-delay: calc(252 * var(--delay));
+          animation-delay: calc(252 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(253) {
+  -webkit-animation-delay: calc(253 * var(--delay));
+          animation-delay: calc(253 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(254) {
+  -webkit-animation-delay: calc(254 * var(--delay));
+          animation-delay: calc(254 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(255) {
+  -webkit-animation-delay: calc(255 * var(--delay));
+          animation-delay: calc(255 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(256) {
+  -webkit-animation-delay: calc(256 * var(--delay));
+          animation-delay: calc(256 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(257) {
+  -webkit-animation-delay: calc(257 * var(--delay));
+          animation-delay: calc(257 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(258) {
+  -webkit-animation-delay: calc(258 * var(--delay));
+          animation-delay: calc(258 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(259) {
+  -webkit-animation-delay: calc(259 * var(--delay));
+          animation-delay: calc(259 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(260) {
+  -webkit-animation-delay: calc(260 * var(--delay));
+          animation-delay: calc(260 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(261) {
+  -webkit-animation-delay: calc(261 * var(--delay));
+          animation-delay: calc(261 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(262) {
+  -webkit-animation-delay: calc(262 * var(--delay));
+          animation-delay: calc(262 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(263) {
+  -webkit-animation-delay: calc(263 * var(--delay));
+          animation-delay: calc(263 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(264) {
+  -webkit-animation-delay: calc(264 * var(--delay));
+          animation-delay: calc(264 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(265) {
+  -webkit-animation-delay: calc(265 * var(--delay));
+          animation-delay: calc(265 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(266) {
+  -webkit-animation-delay: calc(266 * var(--delay));
+          animation-delay: calc(266 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(267) {
+  -webkit-animation-delay: calc(267 * var(--delay));
+          animation-delay: calc(267 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(268) {
+  -webkit-animation-delay: calc(268 * var(--delay));
+          animation-delay: calc(268 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(269) {
+  -webkit-animation-delay: calc(269 * var(--delay));
+          animation-delay: calc(269 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(270) {
+  -webkit-animation-delay: calc(270 * var(--delay));
+          animation-delay: calc(270 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(271) {
+  -webkit-animation-delay: calc(271 * var(--delay));
+          animation-delay: calc(271 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(272) {
+  -webkit-animation-delay: calc(272 * var(--delay));
+          animation-delay: calc(272 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(273) {
+  -webkit-animation-delay: calc(273 * var(--delay));
+          animation-delay: calc(273 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(274) {
+  -webkit-animation-delay: calc(274 * var(--delay));
+          animation-delay: calc(274 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(275) {
+  -webkit-animation-delay: calc(275 * var(--delay));
+          animation-delay: calc(275 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(276) {
+  -webkit-animation-delay: calc(276 * var(--delay));
+          animation-delay: calc(276 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(277) {
+  -webkit-animation-delay: calc(277 * var(--delay));
+          animation-delay: calc(277 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(278) {
+  -webkit-animation-delay: calc(278 * var(--delay));
+          animation-delay: calc(278 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(279) {
+  -webkit-animation-delay: calc(279 * var(--delay));
+          animation-delay: calc(279 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(280) {
+  -webkit-animation-delay: calc(280 * var(--delay));
+          animation-delay: calc(280 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(281) {
+  -webkit-animation-delay: calc(281 * var(--delay));
+          animation-delay: calc(281 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(282) {
+  -webkit-animation-delay: calc(282 * var(--delay));
+          animation-delay: calc(282 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(283) {
+  -webkit-animation-delay: calc(283 * var(--delay));
+          animation-delay: calc(283 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(284) {
+  -webkit-animation-delay: calc(284 * var(--delay));
+          animation-delay: calc(284 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(285) {
+  -webkit-animation-delay: calc(285 * var(--delay));
+          animation-delay: calc(285 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(286) {
+  -webkit-animation-delay: calc(286 * var(--delay));
+          animation-delay: calc(286 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(287) {
+  -webkit-animation-delay: calc(287 * var(--delay));
+          animation-delay: calc(287 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(288) {
+  -webkit-animation-delay: calc(288 * var(--delay));
+          animation-delay: calc(288 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(289) {
+  -webkit-animation-delay: calc(289 * var(--delay));
+          animation-delay: calc(289 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(290) {
+  -webkit-animation-delay: calc(290 * var(--delay));
+          animation-delay: calc(290 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(291) {
+  -webkit-animation-delay: calc(291 * var(--delay));
+          animation-delay: calc(291 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(292) {
+  -webkit-animation-delay: calc(292 * var(--delay));
+          animation-delay: calc(292 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(293) {
+  -webkit-animation-delay: calc(293 * var(--delay));
+          animation-delay: calc(293 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(294) {
+  -webkit-animation-delay: calc(294 * var(--delay));
+          animation-delay: calc(294 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(295) {
+  -webkit-animation-delay: calc(295 * var(--delay));
+          animation-delay: calc(295 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(296) {
+  -webkit-animation-delay: calc(296 * var(--delay));
+          animation-delay: calc(296 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(297) {
+  -webkit-animation-delay: calc(297 * var(--delay));
+          animation-delay: calc(297 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(298) {
+  -webkit-animation-delay: calc(298 * var(--delay));
+          animation-delay: calc(298 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(299) {
+  -webkit-animation-delay: calc(299 * var(--delay));
+          animation-delay: calc(299 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(300) {
+  -webkit-animation-delay: calc(300 * var(--delay));
+          animation-delay: calc(300 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(301) {
+  -webkit-animation-delay: calc(301 * var(--delay));
+          animation-delay: calc(301 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(302) {
+  -webkit-animation-delay: calc(302 * var(--delay));
+          animation-delay: calc(302 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(303) {
+  -webkit-animation-delay: calc(303 * var(--delay));
+          animation-delay: calc(303 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(304) {
+  -webkit-animation-delay: calc(304 * var(--delay));
+          animation-delay: calc(304 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(305) {
+  -webkit-animation-delay: calc(305 * var(--delay));
+          animation-delay: calc(305 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(306) {
+  -webkit-animation-delay: calc(306 * var(--delay));
+          animation-delay: calc(306 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(307) {
+  -webkit-animation-delay: calc(307 * var(--delay));
+          animation-delay: calc(307 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(308) {
+  -webkit-animation-delay: calc(308 * var(--delay));
+          animation-delay: calc(308 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(309) {
+  -webkit-animation-delay: calc(309 * var(--delay));
+          animation-delay: calc(309 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(310) {
+  -webkit-animation-delay: calc(310 * var(--delay));
+          animation-delay: calc(310 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(311) {
+  -webkit-animation-delay: calc(311 * var(--delay));
+          animation-delay: calc(311 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(312) {
+  -webkit-animation-delay: calc(312 * var(--delay));
+          animation-delay: calc(312 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(313) {
+  -webkit-animation-delay: calc(313 * var(--delay));
+          animation-delay: calc(313 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(314) {
+  -webkit-animation-delay: calc(314 * var(--delay));
+          animation-delay: calc(314 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(315) {
+  -webkit-animation-delay: calc(315 * var(--delay));
+          animation-delay: calc(315 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(316) {
+  -webkit-animation-delay: calc(316 * var(--delay));
+          animation-delay: calc(316 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(317) {
+  -webkit-animation-delay: calc(317 * var(--delay));
+          animation-delay: calc(317 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(318) {
+  -webkit-animation-delay: calc(318 * var(--delay));
+          animation-delay: calc(318 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(319) {
+  -webkit-animation-delay: calc(319 * var(--delay));
+          animation-delay: calc(319 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(320) {
+  -webkit-animation-delay: calc(320 * var(--delay));
+          animation-delay: calc(320 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(321) {
+  -webkit-animation-delay: calc(321 * var(--delay));
+          animation-delay: calc(321 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(322) {
+  -webkit-animation-delay: calc(322 * var(--delay));
+          animation-delay: calc(322 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(323) {
+  -webkit-animation-delay: calc(323 * var(--delay));
+          animation-delay: calc(323 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(324) {
+  -webkit-animation-delay: calc(324 * var(--delay));
+          animation-delay: calc(324 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(325) {
+  -webkit-animation-delay: calc(325 * var(--delay));
+          animation-delay: calc(325 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(326) {
+  -webkit-animation-delay: calc(326 * var(--delay));
+          animation-delay: calc(326 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(327) {
+  -webkit-animation-delay: calc(327 * var(--delay));
+          animation-delay: calc(327 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(328) {
+  -webkit-animation-delay: calc(328 * var(--delay));
+          animation-delay: calc(328 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(329) {
+  -webkit-animation-delay: calc(329 * var(--delay));
+          animation-delay: calc(329 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(330) {
+  -webkit-animation-delay: calc(330 * var(--delay));
+          animation-delay: calc(330 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(331) {
+  -webkit-animation-delay: calc(331 * var(--delay));
+          animation-delay: calc(331 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(332) {
+  -webkit-animation-delay: calc(332 * var(--delay));
+          animation-delay: calc(332 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(333) {
+  -webkit-animation-delay: calc(333 * var(--delay));
+          animation-delay: calc(333 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(334) {
+  -webkit-animation-delay: calc(334 * var(--delay));
+          animation-delay: calc(334 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(335) {
+  -webkit-animation-delay: calc(335 * var(--delay));
+          animation-delay: calc(335 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(336) {
+  -webkit-animation-delay: calc(336 * var(--delay));
+          animation-delay: calc(336 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(337) {
+  -webkit-animation-delay: calc(337 * var(--delay));
+          animation-delay: calc(337 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(338) {
+  -webkit-animation-delay: calc(338 * var(--delay));
+          animation-delay: calc(338 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(339) {
+  -webkit-animation-delay: calc(339 * var(--delay));
+          animation-delay: calc(339 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(340) {
+  -webkit-animation-delay: calc(340 * var(--delay));
+          animation-delay: calc(340 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(341) {
+  -webkit-animation-delay: calc(341 * var(--delay));
+          animation-delay: calc(341 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(342) {
+  -webkit-animation-delay: calc(342 * var(--delay));
+          animation-delay: calc(342 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(343) {
+  -webkit-animation-delay: calc(343 * var(--delay));
+          animation-delay: calc(343 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(344) {
+  -webkit-animation-delay: calc(344 * var(--delay));
+          animation-delay: calc(344 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(345) {
+  -webkit-animation-delay: calc(345 * var(--delay));
+          animation-delay: calc(345 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(346) {
+  -webkit-animation-delay: calc(346 * var(--delay));
+          animation-delay: calc(346 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(347) {
+  -webkit-animation-delay: calc(347 * var(--delay));
+          animation-delay: calc(347 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(348) {
+  -webkit-animation-delay: calc(348 * var(--delay));
+          animation-delay: calc(348 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(349) {
+  -webkit-animation-delay: calc(349 * var(--delay));
+          animation-delay: calc(349 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(350) {
+  -webkit-animation-delay: calc(350 * var(--delay));
+          animation-delay: calc(350 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(351) {
+  -webkit-animation-delay: calc(351 * var(--delay));
+          animation-delay: calc(351 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(352) {
+  -webkit-animation-delay: calc(352 * var(--delay));
+          animation-delay: calc(352 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(353) {
+  -webkit-animation-delay: calc(353 * var(--delay));
+          animation-delay: calc(353 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(354) {
+  -webkit-animation-delay: calc(354 * var(--delay));
+          animation-delay: calc(354 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(355) {
+  -webkit-animation-delay: calc(355 * var(--delay));
+          animation-delay: calc(355 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(356) {
+  -webkit-animation-delay: calc(356 * var(--delay));
+          animation-delay: calc(356 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(357) {
+  -webkit-animation-delay: calc(357 * var(--delay));
+          animation-delay: calc(357 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(358) {
+  -webkit-animation-delay: calc(358 * var(--delay));
+          animation-delay: calc(358 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(359) {
+  -webkit-animation-delay: calc(359 * var(--delay));
+          animation-delay: calc(359 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(360) {
+  -webkit-animation-delay: calc(360 * var(--delay));
+          animation-delay: calc(360 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(361) {
+  -webkit-animation-delay: calc(361 * var(--delay));
+          animation-delay: calc(361 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(362) {
+  -webkit-animation-delay: calc(362 * var(--delay));
+          animation-delay: calc(362 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(363) {
+  -webkit-animation-delay: calc(363 * var(--delay));
+          animation-delay: calc(363 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(364) {
+  -webkit-animation-delay: calc(364 * var(--delay));
+          animation-delay: calc(364 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(365) {
+  -webkit-animation-delay: calc(365 * var(--delay));
+          animation-delay: calc(365 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(366) {
+  -webkit-animation-delay: calc(366 * var(--delay));
+          animation-delay: calc(366 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(367) {
+  -webkit-animation-delay: calc(367 * var(--delay));
+          animation-delay: calc(367 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(368) {
+  -webkit-animation-delay: calc(368 * var(--delay));
+          animation-delay: calc(368 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(369) {
+  -webkit-animation-delay: calc(369 * var(--delay));
+          animation-delay: calc(369 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(370) {
+  -webkit-animation-delay: calc(370 * var(--delay));
+          animation-delay: calc(370 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(371) {
+  -webkit-animation-delay: calc(371 * var(--delay));
+          animation-delay: calc(371 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(372) {
+  -webkit-animation-delay: calc(372 * var(--delay));
+          animation-delay: calc(372 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(373) {
+  -webkit-animation-delay: calc(373 * var(--delay));
+          animation-delay: calc(373 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(374) {
+  -webkit-animation-delay: calc(374 * var(--delay));
+          animation-delay: calc(374 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(375) {
+  -webkit-animation-delay: calc(375 * var(--delay));
+          animation-delay: calc(375 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(376) {
+  -webkit-animation-delay: calc(376 * var(--delay));
+          animation-delay: calc(376 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(377) {
+  -webkit-animation-delay: calc(377 * var(--delay));
+          animation-delay: calc(377 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(378) {
+  -webkit-animation-delay: calc(378 * var(--delay));
+          animation-delay: calc(378 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(379) {
+  -webkit-animation-delay: calc(379 * var(--delay));
+          animation-delay: calc(379 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(380) {
+  -webkit-animation-delay: calc(380 * var(--delay));
+          animation-delay: calc(380 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(381) {
+  -webkit-animation-delay: calc(381 * var(--delay));
+          animation-delay: calc(381 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(382) {
+  -webkit-animation-delay: calc(382 * var(--delay));
+          animation-delay: calc(382 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(383) {
+  -webkit-animation-delay: calc(383 * var(--delay));
+          animation-delay: calc(383 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(384) {
+  -webkit-animation-delay: calc(384 * var(--delay));
+          animation-delay: calc(384 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(385) {
+  -webkit-animation-delay: calc(385 * var(--delay));
+          animation-delay: calc(385 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(386) {
+  -webkit-animation-delay: calc(386 * var(--delay));
+          animation-delay: calc(386 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(387) {
+  -webkit-animation-delay: calc(387 * var(--delay));
+          animation-delay: calc(387 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(388) {
+  -webkit-animation-delay: calc(388 * var(--delay));
+          animation-delay: calc(388 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(389) {
+  -webkit-animation-delay: calc(389 * var(--delay));
+          animation-delay: calc(389 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(390) {
+  -webkit-animation-delay: calc(390 * var(--delay));
+          animation-delay: calc(390 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(391) {
+  -webkit-animation-delay: calc(391 * var(--delay));
+          animation-delay: calc(391 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(392) {
+  -webkit-animation-delay: calc(392 * var(--delay));
+          animation-delay: calc(392 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(393) {
+  -webkit-animation-delay: calc(393 * var(--delay));
+          animation-delay: calc(393 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(394) {
+  -webkit-animation-delay: calc(394 * var(--delay));
+          animation-delay: calc(394 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(395) {
+  -webkit-animation-delay: calc(395 * var(--delay));
+          animation-delay: calc(395 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(396) {
+  -webkit-animation-delay: calc(396 * var(--delay));
+          animation-delay: calc(396 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(397) {
+  -webkit-animation-delay: calc(397 * var(--delay));
+          animation-delay: calc(397 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(398) {
+  -webkit-animation-delay: calc(398 * var(--delay));
+          animation-delay: calc(398 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(399) {
+  -webkit-animation-delay: calc(399 * var(--delay));
+          animation-delay: calc(399 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(400) {
+  -webkit-animation-delay: calc(400 * var(--delay));
+          animation-delay: calc(400 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(401) {
+  -webkit-animation-delay: calc(401 * var(--delay));
+          animation-delay: calc(401 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(402) {
+  -webkit-animation-delay: calc(402 * var(--delay));
+          animation-delay: calc(402 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(403) {
+  -webkit-animation-delay: calc(403 * var(--delay));
+          animation-delay: calc(403 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(404) {
+  -webkit-animation-delay: calc(404 * var(--delay));
+          animation-delay: calc(404 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(405) {
+  -webkit-animation-delay: calc(405 * var(--delay));
+          animation-delay: calc(405 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(406) {
+  -webkit-animation-delay: calc(406 * var(--delay));
+          animation-delay: calc(406 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(407) {
+  -webkit-animation-delay: calc(407 * var(--delay));
+          animation-delay: calc(407 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(408) {
+  -webkit-animation-delay: calc(408 * var(--delay));
+          animation-delay: calc(408 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(409) {
+  -webkit-animation-delay: calc(409 * var(--delay));
+          animation-delay: calc(409 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(410) {
+  -webkit-animation-delay: calc(410 * var(--delay));
+          animation-delay: calc(410 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(411) {
+  -webkit-animation-delay: calc(411 * var(--delay));
+          animation-delay: calc(411 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(412) {
+  -webkit-animation-delay: calc(412 * var(--delay));
+          animation-delay: calc(412 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(413) {
+  -webkit-animation-delay: calc(413 * var(--delay));
+          animation-delay: calc(413 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(414) {
+  -webkit-animation-delay: calc(414 * var(--delay));
+          animation-delay: calc(414 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(415) {
+  -webkit-animation-delay: calc(415 * var(--delay));
+          animation-delay: calc(415 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(416) {
+  -webkit-animation-delay: calc(416 * var(--delay));
+          animation-delay: calc(416 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(417) {
+  -webkit-animation-delay: calc(417 * var(--delay));
+          animation-delay: calc(417 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(418) {
+  -webkit-animation-delay: calc(418 * var(--delay));
+          animation-delay: calc(418 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(419) {
+  -webkit-animation-delay: calc(419 * var(--delay));
+          animation-delay: calc(419 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(420) {
+  -webkit-animation-delay: calc(420 * var(--delay));
+          animation-delay: calc(420 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(421) {
+  -webkit-animation-delay: calc(421 * var(--delay));
+          animation-delay: calc(421 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(422) {
+  -webkit-animation-delay: calc(422 * var(--delay));
+          animation-delay: calc(422 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(423) {
+  -webkit-animation-delay: calc(423 * var(--delay));
+          animation-delay: calc(423 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(424) {
+  -webkit-animation-delay: calc(424 * var(--delay));
+          animation-delay: calc(424 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(425) {
+  -webkit-animation-delay: calc(425 * var(--delay));
+          animation-delay: calc(425 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(426) {
+  -webkit-animation-delay: calc(426 * var(--delay));
+          animation-delay: calc(426 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(427) {
+  -webkit-animation-delay: calc(427 * var(--delay));
+          animation-delay: calc(427 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(428) {
+  -webkit-animation-delay: calc(428 * var(--delay));
+          animation-delay: calc(428 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(429) {
+  -webkit-animation-delay: calc(429 * var(--delay));
+          animation-delay: calc(429 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(430) {
+  -webkit-animation-delay: calc(430 * var(--delay));
+          animation-delay: calc(430 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(431) {
+  -webkit-animation-delay: calc(431 * var(--delay));
+          animation-delay: calc(431 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(432) {
+  -webkit-animation-delay: calc(432 * var(--delay));
+          animation-delay: calc(432 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(433) {
+  -webkit-animation-delay: calc(433 * var(--delay));
+          animation-delay: calc(433 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(434) {
+  -webkit-animation-delay: calc(434 * var(--delay));
+          animation-delay: calc(434 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(435) {
+  -webkit-animation-delay: calc(435 * var(--delay));
+          animation-delay: calc(435 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(436) {
+  -webkit-animation-delay: calc(436 * var(--delay));
+          animation-delay: calc(436 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(437) {
+  -webkit-animation-delay: calc(437 * var(--delay));
+          animation-delay: calc(437 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(438) {
+  -webkit-animation-delay: calc(438 * var(--delay));
+          animation-delay: calc(438 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(439) {
+  -webkit-animation-delay: calc(439 * var(--delay));
+          animation-delay: calc(439 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(440) {
+  -webkit-animation-delay: calc(440 * var(--delay));
+          animation-delay: calc(440 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(441) {
+  -webkit-animation-delay: calc(441 * var(--delay));
+          animation-delay: calc(441 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(442) {
+  -webkit-animation-delay: calc(442 * var(--delay));
+          animation-delay: calc(442 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(443) {
+  -webkit-animation-delay: calc(443 * var(--delay));
+          animation-delay: calc(443 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(444) {
+  -webkit-animation-delay: calc(444 * var(--delay));
+          animation-delay: calc(444 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(445) {
+  -webkit-animation-delay: calc(445 * var(--delay));
+          animation-delay: calc(445 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(446) {
+  -webkit-animation-delay: calc(446 * var(--delay));
+          animation-delay: calc(446 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(447) {
+  -webkit-animation-delay: calc(447 * var(--delay));
+          animation-delay: calc(447 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(448) {
+  -webkit-animation-delay: calc(448 * var(--delay));
+          animation-delay: calc(448 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(449) {
+  -webkit-animation-delay: calc(449 * var(--delay));
+          animation-delay: calc(449 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(450) {
+  -webkit-animation-delay: calc(450 * var(--delay));
+          animation-delay: calc(450 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(451) {
+  -webkit-animation-delay: calc(451 * var(--delay));
+          animation-delay: calc(451 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(452) {
+  -webkit-animation-delay: calc(452 * var(--delay));
+          animation-delay: calc(452 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(453) {
+  -webkit-animation-delay: calc(453 * var(--delay));
+          animation-delay: calc(453 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(454) {
+  -webkit-animation-delay: calc(454 * var(--delay));
+          animation-delay: calc(454 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(455) {
+  -webkit-animation-delay: calc(455 * var(--delay));
+          animation-delay: calc(455 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(456) {
+  -webkit-animation-delay: calc(456 * var(--delay));
+          animation-delay: calc(456 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(457) {
+  -webkit-animation-delay: calc(457 * var(--delay));
+          animation-delay: calc(457 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(458) {
+  -webkit-animation-delay: calc(458 * var(--delay));
+          animation-delay: calc(458 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(459) {
+  -webkit-animation-delay: calc(459 * var(--delay));
+          animation-delay: calc(459 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(460) {
+  -webkit-animation-delay: calc(460 * var(--delay));
+          animation-delay: calc(460 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(461) {
+  -webkit-animation-delay: calc(461 * var(--delay));
+          animation-delay: calc(461 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(462) {
+  -webkit-animation-delay: calc(462 * var(--delay));
+          animation-delay: calc(462 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(463) {
+  -webkit-animation-delay: calc(463 * var(--delay));
+          animation-delay: calc(463 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(464) {
+  -webkit-animation-delay: calc(464 * var(--delay));
+          animation-delay: calc(464 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(465) {
+  -webkit-animation-delay: calc(465 * var(--delay));
+          animation-delay: calc(465 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(466) {
+  -webkit-animation-delay: calc(466 * var(--delay));
+          animation-delay: calc(466 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(467) {
+  -webkit-animation-delay: calc(467 * var(--delay));
+          animation-delay: calc(467 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(468) {
+  -webkit-animation-delay: calc(468 * var(--delay));
+          animation-delay: calc(468 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(469) {
+  -webkit-animation-delay: calc(469 * var(--delay));
+          animation-delay: calc(469 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(470) {
+  -webkit-animation-delay: calc(470 * var(--delay));
+          animation-delay: calc(470 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(471) {
+  -webkit-animation-delay: calc(471 * var(--delay));
+          animation-delay: calc(471 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(472) {
+  -webkit-animation-delay: calc(472 * var(--delay));
+          animation-delay: calc(472 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(473) {
+  -webkit-animation-delay: calc(473 * var(--delay));
+          animation-delay: calc(473 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(474) {
+  -webkit-animation-delay: calc(474 * var(--delay));
+          animation-delay: calc(474 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(475) {
+  -webkit-animation-delay: calc(475 * var(--delay));
+          animation-delay: calc(475 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(476) {
+  -webkit-animation-delay: calc(476 * var(--delay));
+          animation-delay: calc(476 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(477) {
+  -webkit-animation-delay: calc(477 * var(--delay));
+          animation-delay: calc(477 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(478) {
+  -webkit-animation-delay: calc(478 * var(--delay));
+          animation-delay: calc(478 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(479) {
+  -webkit-animation-delay: calc(479 * var(--delay));
+          animation-delay: calc(479 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(480) {
+  -webkit-animation-delay: calc(480 * var(--delay));
+          animation-delay: calc(480 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(481) {
+  -webkit-animation-delay: calc(481 * var(--delay));
+          animation-delay: calc(481 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(482) {
+  -webkit-animation-delay: calc(482 * var(--delay));
+          animation-delay: calc(482 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(483) {
+  -webkit-animation-delay: calc(483 * var(--delay));
+          animation-delay: calc(483 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(484) {
+  -webkit-animation-delay: calc(484 * var(--delay));
+          animation-delay: calc(484 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(485) {
+  -webkit-animation-delay: calc(485 * var(--delay));
+          animation-delay: calc(485 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(486) {
+  -webkit-animation-delay: calc(486 * var(--delay));
+          animation-delay: calc(486 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(487) {
+  -webkit-animation-delay: calc(487 * var(--delay));
+          animation-delay: calc(487 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(488) {
+  -webkit-animation-delay: calc(488 * var(--delay));
+          animation-delay: calc(488 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(489) {
+  -webkit-animation-delay: calc(489 * var(--delay));
+          animation-delay: calc(489 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(490) {
+  -webkit-animation-delay: calc(490 * var(--delay));
+          animation-delay: calc(490 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(491) {
+  -webkit-animation-delay: calc(491 * var(--delay));
+          animation-delay: calc(491 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(492) {
+  -webkit-animation-delay: calc(492 * var(--delay));
+          animation-delay: calc(492 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(493) {
+  -webkit-animation-delay: calc(493 * var(--delay));
+          animation-delay: calc(493 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(494) {
+  -webkit-animation-delay: calc(494 * var(--delay));
+          animation-delay: calc(494 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(495) {
+  -webkit-animation-delay: calc(495 * var(--delay));
+          animation-delay: calc(495 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(496) {
+  -webkit-animation-delay: calc(496 * var(--delay));
+          animation-delay: calc(496 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(497) {
+  -webkit-animation-delay: calc(497 * var(--delay));
+          animation-delay: calc(497 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(498) {
+  -webkit-animation-delay: calc(498 * var(--delay));
+          animation-delay: calc(498 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(499) {
+  -webkit-animation-delay: calc(499 * var(--delay));
+          animation-delay: calc(499 * var(--delay));
+}
+
+.MuiGrid-item:nth-child(500) {
+  -webkit-animation-delay: calc(500 * var(--delay));
+          animation-delay: calc(500 * var(--delay));
+}
+
+@-webkit-keyframes containerAnimation {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+
+@keyframes containerAnimation {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+
+.itemContainer {
+  height: 100%;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px #ddd;
+          box-shadow: 0 0 3px #ddd;
+  border-radius: 5px 5px;
+}
+
+.itemContainer:hover {
+  -webkit-animation: containerAnimation 250ms forwards;
+          animation: containerAnimation 250ms forwards;
+  -webkit-box-shadow: 0 0 10px #ddd;
+          box-shadow: 0 0 10px #ddd;
+}
+
+.itemFooter {
+  position: relative;
+  z-index: 99;
+  /* display: inline; */
+  color: white;
+  margin-left: 5%;
+  font-family: "Roboto";
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+}
+
+.itemFooter h3 {
+  display: inline-block;
+  margin-bottom: 3px;
+}
+
+.itemFooter p {
+  margin: 0;
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+
+.itemFooter * {
+  text-shadow: 0 0 2px black;
+}
+
+.itemCourses {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 3px;
+}
+
+.itemCourses span {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=itemStyle.css.map */

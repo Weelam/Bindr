@@ -1,0 +1,174 @@
+.innerModalContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 30%;
+  height: 90%;
+  background-color: white;
+  border-radius: 10px 10px;
+  -webkit-box-shadow: 24;
+          box-shadow: 24;
+  overflow-y: auto;
+}
+
+.innerModalContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.modalImageContainer {
+  height: 50%;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.modalImage {
+  width: 100%;
+  border-radius: 5px 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-height: 100%;
+}
+
+.modalDesc {
+  padding: 15px 10px;
+}
+
+.modalDesc hr {
+  margin: 10px 0px;
+}
+
+.modalDesc-nameyear {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.modalDesc-nameyear h3 {
+  font-size: 1.5rem;
+  display: inline-block;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.modalDesc-nameyear span {
+  font-size: 1.2rem;
+  margin-top: 2px;
+}
+
+.modalProgram {
+  margin: 0;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.modalCourses {
+  margin: 0;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.modalCourses span {
+  margin-right: 5px;
+}
+
+.modalBio {
+  margin: 0;
+}
+
+.modalButtonsContainer {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  bottom: 8%;
+  right: 0.7%;
+  z-index: 99999999999;
+  width: 100%;
+}
+
+.modalButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+  background: linear-gradient(transparent 150px, white);
+  z-index: 999999999999;
+}
+
+.modalButtons .modalReject {
+  color: #ff3661 !important;
+  background: rgba(255, 255, 255, 0.897);
+  -webkit-box-shadow: 0 0px 5px #ddd;
+          box-shadow: 0 0px 5px #ddd;
+  border-radius: 50%;
+  font-size: 500%;
+  height: 100%;
+  margin-right: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.modalButtons .modalAccept {
+  color: #52b788;
+  background: rgba(255, 255, 255, 0.897);
+  -webkit-box-shadow: 0 0px 5px #ddd;
+          box-shadow: 0 0px 5px #ddd;
+  border-radius: 50%;
+  font-size: 500%;
+  height: 100%;
+  margin-right: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.modalButtons .modalRejectButton {
+  margin-right: 20px;
+}
+
+.modalButtons button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  -webkit-box-shadow: 0 0px 5px #ddd;
+          box-shadow: 0 0px 5px #ddd;
+  cursor: pointer;
+}
+
+.modalButtons button:first-child {
+  background-color: rgba(255, 54, 97, 0.1);
+}
+
+.modalButtons button:first-child:hover {
+  background: rgba(255, 54, 97, 0.315);
+}
+
+.modalButtons button:last-child {
+  background-color: rgba(82, 183, 136, 0.1);
+}
+
+.modalButtons button:last-child:hover {
+  background: rgba(82, 183, 136, 0.315);
+}
+
+.modalEmptySpace {
+  height: 20%;
+}
+/*# sourceMappingURL=modalStyle.css.map */

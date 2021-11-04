@@ -1,6 +1,6 @@
 :root {
     --primary: #52b788;
-    --secondary: #white;
+    --secondary: white;
     --nav-height: 60px;
     --speed: 500ms;
     --border: 1px solid #52b788;
@@ -105,7 +105,7 @@
 
 .profileMenu {
     position: absolute;
-    z-index: 9999;
+    z-index: 99999999999999999;
     top: 45px;
     right: 0px;
     width: 200px;

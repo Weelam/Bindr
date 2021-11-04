@@ -1,10 +1,13 @@
 /* No CSS */ /*# sourceMappingURL=itemStyle.css.map */
+$primary: #52b788;
+
+@import "./modalStyle.css";
 
 .profileImgContainer {
   height: 100%;
   overflow: hidden;
   background-color: white;
-  border-radius: 5px 5px;
+  border-radius: 10px 10px;
 
   &:after {
     position: absolute;
@@ -31,7 +34,7 @@
 @keyframes itemAnimation {
   from {
     opacity: 0;
-    transform: scale(0.4);
+    transform: scale(0.2);
   }
   to {
     opacity: 1;
@@ -45,7 +48,7 @@
   animation-fill-mode: backwards;
 }
 
-@for $i from 1 through 50 {
+@for $i from 1 through 500 {
   .MuiGrid-item:nth-child(#{$i}) {
     animation-delay: calc(#{$i} * var(--delay));
   }
@@ -70,7 +73,7 @@
   &:hover {
     // animation-fill-mode: forward, none;
     animation: containerAnimation 250ms forwards;
-    box-shadow: 0 0 10px #52b788;
+    box-shadow: 0 0 10px #ddd;
   }
 }
 
@@ -91,12 +94,6 @@
     font-size: 0.9rem;
     margin-bottom: 3px;
   }
-  ul {
-    margin: 0;
-    font-size: 0.9rem;
-    padding: 0;
-    display: flex;
-  }
 }
 
 .itemFooter * {
@@ -112,3 +109,4 @@
     margin-right: 5px;
   }
 }
+
