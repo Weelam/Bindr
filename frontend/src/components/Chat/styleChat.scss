@@ -1,5 +1,4 @@
 $primary: #52b788;
-$globalPadding: 10px;
 
 .messageRoot {
   transform: translateZ(0);
@@ -16,7 +15,7 @@ $globalPadding: 10px;
   form {
 		display: flex;
 		justify-content: space-between;
-		padding: $globalPadding;
+		padding: 10px;
   }
 }
 
@@ -28,7 +27,7 @@ $globalPadding: 10px;
     display: none;
   }
   ul {
-		padding: $globalPadding;
+		padding: 0px 10px;
   }
 }
 

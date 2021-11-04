@@ -29,7 +29,6 @@ const Chat = ({ currentUser, users }) => {
 
   const handleSend = (e) => {
     e.preventDefault();
-    console.log("MESSAGE", message);
     if (message) {
       setMessages((prev) => {
         let newSender = currentUser["userID"];
@@ -46,7 +45,6 @@ const Chat = ({ currentUser, users }) => {
   };
 
   const findSender = (id) => {
-    console.log(id, users.filter((user) => user["userID"] === id)[0]);
     return users.filter((user) => user["userID"] === id)[0];
   };
 
@@ -66,13 +64,17 @@ const Chat = ({ currentUser, users }) => {
         <ul>
           {messages.map((msg, index) => {
             let isYourMessage = msg["sender"] === currentUser["userID"];
+            let sameSender = false;
+            if (index !== 0) {
+              sameSender = msg["sender"] === messages[index-1]["sender"];
+            }
             return (
               <Message
                 key={index}
                 isYourMessage={isYourMessage}
                 msg={msg}
                 sender={findSender(msg["sender"])}
-                // ref={index===messages.length-1 ? messagesEnd : null}
+                sameSender={sameSender}
               />
             );
           })}
