@@ -4,6 +4,7 @@
   display: flex;
   margin: 15px 0px;
   margin-bottom: 0px;
+  width: 100%;
 }
 
 .senderAvatar {
@@ -42,13 +43,18 @@
 
 .msgHeader span {
   margin-left: 10px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #919191;
+}
+
+.msgContent {
+  width: 500px;
 }
 
 .msgContent p {
   margin: 5px 0px;
   font-size: 0.9rem;
+  word-wrap: break-word;
 }
 
 .sameSender {

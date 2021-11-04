@@ -2,7 +2,7 @@ $primary: #52b788;
 
 .messageRoot {
   transform: translateZ(0);
-  width: 50%;
+  width: 600px;
   height: 400px;
   box-shadow: 0 0 4px #ddd;
 }
@@ -13,9 +13,9 @@ $primary: #52b788;
   bottom: 0;
   width: 100%;
   form {
-		display: flex;
-		justify-content: space-between;
-		padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
   }
 }
 
@@ -27,32 +27,31 @@ $primary: #52b788;
     display: none;
   }
   ul {
-		padding: 0px 10px;
+    padding: 0px 10px;
   }
 }
 
 .messageContent {
-	width: 100%;
-	flex-grow: 1;
-	border-radius: 13px;
-	border: none;
-	box-shadow: 0 0 4px #ddd;
-	background: #ddd;
-	padding: 5px 10px;
-	margin-right: 1%;
-	&:focus {
-		outline: none;
-		box-shadow: none;
-	}
+  width: 100%;
+  flex-grow: 1;
+  border-radius: 13px;
+  border: none;
+  box-shadow: 0 0 4px #ddd;
+  background: #ddd;
+  padding: 5px 10px;
+  margin-right: 1%;
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 }
 
 .messageSend {
-	display: none;
+  display: none;
 }
 
 .sendIcon {
-	background-color: $primary !important;
-	color: white !important;
-	font-size: 1rem;
+  background-color: $primary !important;
+  color: white !important;
+  font-size: 1rem;
 }
-
