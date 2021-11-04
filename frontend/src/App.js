@@ -43,7 +43,7 @@ function App() {
         <Switch>
           {/* not secure atm, we'll add that in phase 2 */}
           <Route exact path="/">
-            {!auth ? <Redirect to="/" /> : <DashboardPage currentUser={currentUser} />}
+            {!auth ? <Redirect to="/" /> : <DashboardPage currentUser={currentUser}/>}
           </Route>
           <Route path="/login">
             <LoginPage
