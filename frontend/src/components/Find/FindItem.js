@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles/itemStyle.css";
 
-const FindItem = ({ user }) => {
+const FindItem = ({ user, opacity }) => {
   return (
-    <div className="itemContainer">
+    <div className={opacity ? "itemContainer itemContainer-lowOpac" : "itemContainer"}>
       <div className="profileImgContainer">
         <img className="profileImg" src={user["profileImg"]} />
       </div>

@@ -2587,6 +2587,28 @@
   }
 }
 
+.itemContainer-rejected {
+  height: 100%;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px #ddd;
+          box-shadow: 0 0 3px #ddd;
+  border-radius: 5px 5px;
+  background: #ff3661;
+}
+
+.itemContainer-accepted {
+  height: 100%;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 3px #ddd;
+          box-shadow: 0 0 3px #ddd;
+  border-radius: 5px 5px;
+  background: #52b788;
+}
+
+.itemContainer-lowOpac {
+  opacity: 0.5;
+}
+
 .itemContainer {
   height: 100%;
   cursor: pointer;
