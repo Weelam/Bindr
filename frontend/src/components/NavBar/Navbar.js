@@ -14,9 +14,6 @@ function Navbar({ auth }) {
           <NavItem to="/" linkClass="link"  item={<h3 className="logo">Logo</h3>}/>
           <div className="linkMenu">
             <NavItem to="find" linkClass="link" item="Find"/>
-            
-            <NavItem to="review" linkClass="link" item="Reviews"/>
-            <NavItem to="about" linkClass="link" item="About"/>
           </div>
         </div>
         {auth ? (

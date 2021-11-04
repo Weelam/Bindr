@@ -18,6 +18,11 @@ $primary: #52b788;
     &::-webkit-scrollbar {
       display: none;
     }
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
   }
   
   .modalImageContainer {

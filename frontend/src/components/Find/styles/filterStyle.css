@@ -27,11 +27,11 @@
 
 .filterRoot div p {
   margin: 0;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .filterRoot div svg {
-  font-size: .9rem;
+  font-size: 0.9rem;
   margin-left: 10px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -61,7 +61,7 @@
 
 .filterRoot button {
   background: none;
-  color: inherit;
+  color: #52b788;
   border: none;
   padding: 0;
   font: inherit;
@@ -74,7 +74,7 @@
 }
 
 .filterRoot button:hover {
-  background-color: #ddd;
+  background-color: #c8e0d5;
   -webkit-filter: brightness(1.1);
           filter: brightness(1.1);
 }
@@ -87,6 +87,6 @@
 
 .filterYear div label {
   margin-left: 5px;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 /*# sourceMappingURL=filterStyle.css.map */

@@ -1,0 +1,43 @@
+.message {
+  display: flex;
+	margin: 15px 0px;
+}
+
+.senderAvatar {
+  // height: 100%;
+  // flex-grow: 1;
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ddd;
+  }
+}
+
+.msgRightSide {
+  flex-grow: 3;
+	margin-left: 20px;
+}
+
+.msgHeader {
+	display: flex;
+	align-items: center;
+	p {
+		margin: 0;
+		font-size: 1;
+		font-weight: 400;
+	}
+	span {
+		margin-left: 10px;
+		font-size: .8rem;
+		color: rgb(145, 145, 145);
+	}
+
+}
+
+.msgContent {
+	p {
+		margin: 5px 0px;
+		font-size: 0.9rem;
+	}
+}

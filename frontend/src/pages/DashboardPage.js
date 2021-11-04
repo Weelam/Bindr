@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import ProjectList from '../components/Dashboard/ProjectList';
 import Board from '../components/Dashboard/Board';
 import UserStatus from '../components/Dashboard/UserStatus';
+import Chat from '../components/Chat/Chat';
 const user = {
     profileImg:
       "https://images.mubicdn.net/images/avatars/108776/cache-108776-1523899185/images-large.png",
@@ -13,12 +14,12 @@ const user = {
     
 }
 
-const DashboardPage = () => {
+const DashboardPage = ({users, currentUser}) => {
     return (
         <div>
             <ProjectList />
             <UserStatus />
-            
+            <Chat currentUser={currentUser} users={users}/>
         </div>
     )
 }
