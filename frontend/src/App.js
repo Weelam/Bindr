@@ -8,6 +8,7 @@ import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import data from "./users.js";
+import Chat from "./components/Chat/Chat";
 
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 const users = data["data"]; 
@@ -61,9 +62,11 @@ function App() {
               />
             )}
           </Route>
-          <Route path="/review"></Route>
+          <Route path="/chat">
+            <Chat currentUser={currentUser}/>
+          </Route>
           <Route path="/dashboard">
-            <DashboardPage currentUser={currentUser} />
+            <DashboardPage currentUser={currentUser}/>
           </Route>
         </Switch>
       </Router>
