@@ -8,7 +8,6 @@ $primary: #52b788;
   overflow: hidden;
   background-color: white;
   border-radius: 10px 10px;
-
   &:after {
     position: absolute;
     top: 0;
@@ -64,6 +63,27 @@ $primary: #52b788;
   }
 }
 
+.itemContainer-rejected {
+  height: 100%;
+  cursor: pointer;
+  box-shadow: 0 0 3px #ddd;
+  border-radius: 5px 5px;
+  background: #ff3661;
+}
+
+.itemContainer-accepted {
+  height: 100%;
+  cursor: pointer;
+  box-shadow: 0 0 3px #ddd;
+  border-radius: 5px 5px;
+  background: $primary;
+
+}
+
+.itemContainer-lowOpac {
+  opacity: 0.5;
+}
+
 .itemContainer {
   height: 100%;
   cursor: pointer;
@@ -109,4 +129,3 @@ $primary: #52b788;
     margin-right: 5px;
   }
 }
-

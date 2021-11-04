@@ -6,12 +6,9 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import FindModal from "./FindModal";
 
-
-
 const Find = ({ users, currentUserSet }) => {
+  const { currentUser, setCurrentUser } = currentUserSet;
 
-  const {currentUser, setCurrentUser} = currentUserSet;
-  
   const obs = useRef();
   const [displayedUsers, setDisplayedUsers] = useState([]);
   const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 1 });
@@ -60,18 +57,23 @@ const Find = ({ users, currentUserSet }) => {
     console.log(accepted, otherUserID);
     if (accepted) {
       // user accepted
-      console.log("Match sent to: ", otherUserID)
-      setCurrentUser(prev => ({...prev, wantToMatch: [...prev["wantToMatch"], otherUserID]}))
+      console.log("Match sent to: ", otherUserID);
+      setCurrentUser((prev) => ({
+        ...prev,
+        wantToMatch: [...prev["wantToMatch"], otherUserID],
+      }));
     } else {
       // user rejected
-
+      setCurrentUser((prev) => ({
+        ...prev,
+        rejected: [...prev["rejected"], otherUserID],
+      }));
     }
-  }
+  };
 
   useEffect(() => {
-    console.log(currentUser)
-
-  }, [currentUser])
+    console.log(currentUser);
+  }, [currentUser]);
 
   return (
     <div>
@@ -82,6 +84,46 @@ const Find = ({ users, currentUserSet }) => {
         columnSpacing={1}
       >
         {displayedUsers.map((item, index) => {
+          const wantToMatch = currentUser["wantToMatch"];
+          const rejected = currentUser["rejected"];
+
+          if (wantToMatch.includes(item["userID"])) {
+            console.log(rejected, item["userID"]);
+            return (
+              <Grid
+                onClick={() => {
+                  handleModal(index);
+                }}
+                ref={lastUserRef}
+                item
+                xs={1}
+                key={index}
+              >
+                <div className="itemContainer-accepted">
+                  <FindItem user={item} opacity={true} />
+                </div>
+              </Grid>
+            );
+          }
+
+          if (rejected.includes(item["userID"])) {
+            return (
+              <Grid
+                onClick={() => {
+                  handleModal(index);
+                }}
+                ref={lastUserRef}
+                item
+                xs={1}
+                key={index}
+              >
+                <div className="itemContainer-rejected">
+                  <FindItem user={item} opacity={true} />
+                </div>
+              </Grid>
+            );
+          }
+
           if (index === displayedUsers.length - 1) {
             return (
               <Grid
@@ -93,10 +135,11 @@ const Find = ({ users, currentUserSet }) => {
                 xs={1}
                 key={index}
               >
-                <FindItem user={item} />
+                <FindItem user={item} opacity={false} />
               </Grid>
             );
           }
+
           return (
             <Grid
               onClick={() => {
@@ -106,13 +149,20 @@ const Find = ({ users, currentUserSet }) => {
               xs={1}
               key={index}
             >
-              <FindItem user={item} />
+              <FindItem user={item} opacity={false} />
             </Grid>
           );
         })}
         {/* {loading && <Grid item xs={1}><CircularProgress style={{ height: "45px" }} /></Grid>} */}
       </Grid>
-      {openModal && <FindModal handleRejectAccept={handleRejectAccept} openModal={openModal} setOpenModal={setOpenModal} user={selectedUser} />}
+      {openModal && (
+        <FindModal
+          handleRejectAccept={handleRejectAccept}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          user={selectedUser}
+        />
+      )}
     </div>
   );
 };
