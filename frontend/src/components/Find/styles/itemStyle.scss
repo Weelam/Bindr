@@ -3,6 +3,10 @@ $primary: #52b788;
 
 @import "./modalStyle.css";
 
+.findRoot {
+  display: "flex";
+}
+
 .profileImgContainer {
   height: 100%;
   overflow: hidden;
@@ -68,7 +72,7 @@ $primary: #52b788;
   cursor: pointer;
   box-shadow: 0 0 3px #ddd;
   border-radius: 5px 5px;
-  background: #ff3661;
+  background: rgba(255, 54, 97, 0.5);
 }
 
 .itemContainer-accepted {
@@ -76,7 +80,7 @@ $primary: #52b788;
   cursor: pointer;
   box-shadow: 0 0 3px #ddd;
   border-radius: 5px 5px;
-  background: $primary;
+  background: rgba(82, 183, 136, 0.8);
 
 }
 

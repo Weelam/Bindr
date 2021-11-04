@@ -7,9 +7,10 @@ import Home from "./pages/Home";
 import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import data from "./users.json";
+import data from "./users.js";
 
-const users = data["data"];
+// This is the mock data from users.json, and it will be passed around as a prop through out the application
+const users = data["data"]; 
 
 function App() {
   // remember to change this part!!! (rn "user" is signed in at the start

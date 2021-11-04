@@ -5,6 +5,16 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import FindModal from "./FindModal";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import CancelIcon from "@mui/icons-material/Cancel";
+import FindFilter from "./FindFilter";
+import Divider from "@mui/material/Divider";
+import "./styles/itemStyle.css";
+
+const Alert = React.forwardRef((props, ref) => {
+  return <MuiAlert elevation={6} ref={ref} {...props} />;
+});
 
 const Find = ({ users, currentUserSet }) => {
   const { currentUser, setCurrentUser } = currentUserSet;
@@ -15,11 +25,16 @@ const Find = ({ users, currentUserSet }) => {
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
-
+  const [openAlert, setOpenAlert] = useState(false);
+  const [acceptedSignal, setAcceptedSignal] = useState(null);
+  const [filter, setfilter] = useState({
+    courses: [],
+    programs: [],
+    years: [],
+  });
   useEffect(() => {
     setLoading(true);
     handleDisplayedUsers();
-    console.log(displayPointer["start"], displayPointer["end"]);
   }, [displayPointer]);
 
   const handleDisplayedUsers = () => {
@@ -57,80 +72,149 @@ const Find = ({ users, currentUserSet }) => {
     console.log(accepted, otherUserID);
     if (accepted) {
       // user accepted
-      console.log("Match sent to: ", otherUserID);
+      if (currentUser["rejected"].includes(otherUserID)) {
+        setCurrentUser((prev) => ({
+          ...prev,
+          rejected: prev["rejected"].filter((user) => user !== otherUserID),
+        }));
+      }
       setCurrentUser((prev) => ({
         ...prev,
         wantToMatch: [...prev["wantToMatch"], otherUserID],
       }));
+      setOpenAlert(true);
+      setAcceptedSignal(true);
     } else {
       // user rejected
+      if (currentUser["wantToMatch"].includes(otherUserID)) {
+        setCurrentUser((prev) => ({
+          ...prev,
+          wantToMatch: prev["wantToMatch"].filter(
+            (user) => user !== otherUserID
+          ),
+        }));
+      }
       setCurrentUser((prev) => ({
         ...prev,
         rejected: [...prev["rejected"], otherUserID],
       }));
+      setOpenAlert(true);
+      setAcceptedSignal(false);
     }
   };
 
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
+  };
 
+  const filterUsers = (displayedUsers) => {
+    return displayedUsers.filter((x) => {
+      let isCourses = x["courses"].some((course) => filter["courses"].includes(course))
+      let isProgram = filter["programs"].includes(x["program"])
+      let isYear = filter["years"].includes(x["year"])
+
+      if (filter["years"].length === 0) {isYear = true}
+      if (filter["programs"].length === 0) {isProgram = true}
+      if (filter["courses"].length === 0 ) {isCourses = true}
+      return isCourses && isYear && isProgram
+        })
+  }
   return (
-    <div>
+    <div id="findRoot" style={{ display: "flex" }}>
+      <FindFilter filter={filter} setfilter={setfilter} />
+
+      <Divider orientation="vertical" flexItem style={{ margin: "0 1.5rem" }} />
+
+      <Snackbar
+        open={openAlert}
+        autoHideDuration={6000}
+        onClose={handleCloseAlert}
+      >
+        <Alert
+          iconMapping={{
+            error: <CancelIcon fontSize="inherit" />,
+          }}
+          onClose={handleCloseAlert}
+          severity={acceptedSignal ? "success" : "error"}
+          sx={{ width: "100%" }}
+        >
+          {acceptedSignal ? "Match Sent" : "Match Rejected"}
+        </Alert>
+      </Snackbar>
       <Grid
         container
         columns={{ xs: 5, md: 8 }}
         rowSpacing={1}
         columnSpacing={1}
       >
-        {displayedUsers.map((item, index) => {
-          const wantToMatch = currentUser["wantToMatch"];
-          const rejected = currentUser["rejected"];
+        {        
+          filterUsers(displayedUsers).map((item, index) => {
+            const wantToMatch = currentUser["wantToMatch"];
+            const rejected = currentUser["rejected"];
+            console.log(filter["years"].includes(item["year"]))
+     
+              if (wantToMatch.includes(item["userID"])) {
+                // if this user is has already been selected as a desired match
+                console.log(rejected, item["userID"]);
+                return (
+                  <Grid
+                    onClick={() => {
+                      handleModal(index);
+                    }}
+                    ref={lastUserRef}
+                    item
+                    xs={1}
+                    key={index}
+                  >
+                    <div className="itemContainer-accepted">
+                      <FindItem user={item} opacity={true} />
+                    </div>
+                  </Grid>
+                );
+              }
 
-          if (wantToMatch.includes(item["userID"])) {
-            console.log(rejected, item["userID"]);
+            // if this user is someone they don't wanna match with
+            if (rejected.includes(item["userID"])) {
+              return (
+                <Grid
+                  onClick={() => {
+                    handleModal(index);
+                  }}
+                  ref={lastUserRef}
+                  item
+                  xs={1}
+                  key={index}
+                >
+                  <div className="itemContainer-rejected">
+                    <FindItem user={item} opacity={true} />
+                  </div>
+                </Grid>
+              );
+            }
+
+            // the last grid item (for infinite scrolling)
+            if (index === displayedUsers.length - 1) {
+              return (
+                <Grid
+                  onClick={() => {
+                    handleModal(index);
+                  }}
+                  ref={lastUserRef}
+                  item
+                  xs={1}
+                  key={index}
+                >
+                  <FindItem user={item} opacity={false} />
+                </Grid>
+              );
+            }
+
+            // untouched users
             return (
               <Grid
                 onClick={() => {
                   handleModal(index);
                 }}
-                ref={lastUserRef}
-                item
-                xs={1}
-                key={index}
-              >
-                <div className="itemContainer-accepted">
-                  <FindItem user={item} opacity={true} />
-                </div>
-              </Grid>
-            );
-          }
-
-          if (rejected.includes(item["userID"])) {
-            return (
-              <Grid
-                onClick={() => {
-                  handleModal(index);
-                }}
-                ref={lastUserRef}
-                item
-                xs={1}
-                key={index}
-              >
-                <div className="itemContainer-rejected">
-                  <FindItem user={item} opacity={true} />
-                </div>
-              </Grid>
-            );
-          }
-
-          if (index === displayedUsers.length - 1) {
-            return (
-              <Grid
-                onClick={() => {
-                  handleModal(index);
-                }}
-                ref={lastUserRef}
                 item
                 xs={1}
                 key={index}
@@ -138,21 +222,8 @@ const Find = ({ users, currentUserSet }) => {
                 <FindItem user={item} opacity={false} />
               </Grid>
             );
-          }
-
-          return (
-            <Grid
-              onClick={() => {
-                handleModal(index);
-              }}
-              item
-              xs={1}
-              key={index}
-            >
-              <FindItem user={item} opacity={false} />
-            </Grid>
-          );
-        })}
+          })
+        }
         {/* {loading && <Grid item xs={1}><CircularProgress style={{ height: "45px" }} /></Grid>} */}
       </Grid>
       {openModal && (
