@@ -31,6 +31,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  border: 1px solid black;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -50,9 +51,15 @@
   width: 100%;
   margin: 20px 0;
   background: #52b788;
+  -webkit-transition: -webkit-filter 300ms;
+  transition: -webkit-filter 300ms;
+  transition: filter 300ms;
+  transition: filter 300ms, -webkit-filter 300ms;
 }
 
 .loginForm-submit button:hover {
   background: #52b788;
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
 }
 /*# sourceMappingURL=loginStyle.css.map */

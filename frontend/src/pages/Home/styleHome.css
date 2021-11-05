@@ -1,0 +1,48 @@
+.homePage-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0;
+  width: 100%;
+}
+
+.homePage-leftSide {
+  width: 50%;
+  padding-left: 5%;
+}
+
+.homePage-leftSide h1 {
+  font-size: 3rem !important;
+}
+
+.homePage-leftSide button {
+  color: #52b788;
+  border: 1px solid #52b788;
+  -webkit-transition: -webkit-filter 300ms;
+  transition: -webkit-filter 300ms;
+  transition: filter 300ms;
+  transition: filter 300ms, -webkit-filter 300ms;
+}
+
+.homePage-leftSide button:hover {
+  background: #6fb69509;
+  -webkit-filter: brightness(1.2);
+          filter: brightness(1.2);
+}
+
+.homePage-leftSide p {
+  margin: 3rem 0;
+  width: 70%;
+}
+
+.homePage-rightside {
+  width: 50%;
+}
+
+.homePage-image {
+  width: 100%;
+}
+/*# sourceMappingURL=styleHome.css.map */
