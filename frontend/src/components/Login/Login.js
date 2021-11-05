@@ -10,7 +10,7 @@ const Login = ({ setUsername }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // check for user authentications
+    // check for user authentications (pull from database)
     if (info["username"] === "user" && info["password"] === "user") {
       // change the global user of the application
       setUsername(info["username"]);

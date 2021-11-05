@@ -10,6 +10,7 @@ import DashboardPage from "./pages/DashboardPage";
 import data from "./users.js";
 
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
+// each user already has a list of courses, which we will pull externally
 const users = data["data"]; 
 
 function App() {

@@ -32,6 +32,8 @@ const Find = ({ users, currentUserSet }) => {
     programs: [],
     years: [],
   });
+  const [filteredUsers, setFilteredUsers] = useState([]);
+
   useEffect(() => {
     setLoading(true);
     handleDisplayedUsers();
@@ -64,7 +66,7 @@ const Find = ({ users, currentUserSet }) => {
   }, []);
 
   const handleModal = (index) => {
-    setSelectedUser(displayedUsers[index]);
+    setSelectedUser(filteredUsers[index]);
     setOpenModal(true);
   };
 
@@ -132,7 +134,9 @@ const Find = ({ users, currentUserSet }) => {
     });
   };
 
-  let filteredUsers = filterUsers(displayedUsers);
+  useEffect(() => {
+    setFilteredUsers(filterUsers(displayedUsers))
+  }, [filter, users, displayedUsers])
 
   return (
     <div id="findRoot" style={{ display: "flex" }}>

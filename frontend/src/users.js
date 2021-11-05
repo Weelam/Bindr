@@ -7,7 +7,7 @@ const data = {
       firstName: "Joseph",
       username: "user",
       groups: [1],
-      friends: [6,9], // has friends 6,9
+      friends: [1], // is friensd with user 1
       wantToMatch: [],
       rejected: [],
       courses: ["CSC309", "CSC373"],
