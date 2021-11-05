@@ -1,0 +1,40 @@
+$primary: #52b788;
+
+.homePage-root {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+}
+
+.homePage-leftSide {
+  width: 50%;
+  padding-left: 5%;
+
+  h1 {
+    font-size: 3rem !important;
+  }
+
+  button {
+    color: $primary;
+    // background: $primary;
+		border: 1px solid $primary;
+    transition: filter 300ms;
+    &:hover {
+        background: #6fb69509;
+      filter: brightness(1.2);
+    }
+  }
+
+  p {
+    margin: 3rem 0;
+		width: 70%;
+  }
+}
+
+.homePage-rightside {
+  width: 50%;
+}
+.homePage-image {
+  width: 100%;
+}

@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import FindPage from "./pages/FindPage";
-import Home from "./pages/Home";
+import FindPage from "./pages/FindPage/FindPage";
+import Home from "./pages/Home/Home";
 import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import data from "./users.js";
 
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
+// each user already has a list of courses, which we will pull externally
 const users = data["data"]; 
 
 function App() {

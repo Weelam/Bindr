@@ -23,6 +23,7 @@ $primary: #52b788;
 		margin: 0;
 		padding: 0;
 		box-sizing:border-box;
+		border: 1px solid black;
 		flex-grow: 1;
 		border-radius: 3px;
 		&:focus {
@@ -44,7 +45,7 @@ $primary: #52b788;
 		background: $primary;
 		transition: filter 300ms;
 		&:hover {
-			background: $primaryfilter;
+			background: $primary;
 			filter: brightness(1.2);
 		}
 
