@@ -21,7 +21,7 @@ const Find = ({ users, currentUserSet }) => {
 
   const obs = useRef();
   const [displayedUsers, setDisplayedUsers] = useState([]);
-  const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 1 });
+  const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 4 });
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
@@ -47,6 +47,7 @@ const Find = ({ users, currentUserSet }) => {
   };
 
   const lastUserRef = useCallback((node) => {
+    console.log(node)
     if (obs.current) {
       obs.current.disconnect();
     }
@@ -109,16 +110,30 @@ const Find = ({ users, currentUserSet }) => {
 
   const filterUsers = (displayedUsers) => {
     return displayedUsers.filter((x) => {
-      let isCourses = x["courses"].some((course) => filter["courses"].includes(course))
-      let isProgram = filter["programs"].includes(x["program"])
-      let isYear = filter["years"].includes(x["year"])
+      let isCourses = x["courses"].some((course) =>
+        filter["courses"].includes(course)
+      );
+      let isProgram = filter["programs"].includes(x["program"]);
+      let isYear = filter["years"].includes(x["year"]);
+      let isFriends = currentUser["friends"].includes(x["userID"]);
+      if (isFriends) {
+        console.log("isFriends", x);
+      }
+      if (filter["years"].length === 0) {
+        isYear = true;
+      }
+      if (filter["programs"].length === 0) {
+        isProgram = true;
+      }
+      if (filter["courses"].length === 0) {
+        isCourses = true;
+      }
+      return isCourses && isYear && isProgram && !isFriends;
+    });
+  };
 
-      if (filter["years"].length === 0) {isYear = true}
-      if (filter["programs"].length === 0) {isProgram = true}
-      if (filter["courses"].length === 0 ) {isCourses = true}
-      return isCourses && isYear && isProgram
-        })
-  }
+  let filteredUsers = filterUsers(displayedUsers);
+
   return (
     <div id="findRoot" style={{ display: "flex" }}>
       <FindFilter filter={filter} setfilter={setfilter} />
@@ -147,69 +162,65 @@ const Find = ({ users, currentUserSet }) => {
         rowSpacing={1}
         columnSpacing={1}
       >
-        {        
-          filterUsers(displayedUsers).map((item, index) => {
-            const wantToMatch = currentUser["wantToMatch"];
-            const rejected = currentUser["rejected"];
-            console.log(filter["years"].includes(item["year"]))
-     
-              if (wantToMatch.includes(item["userID"])) {
-                // if this user is has already been selected as a desired match
-                console.log(rejected, item["userID"]);
-                return (
-                  <Grid
-                    onClick={() => {
-                      handleModal(index);
-                    }}
-                    ref={lastUserRef}
-                    item
-                    xs={1}
-                    key={index}
-                  >
-                    <div className="itemContainer-accepted">
-                      <FindItem user={item} opacity={true} />
-                    </div>
-                  </Grid>
-                );
-              }
+        {filteredUsers.map((item, index) => {
+          const wantToMatch = currentUser["wantToMatch"];
+          const rejected = currentUser["rejected"];
+          let lastItem = index === filteredUsers.length - 1;
+          console.log(filteredUsers);
 
-            // if this user is someone they don't wanna match with
-            if (rejected.includes(item["userID"])) {
-              return (
-                <Grid
-                  onClick={() => {
-                    handleModal(index);
-                  }}
-                  ref={lastUserRef}
-                  item
-                  xs={1}
-                  key={index}
-                >
-                  <div className="itemContainer-rejected">
-                    <FindItem user={item} opacity={true} />
-                  </div>
-                </Grid>
-              );
-            }
+          if (wantToMatch.includes(item["userID"])) {
+            // if this user is has already been selected as a desired match
+            return (
+              <Grid
+                onClick={() => {
+                  handleModal(index);
+                }}
+                item
+                xs={1}
+                key={index}
+              >
+                <div className="itemContainer-accepted">
+                  <FindItem user={item} opacity={true} />
+                </div>
+              </Grid>
+            );
+          }
 
-            // the last grid item (for infinite scrolling)
-            if (index === displayedUsers.length - 1) {
-              return (
-                <Grid
-                  onClick={() => {
-                    handleModal(index);
-                  }}
-                  ref={lastUserRef}
-                  item
-                  xs={1}
-                  key={index}
-                >
-                  <FindItem user={item} opacity={false} />
-                </Grid>
-              );
-            }
+          // if this user is someone they don't wanna match with
+          if (rejected.includes(item["userID"])) {
+            return (
+              <Grid
+                onClick={() => {
+                  handleModal(index);
+                }}
+                item
+                xs={1}
+                key={index}
+              >
+                <div className="itemContainer-rejected">
+                  <FindItem user={item} opacity={true} />
+                </div>
+              </Grid>
+            );
+          }
 
-            // untouched users
+          if (lastItem) {
+            return (
+              <Grid
+                onClick={() => {
+                  handleModal(index);
+                }}
+                ref={lastUserRef}
+                item
+                xs={1}
+                key={index}
+              >
+                <FindItem user={item} opacity={false} />
+              </Grid>
+            );
+          }
+          // untouched users
+          else {
             return (
               <Grid
                 onClick={() => {
@@ -222,8 +233,8 @@ const Find = ({ users, currentUserSet }) => {
                 <FindItem user={item} opacity={false} />
               </Grid>
             );
-          })
-        }
+          }
+        })}
         {/* {loading && <Grid item xs={1}><CircularProgress style={{ height: "45px" }} /></Grid>} */}
       </Grid>
       {openModal && (
