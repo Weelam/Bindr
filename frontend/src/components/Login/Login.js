@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import LoginForm from "./LoginForm";
 import "./loginStyle.css";
 
 const Login = ({ setUsername }) => {
@@ -21,27 +22,8 @@ const Login = ({ setUsername }) => {
 
   return (
     <div className="loginRoot">
-      <h1> Login to Your Account </h1>
-      <form>
-        <label>
-          Username:
-          <input
-            type="text"
-            onChange={(e) => setInfo({ ...info, username: e.target.value })}
-          />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="text"
-            onChange={(e) => setInfo({ ...info, password: e.target.value })}
-          />
-        </label>
-        <button type="submit" onClick={handleSubmit}>
-          Login
-        </button>
-      </form>
+      <h1> Login </h1>
+			<LoginForm handleSubmit={handleSubmit} info={info} setInfo={setInfo}/>
     </div>
   );
 };

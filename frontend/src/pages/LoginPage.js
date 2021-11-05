@@ -5,9 +5,7 @@ import Login from "../components/Login/Login";
 function LoginPage({ currentUser, setUsername, setAuth }) {
 
   return (
-    <div>
-      <Login setUsername={setUsername}/>
-    </div>
+    <Login setUsername={setUsername}/>
   );
 }
 
