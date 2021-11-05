@@ -12,9 +12,11 @@ import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
 
+// taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
 });
+// end
 
 const Find = ({ users, currentUserSet }) => {
   const { currentUser, setCurrentUser } = currentUserSet;
@@ -144,6 +146,7 @@ const Find = ({ users, currentUserSet }) => {
 
       <Divider orientation="vertical" flexItem style={{ margin: "0 1.5rem" }} />
 
+      {/* -- taken from material UI snackbar example --*/}
       <Snackbar
         open={openAlert}
         autoHideDuration={6000}
@@ -160,6 +163,8 @@ const Find = ({ users, currentUserSet }) => {
           {acceptedSignal ? "Match Sent" : "Match Rejected"}
         </Alert>
       </Snackbar>
+      {/* -- end -- */}
+      
       <Grid
         container
         columns={{ xs: 5, md: 8 }}
