@@ -7,7 +7,7 @@ const data = {
       firstName: "Joseph",
       username: "user",
       groups: [1],
-      friends: [],
+      friends: [6,9], // has friends 6,9
       wantToMatch: [],
       rejected: [],
       courses: ["CSC309", "CSC373"],
@@ -347,7 +347,7 @@ const data = {
       bio: "Excepteur sit laboris cillum dolor Lorem reprehenderit sunt. Lorem deserunt veniam irure elit. Consectetur culpa culpa irure Lorem. Non cupidatat sint sunt laboris aliquip eu eu aute excepteur magna Lorem officia. Veniam eu velit id excepteur nulla est in culpa adipisicing sint ad mollit commodo amet.",
     },
     {
-      userID: 22,
+      userID: 23,
       profileImg:
         "https://i.pinimg.com/736x/14/01/b3/1401b3fee6363c9f6aa7be2c50c25bed.jpg",
       firstName: "Jotaro",
