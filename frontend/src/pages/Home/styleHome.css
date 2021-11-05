@@ -31,6 +31,7 @@
   background: #6fb69509;
   -webkit-filter: brightness(1.2);
           filter: brightness(1.2);
+  border: 1px solid #52b788;
 }
 
 .homePage-leftSide p {

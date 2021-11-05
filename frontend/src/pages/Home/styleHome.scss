@@ -21,8 +21,9 @@ $primary: #52b788;
 		border: 1px solid $primary;
     transition: filter 300ms;
     &:hover {
-        background: #6fb69509;
+			background: #6fb69509;
       filter: brightness(1.2);
+			border: 1px solid $primary;
     }
   }
 
