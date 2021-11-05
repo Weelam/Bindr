@@ -28,7 +28,7 @@ function Board(props) {
   }
 
   return (
-    <div className="App">
+    <div>
       <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
       <ToDoForm addTask={addTask}/>
     </div>
