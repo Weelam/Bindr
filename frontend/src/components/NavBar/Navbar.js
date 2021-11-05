@@ -4,8 +4,9 @@ import { AiFillBell } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import NavItem from "./NavItem";
 import ProfileMenu from "./ProfileMenu";
+import Notifications from "./Notifications";
 
-function Navbar({ auth }) {
+function Navbar({ auth, logout }) {
   
   return (
     <>
@@ -18,10 +19,12 @@ function Navbar({ auth }) {
         </div>
         {auth ? (
           <div className="navButton">
-            <NavItem to="#" linkClass="link iconButton" item={<AiFillBell className="bellIcon"/>  }/>
-            <NavItem to="#" profileDiv="profileDiv" linkClass="link iconButton" item={<CgProfile className="profileIcon"/>}>  
+            <NavItem to="#" outerDiv="notifDiv" linkClass="link iconButton" item={<AiFillBell className="bellIcon"/>}> 
+              <Notifications/>
+            </NavItem>
+            <NavItem to="#" outerDiv="profileDiv" linkClass="link iconButton" item={<CgProfile className="profileIcon"/>}>  
               {/* dropdown */}
-              <ProfileMenu/>
+              <ProfileMenu logout={logout}/>
             
             </NavItem>
 					</div>
