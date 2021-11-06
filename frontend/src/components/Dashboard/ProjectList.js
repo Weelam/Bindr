@@ -1,42 +1,52 @@
-import React, { useState } from 'react'
-import data from './data.json'
+import React, { useState, useReducer, useEffect} from 'react'
 import Board from './Board';
+import Button from '@mui/material/Button'; 
 
+function ProjectList(props) {
 
-function ProjectList() {
-    const [projects, setProjects] = useState(data);
-    const [selectedProjectID, setSelectedProjectID] = useState(1);
+    const [projects, setProjects] = useState(props.groups);
+    const [user, setCurUser ] = useState(props.currentUser);
+    const [selectedProjectID, setSelectedProjectID] = useState(0);
     const handleGroupClick = (id) =>{
-        setSelectedProjectID(id);
-
+        setSelectedProjectID(parseInt(id));
+        props.updateDisplayingProject(id);
     };
-    return (
-        <div>
+    
 
-            <ul id="projectlist">
-                <li>
-                    <div class="projectlisttitle">
+    useEffect(()=>{
+        setProjects(props.groups);
+    },[props.groups])
+
+
+    return (
+        <div id="projectListContainer">
+        
+
+            
+                
+                    <p class="projectlisttitle">
                     Projects
-                    </div>
-                </li>
+                    </p>
+                
                 {projects.map(function (project, index) {
                     return (
 
-                        <li class='project' onClick={() => handleGroupClick(project.id)}>
+                        <Button id = {project.groupID === selectedProjectID ? 'selected' : ''} class='project' onClick={() => handleGroupClick(project.groupID)}>
                             <img class="projectimg" src={project.image} />
-                            <div class="projectname">
+                            
                                 {project.projectname}
-                            </div>
-                        </li>
+                            
+                        </Button>
 
 
 
                     )
                 })}
-            </ul>
-            
-
-            <div id="board"><Board /></div>
+           
+           
+        
+            {/* <div id="board"><Board project={projects[selectedProjectID]} updateGroup={props.updateGroup}/></div> */}
+        
         </div>
     )
 }
