@@ -18,11 +18,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(users[0]); // user object
   const [username, setUsername] = useState("user"); // username of the user (used to change "currentUser" state)
   const [auth, setAuth] = useState(false);
-  const [availableProjects, setAvailableProjects] = useState(
-    groups.filter((proj)=>{
-        return currentUser.groups.includes(parseInt(proj.groupID));
-    })
-);
+  const [availableProjects, setAvailableProjects] = useState([]);
   const [allGroups, setGroups] = useState(groups);
   const [allUsers, setUsers] = useState(users);
   useEffect(() => {
@@ -33,6 +29,8 @@ function App() {
       if (authUser) {
         setCurrentUser(authUser);
         setAuth(true);
+
+        
       } else {
         console.error("Bro can't find user with username, username")
       }
@@ -46,6 +44,14 @@ function App() {
     copy[parseInt(id) - 1] = user;
     setUsers(copy);
   }
+
+  useEffect(() => {
+    setAvailableProjects(
+      groups.filter((proj)=>{
+          return currentUser.groups.includes(parseInt(proj.groupID));
+      })
+  );
+  }, currentUser)
 
   function updateGroup(id, group){
     let copy = [...allGroups];
@@ -73,7 +79,7 @@ function App() {
         <Switch>
           {/* not secure atm, we'll add that in phase 2 */}
           <Route exact path="/">
-          {!auth ? <Redirect to="/" /> : <DashboardPage currentUser={currentUser} 
+          {!auth ? <Home /> : <DashboardPage currentUser={currentUser} 
                 users={users} groups={availableProjects} updateGroup={updateGroup} updateUser = {updateUser}/>}
           </Route>
           <Route path="/login">
@@ -93,9 +99,9 @@ function App() {
               />
             )}
           </Route>
-          <Route path="/dashboard">
-            <DashboardPage currentUser={currentUser} users={users}/>
-          </Route>
+          
+    
+          
         </Switch>
       </Router>
     </div>
