@@ -47,10 +47,11 @@ const DashboardPage = (props) => {
             <UserStatus currentUser={props.currentUser} />
             <ProjectList currentUser={props.currentUser} groups={props.groups} updateUser={props.updateUser} updateGroup={handleUpdate} updateDisplayingProject = {updateDisplayingProject}/>
         </div>
+     
         <div id="middleColumn">
             <Chat id="chatbox" currentUser={props.currentUser} users={props.users} />
         </div>
-
+       
         <div id="rightColumn">
             <div id="board"><Board project={projects[curProjectind]} updateGroup={handleUpdate}/></div>
         </div>

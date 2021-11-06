@@ -22,10 +22,18 @@
 }
 
 #middleColumn{
-    width:58.33333%
+    width:58.33333%;
 }
+
 
 #chatbox{
     align-content: center;
     width: 500;
+}
+#firstDivider{
+    width: 0%;
+}
+
+#secondDivider{
+    width:0%;
 }
