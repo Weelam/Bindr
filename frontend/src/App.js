@@ -19,6 +19,7 @@ function App() {
   const [username, setUsername] = useState(""); // username of the user (used to change "currentUser" state)
   const [auth, setAuth] = useState(false);
 
+  let history = useHistory();
   useEffect(() => {
     // change currentUser whenever username changes
     if (username) {
@@ -31,6 +32,7 @@ function App() {
         console.error("Bro can't find user with username, username")
       }
     } else {
+      console.log("logged out")
       setCurrentUser({});
       setAuth(false)
     }
@@ -39,8 +41,9 @@ function App() {
   const logout = () => {
     setUsername("");
     console.log("logout")
-    return (<Redirect to="/" />)
+    return (<Redirect to="/"/>)
   }
+
   return (
     <div className="App">
       <Router>
