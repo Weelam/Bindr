@@ -7,19 +7,22 @@ import Home from "./pages/Home/Home";
 import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import AdminPage from "./pages/AdminPage/AdminPage";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import data from "./users.js";
 import groupsData from "./groups.js";
+import AdminUsers from "./pages/Admin/AdminUsers";
+import AdminReports from "./pages/Admin/AdminReports";
+import AdminCourses from "./pages/Admin/AdminCourses";
+import AdminMessages from "./pages/Admin/AdminMessages";
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
 const users = data["data"];
 const groups = groupsData["data"];
+
 function App() {
-  // remember to change this part!!! (rn "user" is signed in at the start
   const [currentUser, setCurrentUser] = useState(); // user object
   const [username, setUsername] = useState(""); // username of the user (used to change "currentUser" state)
   const [auth, setAuth] = useState(false);
-
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -44,16 +47,16 @@ function App() {
     setUsername("");
     console.log("logout");
     if (isAdmin) setIsAdmin(false);
-    return <Redirect to="/" />;
   };
 
   return (
     <div className="App">
       <Router>
         {/* not secure atm, we'll add that in phase 2 */}
+	
         {!isAdmin ? (
           <>
-            <Navbar auth={auth} logout={logout} />
+            <Navbar auth={auth} logout={logout} isAdmin={isAdmin} />
             <Switch>
               <Route exact path="/">
                 {!auth ? (
@@ -62,7 +65,7 @@ function App() {
                   <DashboardPage
                     currentUser={currentUser}
                     users={users}
-										groups={groups}
+                    groups={groups}
                   />
                 )}
               </Route>
@@ -88,10 +91,22 @@ function App() {
           </>
         ) : (
           <>
-            <Navbar auth={auth} logout={logout} />
+            <Navbar auth={auth} logout={logout} isAdmin={isAdmin} />
             <Switch>
               <Route exact path="/">
-                <AdminPage users={users} currentUser={currentUser} />
+                <AdminDashboard users={users} currentUser={currentUser} />
+              </Route>
+              <Route exact path="/reports">
+                <AdminReports users={users} currentUser={currentUser} />
+              </Route>
+              <Route exact path="/users">
+                <AdminUsers users={users} currentUser={currentUser} />
+              </Route>
+              <Route exact path="/courses">
+                <AdminCourses users={users} currentUser={currentUser} />
+              </Route>
+              <Route exact path="/messages">
+                <AdminMessages users={users} currentUser={currentUser} />
               </Route>
             </Switch>
           </>

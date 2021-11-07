@@ -1,0 +1,29 @@
+.Widget-root {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 10px #ddd;
+          box-shadow: 0 0 10px #ddd;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.Widget-root h2 {
+  text-align: center !important;
+  margin: 0;
+}
+
+.Widget-root div {
+  text-align: center;
+  width: 100%;
+}
+/*# sourceMappingURL=styleWidgets.css.map */

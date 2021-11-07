@@ -7,7 +7,7 @@ import  {BiLogOutCircle} from "react-icons/bi";
 import {MdDashboard} from "react-icons/md";
 import { Divider } from "@mui/material";
 
-const ProfileMenu = ({logout}) => {
+const ProfileMenu = ({handleLogout}) => {
   return (
     <div className="profileMenu">
       <ProfileMenuItem to="#" leftIcon={<CgProfile/>}> Profile </ProfileMenuItem>
@@ -19,16 +19,16 @@ const ProfileMenu = ({logout}) => {
         Settings
       </ProfileMenuItem>
       <Divider/>
-      <ProfileMenuItem logout={logout} leftIcon="" to="#" leftIcon={<BiLogOutCircle/>}>
+      <ProfileMenuItem handleLogout={handleLogout} leftIcon="" to="#" leftIcon={<BiLogOutCircle/>}>
         Logout
       </ProfileMenuItem>
     </div>
   );
 };
 
-const ProfileMenuItem = ({ children, to, leftIcon, logout }) => {
+const ProfileMenuItem = ({ children, to, leftIcon, handleLogout }) => {
   return (
-    <Link onClick={ logout && logout} to={to} className="profileItem">
+    <Link onClick={ handleLogout && handleLogout} to={to} className="profileItem">
       <span className="leftIcon"> {leftIcon} </span>
       <span>{children}</span>
     </Link>

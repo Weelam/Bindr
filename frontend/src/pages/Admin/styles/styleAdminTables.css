@@ -1,0 +1,27 @@
+.MuiTableRow-root:hover {
+  background: #ddd;
+}
+
+.MuiTableRow-head {
+  background: #52b788;
+}
+
+.MuiTableRow-head:hover {
+  background: #52b788;
+}
+
+.MuiTableRow-head * {
+  font-weight: 300px;
+  color: white;
+}
+
+.Admin-moreIcon {
+  border-radius: 50%;
+  padding: 0;
+}
+
+.Admin-moreIcon:hover {
+  background: #52b788;
+  cursor: pointer;
+}
+/*# sourceMappingURL=styleAdminTables.css.map */

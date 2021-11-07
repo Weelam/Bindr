@@ -1,0 +1,49 @@
+.AdminDashboard-root {
+  display: flex;
+	height: 100%;
+	&:first-child {
+		background-color: red !important;
+	}
+
+}
+
+.AdminDashboard-root * {
+  width: 50%;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    font-size: 1.2rem;
+
+    li {
+      // margin: 0;
+      width: 100%;
+      margin: 1.2rem  0;
+    }
+  }	
+	
+}
+
+.Widget-liContainer {
+	// border: solid rgb(138, 138, 138) px;
+	// box-shadow: 0 0 2px rgb(138, 138, 138);
+	padding: 8px;
+	box-sizing: border-box;
+	border-radius: 10px;
+
+	a {
+		text-decoration: none;
+		color: black;
+	}
+
+	&:hover {
+		background: #ddd;
+		cursor: pointer;
+	}
+}
+
+
+.Admin-tableDivider {
+	margin: 20px 0;     
+
+}
