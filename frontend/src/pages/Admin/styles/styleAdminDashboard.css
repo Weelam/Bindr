@@ -1,0 +1,48 @@
+.AdminDashboard-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+.AdminDashboard-root:first-child {
+  background-color: red !important;
+}
+
+.AdminDashboard-root * {
+  width: 50%;
+}
+
+.AdminDashboard-root * ul {
+  list-style-type: none;
+  padding: 0;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.AdminDashboard-root * ul li {
+  width: 100%;
+  margin: 1.2rem  0;
+}
+
+.Widget-liContainer {
+  padding: 8px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.Widget-liContainer a {
+  text-decoration: none;
+  color: black;
+}
+
+.Widget-liContainer:hover {
+  background: #ddd;
+  cursor: pointer;
+}
+
+.Admin-tableDivider {
+  margin: 20px 0;
+}
+/*# sourceMappingURL=styleAdminDashboard.css.map */
