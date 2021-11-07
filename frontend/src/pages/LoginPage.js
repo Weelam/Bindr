@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import Login from "../components/Login/Login";
 
-function LoginPage({ currentUser, setUsername, setAuth }) {
+function LoginPage({setUsername, setIsAdmin }) {
 
   return (
-    <Login setUsername={setUsername}/>
+    <Login setUsername={setUsername} setIsAdmin={setIsAdmin}/>
   );
 }
 

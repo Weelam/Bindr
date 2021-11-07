@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import "./loginStyle.css";
 
-const Login = ({ setUsername }) => {
+const Login = ({ setUsername, setIsAdmin }) => {
   const [info, setInfo] = useState({ username: "", password: "" });
   const history = useHistory();
 
@@ -14,6 +14,10 @@ const Login = ({ setUsername }) => {
     if (info["username"] === "user" && info["password"] === "user") {
       // change the global user of the application
       setUsername(info["username"]);
+      history.push("/");
+    } else if (info["username"] === "admin" && info["password"] === "admin") {
+      setUsername(info["username"]);
+      setIsAdmin(true)
       history.push("/");
     } else {
       alert("username or password incorrect");
