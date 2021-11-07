@@ -12,7 +12,7 @@ const ProfileMenu = ({logout}) => {
     <div className="profileMenu">
       <ProfileMenuItem to="#" leftIcon={<CgProfile/>}> Profile </ProfileMenuItem>
       <Divider/>
-      <ProfileMenuItem leftIcon="" to="dashboard" leftIcon={<MdDashboard/>}>
+      <ProfileMenuItem leftIcon="" to="/" leftIcon={<MdDashboard/>}>
         Dashboard
       </ProfileMenuItem>
       <ProfileMenuItem leftIcon="" to="#" leftIcon={<BsFillGearFill/>}>
