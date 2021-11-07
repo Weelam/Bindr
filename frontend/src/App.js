@@ -8,18 +8,19 @@ import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import data from "./users.js";
-
+import groupsData from "./groups.js";
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
 const users = data["data"]; 
-
+const groups = groupsData["data"];
 function App() {
   // remember to change this part!!! (rn "user" is signed in at the start
-  const [currentUser, setCurrentUser] = useState({}); // user object
-  const [username, setUsername] = useState(""); // username of the user (used to change "currentUser" state)
+  const [currentUser, setCurrentUser] = useState(users[0]); // user object
+  const [username, setUsername] = useState("user"); // username of the user (used to change "currentUser" state)
   const [auth, setAuth] = useState(false);
-
-  let history = useHistory();
+  const [availableProjects, setAvailableProjects] = useState([]);
+  const [allGroups, setGroups] = useState(groups);
+  const [allUsers, setUsers] = useState(users);
   useEffect(() => {
     // change currentUser whenever username changes
     if (username) {
@@ -28,6 +29,8 @@ function App() {
       if (authUser) {
         setCurrentUser(authUser);
         setAuth(true);
+
+        
       } else {
         console.error("Bro can't find user with username, username")
       }
@@ -37,7 +40,34 @@ function App() {
       setAuth(false)
     }
   }, [username]);
+  function updateUser(id, user){
+    let copy = [...allUsers];
+    copy[parseInt(id) - 1] = user;
+    setUsers(copy);
+  }
 
+  useEffect(() => {
+    setAvailableProjects(
+      groups.filter((proj)=>{
+          return currentUser.groups.includes(parseInt(proj.groupID));
+      })
+  );
+  }, currentUser)
+
+  function updateGroup(id, group){
+    let copy = [...allGroups];
+    console.log(copy[id].list.length)
+
+    copy[parseInt(id)] = group;
+    
+    console.log(copy[id].list.length)
+
+    setGroups(copy);
+    setAvailableProjects(copy.filter((proj)=>{
+      return currentUser.groups.includes(proj.groupID);
+  }));
+    console.log("updated group~")
+  }
   const logout = () => {
     setUsername("");
     console.log("logout")
@@ -51,7 +81,8 @@ function App() {
         <Switch>
           {/* not secure atm, we'll add that in phase 2 */}
           <Route exact path="/">
-            {!auth ? <Home /> : <DashboardPage currentUser={currentUser} users={users}/>}
+          {!auth ? <Home /> : <DashboardPage currentUser={currentUser} 
+                users={users} groups={availableProjects} updateGroup={updateGroup} updateUser = {updateUser}/>}
           </Route>
           <Route path="/login">
             <LoginPage
@@ -70,9 +101,9 @@ function App() {
               />
             )}
           </Route>
-          <Route path="/dashboard">
-            <DashboardPage currentUser={currentUser} users={users}/>
-          </Route>
+          
+    
+          
         </Switch>
       </Router>
     </div>

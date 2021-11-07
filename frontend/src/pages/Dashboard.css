@@ -1,0 +1,39 @@
+#dashPage{
+    content:"";display:table;clear:both;
+    
+   
+}
+
+#row{
+    display: grid; 
+    grid-template-columns: 0.8fr 1.7fr 0.5fr; 
+    grid-template-rows: 2.5fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . ."; 
+}
+#board{
+    margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+#leftColumn{
+    width:24.99999%;
+}
+
+#middleColumn{
+    width:58.33333%;
+}
+
+
+#chatbox{
+    align-content: center;
+    width: 500;
+}
+#firstDivider{
+    width: 0%;
+}
+
+#secondDivider{
+    width:0%;
+}
