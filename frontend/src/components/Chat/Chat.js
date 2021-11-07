@@ -5,7 +5,8 @@ import SendIcon from "@mui/icons-material/Send";
 import IconButton from "@mui/material/IconButton";
 import Message from "./Message";
 
-// this is the mock data for messages (Message.js for more detail)
+// this is the mock data for messages, this will of course be different for each user (Message.js for more detail)
+// here, the app will make a fetch call to the database to fetch the data
 const messageData = data["data"];
 
 const Chat = ({ currentUser, users }) => {

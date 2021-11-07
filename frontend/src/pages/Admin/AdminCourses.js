@@ -83,7 +83,7 @@ const AdminCourses = () => {
                 <TableCell align="right">{course["instructor"]}</TableCell>
                 <TableCell align="right">{course["department"]}</TableCell>
                 <TableCell align="right">
-                  <MoreVertIcon />
+                  <MoreVertIcon className="Admin-moreIcon" onClick={() => alert("does nothing right now")}/>
                 </TableCell>
               </TableRow>
             ))}

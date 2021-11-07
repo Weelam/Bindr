@@ -11,8 +11,8 @@
 }
 
 .MuiTableRow-head * {
-  font-weight: 300px;
-  color: white;
+  font-weight: 300px !important;
+  color: white !important;
 }
 
 .Admin-moreIcon {
