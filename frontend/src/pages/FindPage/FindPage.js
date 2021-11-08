@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React from "react";
 import Find from "../../components/Find/Find";
 // import FindHeader from "../components/Find/FindHeader";
 // import FindBody from "../components/Find/FindBody"

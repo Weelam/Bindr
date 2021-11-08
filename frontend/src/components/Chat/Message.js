@@ -10,7 +10,7 @@ const Message = ({ isYourMessage, msg, sender, sameSender }) => {
       className={sameSender ? "message sameSender" : "message" }
     >
       <div className="senderAvatar">
-        {!sameSender && <img src={sender["profileImg"]} />}
+        {!sameSender && <img src={sender["profileImg"]} alt=""/>}
       </div>
 
       <div className="msgRightSide">

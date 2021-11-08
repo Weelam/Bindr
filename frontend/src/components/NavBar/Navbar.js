@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./style.css";
 import { AiFillBell } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";

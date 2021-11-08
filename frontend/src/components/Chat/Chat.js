@@ -13,8 +13,8 @@ const Chat = ({ currentUser, users }) => {
   // As for now the chat only works one way since we need a backend in order to make this functional
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState(messageData);
-  const [yourMessages, setYourMessages] = useState("");
-  const [othersMessages, setOtherMessages] = useState("");
+  // const [yourMessages, setYourMessages] = useState("");
+  // const [othersMessages, setOtherMessages] = useState("");
   const messagesEnd = useRef(null);
 
   const scrollToBottom = () => {

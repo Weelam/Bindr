@@ -73,6 +73,8 @@ const FindFilter = ({ filter, setfilter }) => {
       case "4th":
         filterYear(year);
         break;
+      default:
+        console.log("defaulted, something went wrong!")
     }
   };
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import './UserCardStyle.css'
 import { FaBook, FaRegListAlt } from "react-icons/fa";
-import { Fab } from '@mui/material';
 const user = {
     userID: 0,
     profileImg: "https://i.insider.com/59ca65fefca6e427008b4776?width=700",
@@ -27,7 +26,7 @@ const UserStatus = () => {
             <div id="userStatus">
                 <h4 id="userName">{user.firstName}</h4>
                 <p id="iconContainer">
-                    <img id="iconImage" src={user.profileImg}></img>
+                    <img id="iconImage" src={user.profileImg} alt=""/>
                 </p>
                 <hr>
                 </hr>
