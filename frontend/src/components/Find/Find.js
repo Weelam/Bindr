@@ -59,7 +59,7 @@ const Find = ({ users, currentUserSet }) => {
       if (x[0].isIntersecting) {
         console.log("at bottom");
         setDisplayPointer((prev) => {
-          return { start: prev["end"], end: prev["end"] + 10 };
+          return { start: prev["end"], end: prev["end"] + 8 };
         });
         setLoading(false);
       }

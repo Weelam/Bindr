@@ -16,12 +16,13 @@ import AdminCourses from "./pages/Admin/AdminCourses";
 import AdminMessages from "./pages/Admin/AdminMessages";
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
-const users = data["data"];
+const usersData = data["data"];
 const groups = groupsData["data"];
 
 function App() {
   const [currentUser, setCurrentUser] = useState(); // user object
-  const [username, setUsername] = useState(""); // username of the user (used to change "currentUser" state)
+	const [users, setUsers] = useState(usersData)
+	const [username, setUsername] = useState(""); // username of the user (used to change "currentUser" state)
   const [auth, setAuth] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -100,7 +101,7 @@ function App() {
                 <AdminReports users={users} currentUser={currentUser} />
               </Route>
               <Route exact path="/users">
-                <AdminUsers users={users} currentUser={currentUser} />
+                <AdminUsers users={users} setUsers={setUsers} currentUser={currentUser} />
               </Route>
               <Route exact path="/courses">
                 <AdminCourses users={users} currentUser={currentUser} />
