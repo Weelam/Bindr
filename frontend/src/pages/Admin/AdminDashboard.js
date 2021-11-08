@@ -30,13 +30,13 @@ const AdminDashboard = ({ currentUser, users }) => {
           <ul>
             {reports.map((report, i) => {
               return (
-                <div key={i} className="Widget-liContainer">
-                  <Link to="reports">
+                <Link to="reports">
+                  <div key={i} className="Widget-liContainer">
                     <li>
                       {report["user"]} - {report["content"]}
                     </li>
-                  </Link>
-                </div>
+                  </div>{" "}
+                </Link>
               );
             })}
           </ul>
@@ -45,11 +45,11 @@ const AdminDashboard = ({ currentUser, users }) => {
           <ul>
             {messages.map((message, i) => {
               return (
-                <div key={i} className="Widget-liContainer">
-                  <Link to="messages">
+                <Link to="messages">
+                  <div key={i} className="Widget-liContainer">
                     <li> {message["user"]} has messaged you </li>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               );
             })}
           </ul>
