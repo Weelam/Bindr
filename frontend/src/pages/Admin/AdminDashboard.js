@@ -45,8 +45,8 @@ const AdminDashboard = ({ currentUser, users }) => {
           <ul>
             {messages.map((message, i) => {
               return (
-                <Link to="messages">
-                  <div key={i} className="Widget-liContainer">
+                <Link key={i} to="messages">
+                  <div className="Widget-liContainer">
                     <li> {message["user"]} has messaged you </li>
                   </div>
                 </Link>
