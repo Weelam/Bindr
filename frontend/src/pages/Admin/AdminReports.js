@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,10 +7,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Divider } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import "./styles/styleAdminTables.css";
+import {resetID} from "./Helper.js"
 
-const reports = [
+const reportsData = [
 	{
 		reportID: 0,
 		reporter: "a",
@@ -27,6 +30,29 @@ const reports = [
 ];
 
 const AdminReports = () => {
+	const [reports, setReports] = useState(reportsData)
+	const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+	
+	const [selectedID, setSelectedID] = useState(null);
+  const handleClick = (e, reportID) => {
+    setAnchorEl(e.currentTarget);
+		console.log(reportID);
+		setSelectedID(reportID);
+
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+	const removeID = () => {
+		console.log(selectedID)
+		setReports(prev => {
+			let filtered = prev.filter(report => report["reportID"] !== selectedID);
+			return resetID(filtered, "reportID")
+		});
+		handleClose()
+	}
   return (
     <>
       <h1> Reports </h1>
@@ -52,13 +78,20 @@ const AdminReports = () => {
                 <TableCell align="right">{report["reported"]}</TableCell>
                 <TableCell className="Admin-reportcontent" align="right">{report["content"]}</TableCell>
                 <TableCell align="right">
-                  <MoreVertIcon className="Admin-moreIcon" onClick={() => alert("does nothing right now")}/>
+                  <MoreVertIcon className="Admin-moreIcon" onClick={e => handleClick(e, report["reportID"])}/>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+			<Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={removeID}>Remove</MenuItem>
+      </Menu>
     </>
   );
 };

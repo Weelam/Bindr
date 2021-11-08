@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,9 +8,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Divider } from "@mui/material";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import "./styles/styleAdminTables.css";
+import {resetID} from "./Helper.js"
+
 // the hard coded data for all the courses offered
-const courses = [
+const coursesData = [
   {
     courseID: 0,
     course: "CSC309",
@@ -53,7 +57,32 @@ const courses = [
   },
 ];
 
+
 const AdminCourses = () => {
+	const [courses, setCourses] = useState(coursesData)
+	const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+	
+	const [selectedID, setSelectedID] = useState(null);
+  const handleClick = (e, courseID) => {
+    setAnchorEl(e.currentTarget);
+		console.log(courseID);
+		setSelectedID(courseID);
+
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+	const removeID = () => {
+		console.log(selectedID)
+		setCourses(prev => {
+			let filtered = prev.filter(course => course["courseID"] !== selectedID);
+			return resetID(filtered, "courseID")
+		});
+		handleClose()
+	}
+
   return (
     <>
       <h1> Courses </h1>
@@ -72,7 +101,7 @@ const AdminCourses = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {courses.map((course) => (
+            {courses && courses.map((course) => (
               <TableRow key={course["courseID"]}>
                 <TableCell component="th" scope="row">
                   {course["courseID"]}
@@ -83,13 +112,21 @@ const AdminCourses = () => {
                 <TableCell align="right">{course["instructor"]}</TableCell>
                 <TableCell align="right">{course["department"]}</TableCell>
                 <TableCell align="right">
-                  <MoreVertIcon className="Admin-moreIcon" onClick={() => alert("does nothing right now")}/>
+                  <MoreVertIcon className="Admin-moreIcon" onClick={e => handleClick(e, course["courseID"])}/>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+
+			<Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={removeID}>Remove</MenuItem>
+      </Menu>
     </>
   );
 };
