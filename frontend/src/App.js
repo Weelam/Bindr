@@ -14,6 +14,7 @@ import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminReports from "./pages/Admin/AdminReports";
 import AdminCourses from "./pages/Admin/AdminCourses";
 import AdminMessages from "./pages/Admin/AdminMessages";
+import SignupPage from "./pages/SignupPage";
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
 const usersData = data["data"];
@@ -73,6 +74,9 @@ function App() {
 
               <Route path="/login">
                 <LoginPage setUsername={setUsername} setIsAdmin={setIsAdmin} />
+              </Route>
+              <Route path="/signup">
+                <SignupPage/>
               </Route>
 
               <Route path="/find">
