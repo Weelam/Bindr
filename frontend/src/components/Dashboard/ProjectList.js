@@ -24,14 +24,14 @@ function ProjectList(props) {
 
             
                 
-                    <p class="projectlisttitle">
+                    <p className="projectlisttitle">
                     Projects
                     </p>
                 
                 {projects.map(function (project, index) {
                     return (
 
-                        <Button key={index} id = {project.groupID === selectedProjectID ? 'selected' : ''} class='project' onClick={() => handleGroupClick(project.groupID)}>
+                        <Button key={index} id = {project.groupID === selectedProjectID ? 'selected' : ''} className='project' onClick={() => handleGroupClick(project.groupID)}>
                             <img className="projectimg" src={project.image} alt=""/>
                             
                                 {project.projectname}

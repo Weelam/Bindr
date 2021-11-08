@@ -46,7 +46,6 @@ const Find = ({ users, currentUserSet }) => {
   };
 
   const lastUserRef = useCallback((node) => {
-    console.log(node)
     if (obs.current) {
       obs.current.disconnect();
     }
@@ -169,7 +168,7 @@ const Find = ({ users, currentUserSet }) => {
           const wantToMatch = currentUser["wantToMatch"];
           const rejected = currentUser["rejected"];
           let lastItem = index === filteredUsers.length - 1;
-          console.log(filteredUsers);
+          // console.log(filteredUsers);
 
           if (wantToMatch.includes(item["userID"])) {
             // if this user is has already been selected as a desired match
