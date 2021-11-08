@@ -4,7 +4,7 @@ const FindItem = ({ user, opacity }) => {
   return (
     <div className={opacity ? "itemContainer itemContainer-lowOpac" : "itemContainer"}>
       <div className="profileImgContainer">
-        <img className="profileImg" src={user["profileImg"]} />
+        <img className="profileImg" src={user["profileImg"]} alt="profile" />
       </div>
       <div className="itemFooter">
         <div>

@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import NavItem from "./NavItem";
+import { Link} from "react-router-dom";
 import { CgProfile } from 'react-icons/cg';
 import {BsFillGearFill} from 'react-icons/bs';
 import  {BiLogOutCircle} from "react-icons/bi";
@@ -12,14 +11,14 @@ const ProfileMenu = ({handleLogout}) => {
     <div className="profileMenu">
       <ProfileMenuItem to="#" leftIcon={<CgProfile/>}> Profile </ProfileMenuItem>
       <Divider/>
-      <ProfileMenuItem leftIcon="" to="/" leftIcon={<MdDashboard/>}>
+      <ProfileMenuItem to="/" leftIcon={<MdDashboard/>}>
         Dashboard
       </ProfileMenuItem>
-      <ProfileMenuItem leftIcon="" to="#" leftIcon={<BsFillGearFill/>}>
+      <ProfileMenuItem to="#" leftIcon={<BsFillGearFill/>}>
         Settings
       </ProfileMenuItem>
       <Divider/>
-      <ProfileMenuItem handleLogout={handleLogout} leftIcon="" to="#" leftIcon={<BiLogOutCircle/>}>
+      <ProfileMenuItem handleLogout={handleLogout} to="#" leftIcon={<BiLogOutCircle/>}>
         Logout
       </ProfileMenuItem>
     </div>

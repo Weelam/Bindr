@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./styleHome.css";
 import Button from '@mui/material/Button';
-import { Redirect } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 
 
@@ -23,7 +21,7 @@ const Home = () => {
       </div>
       <div className="homePage-rightSide">
         <div className="homePage-imageContainer">
-          <img className="homePage-image" src="https://cdn.discordapp.com/attachments/868912885852700722/906023960964137011/502-5020971_studying-cat-png-transparent-png-removebg-preview.png" />
+          <img className="homePage-image" src="https://cdn.discordapp.com/attachments/868912885852700722/906023960964137011/502-5020971_studying-cat-png-transparent-png-removebg-preview.png" alt="cat reading book"/>
         </div>
       </div>
     </div>

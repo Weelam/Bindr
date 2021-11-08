@@ -1,11 +1,11 @@
-import React, { useState, useReducer, useEffect} from 'react'
-import Board from './Board';
+import React, { useState, useEffect} from 'react'
+// import Board from './Board';
 import Button from '@mui/material/Button'; 
 
 function ProjectList(props) {
 
     const [projects, setProjects] = useState(props.groups);
-    const [user, setCurUser ] = useState(props.currentUser);
+    // const [user, setCurUser ] = useState(props.currentUser);
     const [selectedProjectID, setSelectedProjectID] = useState(0);
     const handleGroupClick = (id) =>{
         setSelectedProjectID(parseInt(id));
@@ -31,8 +31,8 @@ function ProjectList(props) {
                 {projects.map(function (project, index) {
                     return (
 
-                        <Button id = {project.groupID === selectedProjectID ? 'selected' : ''} class='project' onClick={() => handleGroupClick(project.groupID)}>
-                            <img class="projectimg" src={project.image} />
+                        <Button key={index} id = {project.groupID === selectedProjectID ? 'selected' : ''} class='project' onClick={() => handleGroupClick(project.groupID)}>
+                            <img className="projectimg" src={project.image} alt=""/>
                             
                                 {project.projectname}
                             

@@ -1,8 +1,6 @@
 import React from "react";
 import Modal from "@mui/material/Modal";
 import Divider from "@mui/material/Divider";
-import { IconButton } from "@mui/material";
-import Button from "@mui/material/Button";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 
@@ -29,7 +27,7 @@ const FindModal = ({ openModal, setOpenModal, user, handleRejectAccept }) => {
       <Modal open={openModal} onClose={handleClose} footer={"Footer"}>
         <div className="innerModalContainer">
           <div className="modalImageContainer">
-            <img className="modalImage" src={user["profileImg"]} />
+            <img className="modalImage" src={user["profileImg"]} alt="profile" />
           </div>
           <div className="modalDesc">
             <div className="modalDesc-nameyear">

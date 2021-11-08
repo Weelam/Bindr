@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo }from 'react'
+import React, { useState, useEffect }from 'react'
 import './UserCardStyle.css'
 import ToDoList from "./ToDoList";
 import ToDoForm from './ToDoForm';
-import data from "./data.json";
+// import data from "./data.json";
 
 function Board(props) {
     const [ project, setProject ] = useState(props.project);

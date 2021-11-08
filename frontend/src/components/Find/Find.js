@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Grid from "@mui/material/Grid";
 import FindItem from "./FindItem";
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import FindModal from "./FindModal";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
@@ -24,7 +21,6 @@ const Find = ({ users, currentUserSet }) => {
   const obs = useRef();
   const [displayedUsers, setDisplayedUsers] = useState([]);
   const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 4 });
-  const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
   const [openAlert, setOpenAlert] = useState(false);
@@ -37,7 +33,6 @@ const Find = ({ users, currentUserSet }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
     handleDisplayedUsers();
   }, [displayPointer]);
 
@@ -61,7 +56,6 @@ const Find = ({ users, currentUserSet }) => {
         setDisplayPointer((prev) => {
           return { start: prev["end"], end: prev["end"] + 8 };
         });
-        setLoading(false);
       }
     });
     if (node) obs.current.observe(node);
