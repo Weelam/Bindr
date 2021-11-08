@@ -101,16 +101,16 @@ function App() {
               <Route exact path="/">
                 <AdminDashboard users={users} currentUser={currentUser} />
               </Route>
-              <Route exact path="/reports">
+              <Route path="/reports">
                 <AdminReports users={users} currentUser={currentUser} />
               </Route>
-              <Route exact path="/users">
+              <Route path="/users">
                 <AdminUsers users={users} setUsers={setUsers} currentUser={currentUser} />
               </Route>
-              <Route exact path="/courses">
+              <Route path="/courses">
                 <AdminCourses users={users} currentUser={currentUser} />
               </Route>
-              <Route exact path="/messages">
+              <Route path="/messages">
                 <AdminMessages users={users} currentUser={currentUser} />
               </Route>
             </Switch>

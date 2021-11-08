@@ -5,10 +5,6 @@
   height: 100%;
 }
 
-.AdminDashboard-root:first-child {
-  background-color: red !important;
-}
-
 .AdminDashboard-root * {
   width: 50%;
 }
@@ -25,16 +21,16 @@
   margin: 1.2rem  0;
 }
 
+.AdminDashboard-root * a {
+  text-decoration: none;
+  color: black;
+}
+
 .Widget-liContainer {
   padding: 8px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border-radius: 10px;
-}
-
-.Widget-liContainer a {
-  text-decoration: none;
-  color: black;
 }
 
 .Widget-liContainer:hover {
