@@ -3,12 +3,11 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import "./styles/filterStyle.css";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
-const FindFilter = ({filter, setfilter}) => {
+const FindFilter = ({ filter, setfilter }) => {
   const [anchor1, setAnchor1] = useState(null);
   const [anchor2, setAnchor2] = useState(null);
-
 
   const [course, setCourse] = useState("");
   const [program, setProgram] = useState("");
@@ -32,7 +31,7 @@ const FindFilter = ({filter, setfilter}) => {
     e.preventDefault();
     setfilter((prev) => ({ ...prev, courses: [...prev["courses"], course] }));
     handleClose(setAnchor1);
-		setCourse("");
+    setCourse("");
   };
 
   const handleProgram = (e) => {
@@ -42,7 +41,7 @@ const FindFilter = ({filter, setfilter}) => {
       programs: [...prev["programs"], program],
     }));
     handleClose(setAnchor2);
-		setProgram("");
+    setProgram("");
   };
 
   const filterYear = (year) => {
@@ -77,13 +76,16 @@ const FindFilter = ({filter, setfilter}) => {
     }
   };
 
-	const handleRemoveFilter = (e, filterType) => {
-		let filterToRemove = e.target.previousElementSibling.innerText
-		setfilter((prev) => ({
-			...prev,
-			[filterType]: prev[filterType].filter((x) => x !== filterToRemove),
-		}));
-	}
+  const handleRemoveFilter = (e, filterType) => {
+    if (e.target.previousElementSibling) {
+      let filterToRemove = e.target.previousElementSibling.innerText;
+      console.log(filterToRemove);
+      setfilter((prev) => ({
+        ...prev,
+        [filterType]: prev[filterType].filter((x) => x !== filterToRemove),
+      }));
+    }
+  };
 
   useEffect(() => {
     console.log(filter);
@@ -93,14 +95,24 @@ const FindFilter = ({filter, setfilter}) => {
     <div className="filterRoot">
       <h4> Courses </h4>
       {filter["courses"].map((course, index) => {
-        return <div key={index}><p > {course} </p><CloseIcon onClick={(e) => handleRemoveFilter(e, "courses")}/></div>;
+        return (
+          <div key={index}>
+            <p> {course} </p>
+            <CloseIcon onClick={(e) => handleRemoveFilter(e, "courses")} />
+          </div>
+        );
       })}
       <button onClick={handleAnchor1}>
         <AddCircleOutlineIcon />
       </button>
       <h4> Program </h4>
       {filter["programs"].map((program, index) => {
-        return <div key={index}><p > {program} </p><CloseIcon onClick={(e) => handleRemoveFilter(e, "programs")}/></div>;
+        return (
+          <div key={index}>
+            <p> {program} </p>
+            <CloseIcon onClick={(e) => handleRemoveFilter(e, "programs")} />
+          </div>
+        );
       })}
       <button onClick={handleAnchor2}>
         <AddCircleOutlineIcon />
