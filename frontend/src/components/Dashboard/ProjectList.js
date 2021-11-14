@@ -23,10 +23,7 @@ function ProjectList(props) {
         
 
             
-                
-                    <p className="projectlisttitle">
-                    Projects
-                    </p>
+                    
                 
                 {projects.map(function (project, index) {
                     return (

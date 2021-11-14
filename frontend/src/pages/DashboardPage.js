@@ -1,5 +1,6 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ProjectList from "../components/Dashboard/ProjectList";
+import FriendList from "../components/Dashboard/FriendList"
 import Board from "../components/Dashboard/Board";
 import UserStatus from "../components/Dashboard/UserStatus";
 import Chat from "../components/Chat/Chat";
@@ -20,6 +21,7 @@ const DashboardPage = ({ currentUser, users, groups }) => {
   const [allGroups, setGroups] = useState(groups);
   const [allUsers, setUsers] = useState(users);
   const [curProjectind, setInd] = useState(0);
+  const [curFriend, setFriendInd] = useState(0);
 
   function updateUser(id, user) {
     let copy = [...allUsers];
@@ -55,6 +57,9 @@ const DashboardPage = ({ currentUser, users, groups }) => {
   const updateDisplayingProject = (id) => {
     setInd(parseInt(id));
   };
+  const updateDisplayingFriend = (id) => {
+    setFriendInd(parseInt(id));
+  };
 
   const handleUpdate = (id, group) => {
     updateGroup(id, group);
@@ -78,12 +83,31 @@ const DashboardPage = ({ currentUser, users, groups }) => {
         <div id="leftColumn">
           {/* <Button>Groups</Button> */}
           <UserStatus currentUser={currentUser} />
+          <button className="choicebutton">
+            <span className="projectlisttitle">
+              Projects
+            </span>
+          </button>
+
+          <button className="choicebutton">
+            <span className="friendlisttitle">
+              Friends
+            </span>
+          </button>
           <ProjectList
             currentUser={currentUser}
             groups={groups}
             updateUser={updateUser}
             updateGroup={handleUpdate}
             updateDisplayingProject={updateDisplayingProject}
+          />
+
+          <FriendList
+            currentUser={currentUser}
+            users={users}
+            updateUser={updateUser}
+            updateGroup={handleUpdate}
+            updateDisplayingFriend={updateDisplayingFriend}
           />
         </div>
 

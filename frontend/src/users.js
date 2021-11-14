@@ -7,7 +7,7 @@ const data = {
       firstName: "Joseph",
       username: "user",
       groups: [0, 1],
-      friends: [],
+      friends: [1, 2, 3, 4, 5],
       wantToMatch: [],
       rejected: [],
       role: "regular",

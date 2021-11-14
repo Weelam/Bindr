@@ -1,5 +1,5 @@
 /* No CSS */
-@import url(/home/weelam/team58/frontend/src/components/Find/styles/modalStyle.css);
+@import "/src/components/Find/styles/modalStyle.css";
 .findRoot {
   display: "flex";
 }

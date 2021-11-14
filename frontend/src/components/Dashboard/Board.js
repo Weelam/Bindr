@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react'
 import './UserCardStyle.css'
-import ToDoList from "./ToDoList";
-import ToDoForm from './ToDoForm';
+import ToDoList from "./ToDoList/ToDoList";
+import ToDoForm from './ToDoList/ToDoForm';
 // import data from "./data.json";
 
 function Board(props) {
