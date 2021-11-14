@@ -8,7 +8,7 @@ function FriendList(props) {
         return props.users[parseInt(ind)];
     }));
     // const [user, setCurUser ] = useState(props.currentUser);
-    const [selectedFriendID, setSelectedFriendID] = useState(null);
+    const [selectedFriendID, setSelectedFriendID] = useState(props.curFriend);
     const handleFriendClick = (id) =>{
         setSelectedFriendID(parseInt(id));
         props.updateDisplayingFriend(id);

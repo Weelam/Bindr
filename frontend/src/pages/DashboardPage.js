@@ -21,7 +21,7 @@ const DashboardPage = ({ currentUser, users, groups }) => {
   const [allGroups, setGroups] = useState(groups);
   const [allUsers, setUsers] = useState(users);
   const [curProjectind, setInd] = useState(0);
-  const [curFriend, setFriendInd] = useState(0);
+  const [curFriendInd, setFriendInd] = useState(0);
   const [isProject, setIsProject] = useState(true);
 
   const switchToProjects = ()=>{
@@ -110,6 +110,7 @@ const DashboardPage = ({ currentUser, users, groups }) => {
           updateUser={updateUser}
           updateGroup={handleUpdate}
           updateDisplayingProject={updateDisplayingProject}
+          curProject={curProjectind}
         />
           :<FriendList
           currentUser={currentUser}
@@ -117,6 +118,7 @@ const DashboardPage = ({ currentUser, users, groups }) => {
           updateUser={updateUser}
           updateGroup={handleUpdate}
           updateDisplayingFriend={updateDisplayingFriend}
+          curFriend={curFriendInd}
         />}
           
         </div>

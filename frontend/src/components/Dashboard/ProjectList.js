@@ -6,7 +6,7 @@ function ProjectList(props) {
 
     const [projects, setProjects] = useState(props.groups);
     // const [user, setCurUser ] = useState(props.currentUser);
-    const [selectedProjectID, setSelectedProjectID] = useState(0);
+    const [selectedProjectID, setSelectedProjectID] = useState(props.curProject);
     const handleGroupClick = (id) =>{
         setSelectedProjectID(parseInt(id));
         props.updateDisplayingProject(id);
