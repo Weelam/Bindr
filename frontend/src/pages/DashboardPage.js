@@ -22,6 +22,15 @@ const DashboardPage = ({ currentUser, users, groups }) => {
   const [allUsers, setUsers] = useState(users);
   const [curProjectind, setInd] = useState(0);
   const [curFriend, setFriendInd] = useState(0);
+  const [isProject, setIsProject] = useState(true);
+
+  const switchToProjects = ()=>{
+    setIsProject(true);
+  }
+
+  const switchToFriends = () => {
+    setIsProject(false);
+  }
 
   function updateUser(id, user) {
     let copy = [...allUsers];
@@ -83,45 +92,48 @@ const DashboardPage = ({ currentUser, users, groups }) => {
         <div id="leftColumn">
           {/* <Button>Groups</Button> */}
           <UserStatus currentUser={currentUser} />
-          <button className="choicebutton">
+          <button className="choicebutton" onClick={switchToProjects}>
             <span className="projectlisttitle">
               Projects
             </span>
           </button>
 
-          <button className="choicebutton">
+          <button className="choicebutton" onClick={switchToFriends}>
             <span className="friendlisttitle">
               Friends
             </span>
           </button>
-          <ProjectList
-            currentUser={currentUser}
-            groups={groups}
-            updateUser={updateUser}
-            updateGroup={handleUpdate}
-            updateDisplayingProject={updateDisplayingProject}
-          />
-
-          <FriendList
-            currentUser={currentUser}
-            users={users}
-            updateUser={updateUser}
-            updateGroup={handleUpdate}
-            updateDisplayingFriend={updateDisplayingFriend}
-          />
+          {isProject
+          ?<ProjectList
+          currentUser={currentUser}
+          groups={groups}
+          updateUser={updateUser}
+          updateGroup={handleUpdate}
+          updateDisplayingProject={updateDisplayingProject}
+        />
+          :<FriendList
+          currentUser={currentUser}
+          users={users}
+          updateUser={updateUser}
+          updateGroup={handleUpdate}
+          updateDisplayingFriend={updateDisplayingFriend}
+        />}
+          
         </div>
 
         <div id="middleColumn">
-          <Chat id="chatbox" currentUser={currentUser} users={users} />
+        {isProject
+          ?<div id="board">
+          <Board
+            project={projects[curProjectind]}
+            updateGroup={handleUpdate}
+          />
+        </div>
+          :<Chat id="chatbox" currentUser={currentUser} users={users} />}
         </div>
 
         <div id="rightColumn">
-          <div id="board">
-            <Board
-              project={projects[curProjectind]}
-              updateGroup={handleUpdate}
-            />
-          </div>
+          
         </div>
       </div>
     </div>
