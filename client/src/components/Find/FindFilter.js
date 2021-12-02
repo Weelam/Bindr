@@ -4,6 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import "./styles/filterStyle.css";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
+import FindFilterForm from "./FindFilterForm";
 
 const FindFilter = ({ filter, setfilter }) => {
   const [anchor1, setAnchor1] = useState(null);
@@ -11,17 +12,6 @@ const FindFilter = ({ filter, setfilter }) => {
 
   const [course, setCourse] = useState("");
   const [program, setProgram] = useState("");
-
-  const open1 = Boolean(anchor1);
-  const open2 = Boolean(anchor2);
-
-  const handleAnchor1 = (event) => {
-    setAnchor1(event.currentTarget);
-  };
-
-  const handleAnchor2 = (event) => {
-    setAnchor2(event.currentTarget);
-  };
 
   const handleClose = (setAnchor) => {
     setAnchor(null);
@@ -74,7 +64,7 @@ const FindFilter = ({ filter, setfilter }) => {
         filterYear(year);
         break;
       default:
-        console.log("defaulted, something went wrong!")
+        console.log("defaulted, something went wrong!");
     }
   };
 
@@ -96,6 +86,13 @@ const FindFilter = ({ filter, setfilter }) => {
   return (
     <div className="filterRoot">
       <h4> Courses </h4>
+      <FindFilterForm
+        handleCourse={handleCourse}
+        setCourse={setCourse}
+        value={course}
+        type="courses"
+        list={["CSC309", "CSC373", "CSC111", "CSC473", "CSC369"]}
+      />
       {filter["courses"].map((course, index) => {
         return (
           <div key={index}>
@@ -104,10 +101,14 @@ const FindFilter = ({ filter, setfilter }) => {
           </div>
         );
       })}
-      <button onClick={handleAnchor1}>
-        <AddCircleOutlineIcon />
-      </button>
       <h4> Program </h4>
+      <FindFilterForm
+        handleCourse={handleProgram}
+        setCourse={setProgram}
+        value={program}
+        type="programs"
+        list={["Gender Studies", "Hamburger Flipping", "Political Science", "Cinema Studies"]}
+      />
       {filter["programs"].map((program, index) => {
         return (
           <div key={index}>
@@ -116,9 +117,7 @@ const FindFilter = ({ filter, setfilter }) => {
           </div>
         );
       })}
-      <button onClick={handleAnchor2}>
-        <AddCircleOutlineIcon />
-      </button>
+      
       <h4> Year </h4>
       <form className="filterYear">
         <div>
@@ -165,41 +164,6 @@ const FindFilter = ({ filter, setfilter }) => {
           <label htmlFor="year4"> Fourth </label>
         </div>
       </form>
-
-      <Menu
-        anchorEl={anchor1}
-        open={open1}
-        onClose={() => handleClose(setAnchor1)}
-      >
-        <MenuItem>
-          <form onSubmit={handleCourse}>
-            <input
-              onChange={(e) => setCourse(e.target.value)}
-              value={course}
-              placeholder="Course"
-              type="text"
-            />
-            <input className="filterSubmit" type="submit" value="Submit" />
-          </form>
-        </MenuItem>
-      </Menu>
-      <Menu
-        anchorEl={anchor2}
-        open={open2}
-        onClose={() => handleClose(setAnchor2)}
-      >
-        <MenuItem>
-          <form onSubmit={handleProgram}>
-            <input
-              onChange={(e) => setProgram(e.target.value)}
-              value={program}
-              placeholder="Program"
-              type="text"
-            />
-            <input className="filterSubmit" type="submit" value="Submit" />
-          </form>
-        </MenuItem>
-      </Menu>
     </div>
   );
 };

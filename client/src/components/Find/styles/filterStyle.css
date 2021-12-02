@@ -1,6 +1,5 @@
 .filterRoot {
   height: 100%;
-  width: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,9 +9,13 @@
           flex-direction: column;
 }
 
+.filterRoot form {
+  margin: 10px 0px;
+}
+
 .filterRoot h4 {
   margin-bottom: 10px;
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .filterRoot div {
