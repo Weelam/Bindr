@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import "./style.css";
 import { AiFillBell } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
@@ -13,6 +14,9 @@ function Navbar({ auth, logout, isAdmin }) {
     logout();
     history.push("/");
   };
+
+  const [notifDrop, setNotifDrop] = useState(false);
+  const [profileDrop, setProfileDrop] = useState(false);
 
   return (
     <>
@@ -35,6 +39,7 @@ function Navbar({ auth, logout, isAdmin }) {
                   to="#"
                   outerDiv="notifDiv"
                   linkClass="link iconButton"
+                  drop={{isDropped: notifDrop, setIsDropped: setNotifDrop, setOtherDropped: setProfileDrop}}
                   item={<AiFillBell className="bellIcon" />}
                 >
                   <Notifications />
@@ -43,6 +48,7 @@ function Navbar({ auth, logout, isAdmin }) {
                   to="#"
                   outerDiv="profileDiv"
                   linkClass="link iconButton"
+                  drop={{isDropped: profileDrop, setIsDropped: setProfileDrop, setOtherDropped: setNotifDrop}}
                   item={<CgProfile className="profileIcon" />}
                 >
                   {/* dropdown */}
