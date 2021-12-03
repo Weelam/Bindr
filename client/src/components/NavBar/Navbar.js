@@ -6,8 +6,9 @@ import NavItem from "./NavItem";
 import ProfileMenu from "./ProfileMenu";
 import Notifications from "./Notifications";
 import { useHistory } from "react-router-dom";
+import {logout} from "../../actions/user"
 
-function Navbar({ auth, logout, isAdmin }) {
+function Navbar({ auth, isAdmin }) {
   let history = useHistory();
 
   const handleLogout = () => {

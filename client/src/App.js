@@ -21,35 +21,16 @@ const usersData = data["data"];
 const groups = groupsData["data"];
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(); // user object
+  const [currentUser, setCurrentUser] = useState(null); // user object
 	const [users, setUsers] = useState(usersData)
-	const [username, setUsername] = useState(""); // username of the user (used to change "currentUser" state)
-  const [auth, setAuth] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  console.log(currentUser)
   useEffect(() => {
-    // change currentUser whenever username changes
-    if (username) {
-      const authUser = users.filter((item) => item["username"] === username)[0];
-      console.log(authUser);
-      if (authUser) {
-        setCurrentUser(authUser);
-        setAuth(true);
-      } else {
-        console.error("Bro can't find user with username, username");
-      }
-    } else {
-      console.log("logged out");
-      setCurrentUser({});
-      setAuth(false);
+    if (!currentUser) {
+      setIsAdmin(false)
     }
-  }, [username]);
-
-  const logout = () => {
-    setUsername("");
-    console.log("logout");
-    if (isAdmin) setIsAdmin(false);
-  };
+  }, [currentUser])
 
   return (
     <div className="App">
@@ -58,37 +39,35 @@ function App() {
 	
         {!isAdmin ? (
           <>
-            <Navbar auth={auth} logout={logout} isAdmin={isAdmin} />
+            <Navbar auth={currentUser ? true : false} isAdmin={isAdmin} />
             <Switch>
               <Route exact path="/">
-                {!auth ? (
+                {!currentUser ? (
                   <Home />
                 ) : (
-                  <DashboardPage
-                    currentUser={currentUser}
-                    users={users}
-                    groups={groups}
-                  />
+                  // <DashboardPage
+                  //   currentUser={currentUser}
+                  //   users={users}
+                  //   groups={groups}
+                  // />
+                  <Home/>
                 )}
               </Route>
 
               <Route path="/login">
-                <LoginPage setUsername={setUsername} setIsAdmin={setIsAdmin} />
+                <LoginPage setCurrentUser={setCurrentUser} setIsAdmin={setIsAdmin} />
               </Route>
               <Route path="/signup">
                 <SignupPage/>
               </Route>
 
               <Route path="/find">
-                {!auth ? (
+                {!currentUser ? (
                   <Redirect to="/login" />
                 ) : (
                   <FindPage
                     users={users}
-                    currentUserSet={{
-                      currentUser: currentUser,
-                      setCurrentUser: setCurrentUser,
-                    }}
+                    currentUser={currentUser}
                   />
                 )}
               </Route>
@@ -96,7 +75,7 @@ function App() {
           </>
         ) : (
           <>
-            <Navbar auth={auth} logout={logout} isAdmin={isAdmin} />
+            <Navbar auth={currentUser ? true : false} isAdmin={isAdmin} />
             <Switch>
               <Route exact path="/">
                 <AdminDashboard users={users} currentUser={currentUser} />

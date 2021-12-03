@@ -27,21 +27,21 @@ const FindModal = ({ openModal, setOpenModal, user, handleRejectAccept }) => {
       <Modal open={openModal} onClose={handleClose} footer={"Footer"}>
         <div className="innerModalContainer">
           <div className="modalImageContainer">
-            <img className="modalImage" src={user["profileImg"]} alt="profile" />
+            <img className="modalImage" src={user["profile"]["profileImg"]} alt="profile" />
           </div>
           <div className="modalDesc">
             <div className="modalDesc-nameyear">
-              <h3>{user["firstName"]}</h3>
-              <span>{user["year"]}</span>
+              <h3>{user["profile"]["firstName"]}</h3>
+              <span>{user["profile"]["year"]}</span>
             </div>
-            <p className="modalProgram">{user["program"]}</p>
+            <p className="modalProgram">{user["profile"]["program"]}</p>
             <div className="modalCourses">
-              {user["courses"].map((item, index) => {
+              {user["profile"]["courses"].map((item, index) => {
                 return <span key={index}>{item}</span>;
               })}
             </div>
             <Divider className="modalDivider" />
-            <p className="modalBio"> {user["bio"]} </p>
+            <p className="modalBio"> {user["profile"]["bio"]} </p>
           </div>
           <div className="modalEmptySpace"></div>
         </div>

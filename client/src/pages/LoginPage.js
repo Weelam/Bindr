@@ -1,10 +1,10 @@
 import React from "react";
 import Login from "../components/Login/Login";
 
-function LoginPage({setUsername, setIsAdmin }) {
+function LoginPage({setCurrentUser, setIsAdmin }) {
 
   return (
-    <Login setUsername={setUsername} setIsAdmin={setIsAdmin}/>
+    <Login setCurrentUser={setCurrentUser} setIsAdmin={setIsAdmin}/>
   );
 }
 

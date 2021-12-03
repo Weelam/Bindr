@@ -1,14 +1,18 @@
 "use strict";
 require("dotenv").config();
+
+
+
+
 const express = require("express");
 const app = express();
 
-/* Server environment setup */
-// To run in development mode, run normally: node server.js
-// To run in development with the test user logged in the backend, run: TEST_USER_ON=true node server.js
-// To run in production mode, run in terminal: NODE_ENV=production node server.js
-// test user stuff
-const env = process.env.NODE_ENV; // read the environment variable (will be 'production' in production mode)
+// run 'morgan' middleware
+const morgan = require('morgan')
+app.use(morgan('combined'))
+
+// get test user data
+const { exampleUsers } = require("./exampleUser.js");
 
 // enable cors for dev
 const cors = require("cors");
@@ -33,8 +37,13 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo"); // to store session information on the database in production
 const { object } = require("webidl-conversions");
 
-function isMongoError(error) { // checks for first error returned by promise rejection if Mongo database suddently disconnects
-	return typeof error === 'object' && error !== null && error.name === "MongoNetworkError"
+function isMongoError(error) {
+  // checks for first error returned by promise rejection if Mongo database suddently disconnects
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    error.name === "MongoNetworkError"
+  );
 }
 
 // middleware for checking mong oconnection
@@ -66,16 +75,68 @@ app.use(
   })
 );
 
-// login user 
+// login user
 app.post("/users/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-	console.log(req.session)
-	const user = await User.findByUsernamePassword(username, password).catch(e => res.status(400).send("bad username/password"))
+  const user = await User.findByUsernamePassword(username, password).catch(
+    (e) => res.status(400).send("bad username/password")
+  );
+  req.session.user = user._id;
+  req.session.username = user.username;
+  res.send({ currentUser: user.username });
+});
 
-	req.session.user = user._id;
-	req.session.username = user.username;
-	res.send({current_user: user.username})
+// logout user
+app.get("/users/logout", (req, res) => {
+  // Remove the session
+  req.session.destroy((error) => {
+    if (error) {
+      res.status(500).send(error);
+    } else {
+      res.send();
+    }
+  });
+});
+
+// check if user is authenticated
+app.get("/users/check-session", (req, res) => {
+  if (req.session.user) {
+    res.send({ currentUser: req.session.email });
+  } else {
+    res.status(401).send();
+  }
+});
+
+/*********************************************************/
+
+/*** create test users  **************************************/
+app.post("/testUsers", async (req, res) => {
+  exampleUsers.forEach(async (user) => {
+    const username = user.username;
+    const password = user.password;
+    const profile = user.profile;
+
+    const userDoc = new User({
+      username: username,
+      password: password,
+      profile: profile,
+    });
+
+    try {
+      // Save the user
+      const newUser = await userDoc.save();
+    } catch (error) {
+      if (isMongoError(error)) {
+        // check for if mongo server suddenly disconnected before this request.
+        res.status(500).send("Internal server error");
+      } else {
+        console.log(error);
+        res.status(400).send("Bad Request"); // bad request for changing the student.
+      }
+    }
+  });
+  res.send("successfully added all students");
 });
 
 /*********************************************************/
@@ -86,23 +147,17 @@ app.post("/users/login", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
+// create a new user
 app.post("/api/users", mongoChecker, async (req, res) => {
-	// create a new user
+  // create a new user
   const username = req.body.username;
   const password = req.body.password;
   const profile = req.body.profile;
-
-	const userObject = {username, password, profile}
-
-
   const user = new User({
     username: username,
     password: password,
-    profile: profile
+    profile: profile,
   });
-
-	console.log(userObject);
-
   try {
     // Save the user
     const newUser = await user.save();
@@ -118,6 +173,28 @@ app.post("/api/users", mongoChecker, async (req, res) => {
   }
 });
 
+// get all users
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.send(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+// get the user object from username
+app.get("/api/users/:username", async (req, res) => {
+  const username = req.params.username;
+  try {
+    const currentUser = await User.find({ username: username });
+    res.send({currentUser: currentUser[0]});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 /*************************************************/
 // Express server listening...
 const port = process.env.PORT || 5000;
