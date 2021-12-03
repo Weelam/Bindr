@@ -45,12 +45,11 @@ function App() {
                 {!currentUser ? (
                   <Home />
                 ) : (
-                  // <DashboardPage
-                  //   currentUser={currentUser}
-                  //   users={users}
-                  //   groups={groups}
-                  // />
-                  <Home/>
+                  <DashboardPage
+                    currentUser={currentUser}
+                    users={users}
+                    groups={groups}
+                  />
                 )}
               </Route>
 
