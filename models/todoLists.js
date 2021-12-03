@@ -2,9 +2,6 @@
 const mongoose = require("mongoose");
 
 const ToDoLists = mongoose.model("ToDoLists", {
-    toDoID: {
-
-    },
     task: {
 
     },

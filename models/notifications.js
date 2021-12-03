@@ -2,9 +2,6 @@
 const mongoose = require("mongoose");
 
 const Notifications = mongoose.model("Notifications", {
-    notID: {
-
-    },
     content: {
 
     }

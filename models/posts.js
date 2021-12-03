@@ -2,9 +2,6 @@
 const mongoose = require("mongoose");
 
 const Posts = mongoose.model("Posts", {
-    postID: {
-       
-    },
     groupID: {
         // id of the group is from
     },

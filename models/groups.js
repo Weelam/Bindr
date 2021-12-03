@@ -2,9 +2,6 @@
 const mongoose = require("mongoose");
 
 const Groups = mongoose.model("Groups", {
-    groupID: {
-
-    },
     image: {
 
     },
