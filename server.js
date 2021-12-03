@@ -173,6 +173,7 @@ app.post("/api/users", mongoChecker, async (req, res) => {
   }
 });
 
+// load test users
 app.post("/testUsers", async (req, res) => {
   exampleUsers.forEach(async (user) => {
     const username = user.username;

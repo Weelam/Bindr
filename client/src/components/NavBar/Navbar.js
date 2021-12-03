@@ -8,11 +8,11 @@ import Notifications from "./Notifications";
 import { useHistory } from "react-router-dom";
 import {logout} from "../../actions/user"
 
-function Navbar({ auth, isAdmin }) {
+function Navbar({ auth, isAdmin, setCurrentUser }) {
   let history = useHistory();
 
   const handleLogout = () => {
-    logout();
+    logout(setCurrentUser);
     history.push("/");
   };
 
