@@ -2,26 +2,17 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import "./loginStyle.css";
+import { login } from "../../actions/user";
 
-const Login = ({ setUsername, setIsAdmin }) => {
+const Login = ({setCurrentUser, setIsAdmin }) => {
   const [info, setInfo] = useState({ username: "", password: "" });
   const history = useHistory();
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // check for user authentications (pull from database)
-    if (info["username"] === "user" && info["password"] === "user") {
-      // change the global user of the application
-      setUsername(info["username"]);
-      history.push("/");
-    } else if (info["username"] === "admin" && info["password"] === "admin") {
-      setUsername(info["username"]);
-      setIsAdmin(true)
-      history.push("/");
-    } else {
-      alert("username or password incorrect");
-    }
+    login(info, setCurrentUser)
+    console.log("submitted log in")
+    history.push("/")
   };
 
   return (

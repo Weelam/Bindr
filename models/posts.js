@@ -1,10 +1,7 @@
 /* Student mongoose model */
 const mongoose = require("mongoose");
 
-const Posts = mongoose.model("Posts", {
-    postID: {
-       
-    },
+const PostSchema = new mongoose.Schema({
     groupID: {
         // id of the group is from
     },
@@ -19,5 +16,5 @@ const Posts = mongoose.model("Posts", {
     }
 });
 
-// const Posts = mongoose.model("Posts", UserSchema);
-module.exports = { Posts };
+const Post = mongoose.model("Post", PostSchema);
+module.exports = { Post };

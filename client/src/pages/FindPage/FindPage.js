@@ -4,7 +4,7 @@ import Find from "../../components/Find/Find";
 // import FindBody from "../components/Find/FindBody"
 import "./findStyle.css";
 
-const FindPage = ( {users, currentUserSet} ) => {
+const FindPage = ( {users, currentUser} ) => {
   
   return (
     <div className="FindPage-root">
@@ -13,7 +13,7 @@ const FindPage = ( {users, currentUserSet} ) => {
       <FindBody users={users} handleSelect={handleSelect}/> */}
 
 
-      <Find currentUserSet={currentUserSet} users={users}/>
+      <Find currentUser={currentUser} users={users}/>
     </div>
   );
 };

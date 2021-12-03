@@ -8,17 +8,18 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
-
+import { getAllUsers, getUser } from "../../actions/user";
+import { defaultModel } from "../../actions/defaultMode";
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
 });
 // end
 
-const Find = ({ users, currentUserSet }) => {
-  const { currentUser, setCurrentUser } = currentUserSet;
-
+const Find = ({ currentUser }) => {
   const obs = useRef();
+  const [users, setUsers] = useState([])
+  const [currentUserObj, setCurrentUserObj] = useState();
   const [displayedUsers, setDisplayedUsers] = useState([]);
   const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 4 });
   const [openModal, setOpenModal] = useState(false);
@@ -33,8 +34,13 @@ const Find = ({ users, currentUserSet }) => {
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
+    getUser(currentUser, setCurrentUserObj);
+    getAllUsers(setUsers)
+  }, []);
+
+  useEffect(() => {
     handleDisplayedUsers();
-  }, [displayPointer]);
+  }, [displayPointer, users]);
 
   const handleDisplayedUsers = () => {
     setDisplayedUsers((prev) => {
@@ -66,17 +72,19 @@ const Find = ({ users, currentUserSet }) => {
   };
 
   const handleRejectAccept = (accepted, chosenUser) => {
-    const otherUserID = chosenUser["userID"];
+    const otherUserID = chosenUser["_id"];
     console.log(accepted, otherUserID);
     if (accepted) {
+      // modify the userobj here...
       // user accepted
-      if (currentUser["rejected"].includes(otherUserID)) {
-        setCurrentUser((prev) => ({
+      // remove user from rejected array, and add them to wantToMatch array
+      if (currentUserObj["rejected"].includes(otherUserID)) {
+        setCurrentUserObj((prev) => ({
           ...prev,
           rejected: prev["rejected"].filter((user) => user !== otherUserID),
         }));
       }
-      setCurrentUser((prev) => ({
+      setCurrentUserObj((prev) => ({
         ...prev,
         wantToMatch: [...prev["wantToMatch"], otherUserID],
       }));
@@ -84,21 +92,22 @@ const Find = ({ users, currentUserSet }) => {
       setAcceptedSignal(true);
     } else {
       // user rejected
-      if (currentUser["wantToMatch"].includes(otherUserID)) {
-        setCurrentUser((prev) => ({
+      if (currentUserObj["wantToMatch"].includes(otherUserID)) {
+        setCurrentUserObj((prev) => ({
           ...prev,
           wantToMatch: prev["wantToMatch"].filter(
             (user) => user !== otherUserID
           ),
         }));
       }
-      setCurrentUser((prev) => ({
+      setCurrentUserObj((prev) => ({
         ...prev,
         rejected: [...prev["rejected"], otherUserID],
       }));
       setOpenAlert(true);
       setAcceptedSignal(false);
     }
+    // send a put request here...
   };
 
   const handleCloseAlert = () => {
@@ -106,32 +115,39 @@ const Find = ({ users, currentUserSet }) => {
   };
 
   const filterUsers = (displayedUsers) => {
-    return displayedUsers.filter((x) => {
-      let isCourses = x["courses"].some((course) =>
-        filter["courses"].includes(course)
-      );
-      let isProgram = filter["programs"].includes(x["program"]);
-      let isYear = filter["years"].includes(x["year"]);
-      let isFriends = currentUser["friends"].includes(x["userID"]);
-      if (isFriends) {
-        console.log("isFriends", x);
-      }
-      if (filter["years"].length === 0) {
-        isYear = true;
-      }
-      if (filter["programs"].length === 0) {
-        isProgram = true;
-      }
-      if (filter["courses"].length === 0) {
-        isCourses = true;
-      }
-      return isCourses && isYear && isProgram && !isFriends;
-    });
+    if (currentUserObj) {
+      return displayedUsers.filter((x) => {
+        let isCourses = x["profile"]["courses"].some((course) =>
+          filter["courses"].includes(course)
+        );
+        let isProgram = filter["programs"].includes(x["profile"]["program"]);
+        let isYear = filter["years"].includes(x["profile"]["year"]);
+        let isFriends = currentUserObj["friends"].includes(x["_id"]);
+        if (isFriends) {
+          console.log("isFriends", x["profile"]);
+        }
+        if (filter["years"].length === 0) {
+          isYear = true;
+        }
+        if (filter["programs"].length === 0) {
+          isProgram = true;
+        }
+        if (filter["courses"].length === 0) {
+          isCourses = true;
+        }
+        return isCourses && isYear && isProgram && !isFriends;
+      });
+    }
   };
 
   useEffect(() => {
-    setFilteredUsers(filterUsers(displayedUsers))
-  }, [filter, users, displayedUsers])
+    if (currentUserObj) {
+      setFilteredUsers(filterUsers(displayedUsers));
+    }
+  }, [filter, users, displayedUsers, currentUserObj]);
+
+  console.log(users.slice(displayPointer["start"], displayPointer["end"]))
+  console.log(displayedUsers)
 
   return (
     <div id="findRoot" style={{ display: "flex" }}>
@@ -157,86 +173,89 @@ const Find = ({ users, currentUserSet }) => {
         </Alert>
       </Snackbar>
       {/* -- end -- */}
-      
       <Grid
         container
         columns={{ xs: 5, md: 8 }}
         rowSpacing={1}
         columnSpacing={1}
       >
-        {filteredUsers.map((item, index) => {
-          const wantToMatch = currentUser["wantToMatch"];
-          const rejected = currentUser["rejected"];
-          let lastItem = index === filteredUsers.length - 1;
-          // console.log(filteredUsers);
+        {currentUserObj ? (
+          filteredUsers.map((item, index) => {
+            const wantToMatch = currentUserObj["wantToMatch"];
+            const rejected = currentUserObj["rejected"];
+            let lastItem = index === filteredUsers.length - 1;
+            // console.log(filteredUsers);
 
-          if (wantToMatch.includes(item["userID"])) {
-            // if this user is has already been selected as a desired match
-            return (
-              <Grid
-                onClick={() => {
-                  handleModal(index);
-                }}
-                item
-                xs={1}
-                key={index}
-              >
-                <div className="itemContainer-accepted">
-                  <FindItem user={item} opacity={true} />
-                </div>
-              </Grid>
-            );
-          }
+            if (wantToMatch.includes(item["_id"])) {
+              // if this user is has already been selected as a desired match
+              return (
+                <Grid
+                  onClick={() => {
+                    handleModal(index);
+                  }}
+                  item
+                  xs={1}
+                  key={index}
+                >
+                  <div className="itemContainer-accepted">
+                    <FindItem user={item} opacity={true} />
+                  </div>
+                </Grid>
+              );
+            }
 
-          // if this user is someone they don't wanna match with
-          if (rejected.includes(item["userID"])) {
-            return (
-              <Grid
-                onClick={() => {
-                  handleModal(index);
-                }}
-                item
-                xs={1}
-                key={index}
-              >
-                <div className="itemContainer-rejected">
-                  <FindItem user={item} opacity={true} />
-                </div>
-              </Grid>
-            );
-          }
+            // if this user is someone they don't wanna match with
+            if (rejected.includes(item["_id"])) {
+              return (
+                <Grid
+                  onClick={() => {
+                    handleModal(index);
+                  }}
+                  item
+                  xs={1}
+                  key={index}
+                >
+                  <div className="itemContainer-rejected">
+                    <FindItem user={item} opacity={true} />
+                  </div>
+                </Grid>
+              );
+            }
 
-          if (lastItem) {
-            return (
-              <Grid
-                onClick={() => {
-                  handleModal(index);
-                }}
-                ref={lastUserRef}
-                item
-                xs={1}
-                key={index}
-              >
-                <FindItem user={item} opacity={false} />
-              </Grid>
-            );
-          }
-          // untouched users
-          else {
-            return (
-              <Grid
-                onClick={() => {
-                  handleModal(index);
-                }}
-                item
-                xs={1}
-                key={index}
-              >
-                <FindItem user={item} opacity={false} />
-              </Grid>
-            );
-          }
-        })}
+            if (lastItem) {
+              return (
+                <Grid
+                  onClick={() => {
+                    handleModal(index);
+                  }}
+                  ref={lastUserRef}
+                  item
+                  xs={1}
+                  key={index}
+                >
+                  <FindItem user={item} opacity={false} />
+                </Grid>
+              );
+            }
+            // untouched users
+            else {
+              return (
+                <Grid
+                  onClick={() => {
+                    handleModal(index);
+                  }}
+                  item
+                  xs={1}
+                  key={index}
+                >
+                  <FindItem user={item} opacity={false} />
+                </Grid>
+              );
+            }
+          })
+        ) : (
+          <h1>loading resources...</h1>
+        )}
         {/* {loading && <Grid item xs={1}><CircularProgress style={{ height: "45px" }} /></Grid>} */}
       </Grid>
       {openModal && (
