@@ -9,7 +9,6 @@ import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
 import { getAllUsers, getUser } from "../../actions/user";
-import { defaultModel } from "../../actions/defaultMode";
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
