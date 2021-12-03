@@ -1,15 +1,12 @@
 "use strict";
 require("dotenv").config();
 
-
-
-
 const express = require("express");
 const app = express();
 
 // run 'morgan' middleware
-const morgan = require('morgan')
-app.use(morgan('combined'))
+const morgan = require("morgan");
+app.use(morgan("combined"));
 
 // get test user data
 const { exampleUsers } = require("./exampleUser.js");
@@ -75,6 +72,44 @@ app.use(
   })
 );
 
+// sign up user
+app.post("/users/signup", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const profile = {
+    role: "user",
+    name: req.body.name,
+    year: req.body.year,
+    courses: [],
+    program: req.body.program,
+    bio: "",
+    profileImg: "",
+    groups: [],
+    friends: [],
+    wantToMatch: [],
+    rejected: [],
+    notifications: [],
+  };
+
+  const user = new User({
+    username, password, profile
+  })
+
+  try {
+    // Save the user
+    const newUser = await user.save();
+    res.send({message: "Account Created Successfully"});
+  } catch (error) {
+    if (isMongoError(error)) {
+      // check for if mongo server suddenly disconnected before this request.
+      res.status(500).send("Internal server error");
+    } else {
+      console.log(error);
+      res.status(400).send("Bad Request"); // bad request for changing the student.
+    }
+  }
+});
+
 // login user
 app.post("/users/login", async (req, res) => {
   const username = req.body.username;
@@ -111,6 +146,33 @@ app.get("/users/check-session", (req, res) => {
 /*********************************************************/
 
 /*** create test users  **************************************/
+
+// create a new user (for testing only)
+app.post("/api/users", mongoChecker, async (req, res) => {
+  // create a new user
+  const username = req.body.username;
+  const password = req.body.password;
+  const profile = req.body.profile;
+  const user = new User({
+    username: username,
+    password: password,
+    profile: profile,
+  });
+  try {
+    // Save the user
+    const newUser = await user.save();
+    res.send(newUser);
+  } catch (error) {
+    if (isMongoError(error)) {
+      // check for if mongo server suddenly disconnected before this request.
+      res.status(500).send("Internal server error");
+    } else {
+      console.log(error);
+      res.status(400).send("Bad Request"); // bad request for changing the student.
+    }
+  }
+});
+
 app.post("/testUsers", async (req, res) => {
   exampleUsers.forEach(async (user) => {
     const username = user.username;
@@ -147,32 +209,6 @@ app.post("/testUsers", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
-// create a new user
-app.post("/api/users", mongoChecker, async (req, res) => {
-  // create a new user
-  const username = req.body.username;
-  const password = req.body.password;
-  const profile = req.body.profile;
-  const user = new User({
-    username: username,
-    password: password,
-    profile: profile,
-  });
-  try {
-    // Save the user
-    const newUser = await user.save();
-    res.send(newUser);
-  } catch (error) {
-    if (isMongoError(error)) {
-      // check for if mongo server suddenly disconnected before this request.
-      res.status(500).send("Internal server error");
-    } else {
-      console.log(error);
-      res.status(400).send("Bad Request"); // bad request for changing the student.
-    }
-  }
-});
-
 // get all users
 app.get("/api/users", async (req, res) => {
   try {
@@ -182,14 +218,14 @@ app.get("/api/users", async (req, res) => {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 // get the user object from username
 app.get("/api/users/:username", async (req, res) => {
   const username = req.params.username;
   try {
     const currentUser = await User.find({ username: username });
-    res.send({currentUser: currentUser[0]});
+    res.send({ currentUser: currentUser[0] });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");

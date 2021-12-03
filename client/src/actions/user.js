@@ -41,11 +41,29 @@ export const logout = (setCurrentUser) => {
       console.log(error);
     });
 };
+export const signup = async (details, history) => {
+  const request = new Request(`${API_HOST}/users/signup`, {
+    method: "post",
+    body: JSON.stringify(details),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
+  try {
+    const res = await fetch(request);
+    const data = await res.json();
+    console.log(data)
+    history.push('/login')
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 /*** Fetching User Data ************************************/
 
 // update user details
-export const updateUser = (new_obj) => {
+export const updateUser = async (new_obj) => {
   // new obj is going to contain the udpated user object
   const request = new Request(`${API_HOST}/api/user/${new_obj.username}`, {
     method: "post",
@@ -55,20 +73,13 @@ export const updateUser = (new_obj) => {
       "Content-Type": "application/json",
     },
   });
-  fetch(request)
-    .then((res) => {
-      if (res.status === 200) {
-        return res.json();
-      }
-    })
-    .then((data) => {
-      if (data.newUser !== undefined) {
-        return data.newUser;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+
+  try {
+    const res = await fetch(request);
+    const data = await res.json();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 // get user object (only their profile details, not username and password!)
@@ -90,8 +101,8 @@ export const getAllUsers = async (setUsers) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    setUsers(data)
+    setUsers(data);
   } catch (error) {
     console.log(error);
   }
-}
+};

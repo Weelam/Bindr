@@ -28,6 +28,22 @@ const SignupForm = ({ handleSubmit, info, setInfo }) => {
             onChange={(e) => setInfo({ ...info, password: e.target.value })}
           />
         </label>
+        <br />
+        <label className="loginForm-input">
+          <h5>Year</h5>
+          <input
+            type="number"
+            onChange={(e) => setInfo({ ...info, year: e.target.value })}
+          />
+        </label>
+        <br />
+        <label className="loginForm-input">
+          <h5>program</h5>
+          <input
+            type="text"
+            onChange={(e) => setInfo({ ...info, program: e.target.value })}
+          />
+        </label>
         <div className="loginForm-submit">
           <Button type="submit" variant="contained" onClick={handleSubmit}>
             Sign up!
