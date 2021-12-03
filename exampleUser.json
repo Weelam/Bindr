@@ -1,0 +1,18 @@
+{
+	"username": "weelam",
+	"password": "password123",
+	"profile": {
+		"role": "user",
+		"name": "william lin",
+		"year": 1,
+		"courses": [],
+		"program": "Gender Studies",
+		"bio": "What's good youtube",
+		"profileImg": "",
+		"groups": [],
+		"friends": [],
+		"wantToMatch": [],
+		"rejected": [],
+		"notifications": []
+	}
+}

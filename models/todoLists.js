@@ -1,7 +1,7 @@
 /* Student mongoose model */
 const mongoose = require("mongoose");
 
-const ToDoLists = mongoose.model("ToDoLists", {
+const ToDoListSchema = new mongoose.Schema({
     task: {
 
     },
@@ -10,5 +10,5 @@ const ToDoLists = mongoose.model("ToDoLists", {
     }
 });
 
-// const ToDoLists = mongoose.model("ToDoLists", UserSchema);
-module.exports = { ToDoLists };
+const ToDoList = mongoose.model("ToDoList", ToDoListSchema);
+module.exports = { ToDoList };
