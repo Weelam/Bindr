@@ -2,19 +2,14 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import SignupForm from "./SignupForm";
 import "./signupStyle.css";
-
+import { signup } from "../../actions/user";
 const Signup = () => {
-  const [info, setInfo] = useState({ name: "", username: "", password: "" });
+  const [info, setInfo] = useState({ name: "", username: "", password: "", year: 0, program: ""});
   const history = useHistory();
 
   const handleSubmit = (e) => {
-    if (info["name"] && info["username"] && info["password"]) {
-      e.preventDefault();
-      alert("submitted!");
-      history.push("/login");
-    } else {
-			alert("fill in all the fields!")
-		}
+    e.preventDefault()
+    signup(info, history)
   };
 
   return (

@@ -12,7 +12,6 @@ const UserProfileSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    trim: true,
   },
   year: {
     type: Number,
@@ -41,7 +40,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    trim: true,
     unique: true,
   },
   password: {

@@ -10,13 +10,11 @@ const FindModal = ({ openModal, setOpenModal, user, handleRejectAccept }) => {
   };
 
   const handleReject = () => {
-    console.log("rejected");
     handleRejectAccept(false, user);
     setOpenModal(false);
   };
 
   const handleAccept = () => {
-    console.log("match sent");
     handleRejectAccept(true, user);
     setOpenModal(false);
   };
