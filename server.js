@@ -245,16 +245,32 @@ app.put("/api/users/:username", async (req, res) => {
     let currentUser = await User.find({ username: username });
     currentUser = currentUser[0]
     currentUser.profile = newUser.profile
-    console.log(newUser.profile)
     await currentUser.save()
     res.send(currentUser)
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-
-
 });
+
+// for sending notficiations to users
+app.put("/api/notification/send-notification", async (req, res) => {
+  const notification = req.body.notification;
+  const recipient = notification.recipient
+
+  try {
+    console.log("recipient: ", recipient)
+    let otherUser = await User.find({ username: recipient });
+    otherUser = otherUser[0]
+    otherUser.profile.notifications.push(notification)
+    await otherUser.save()
+    res.send(otherUser)
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+
+})
 /*************************************************/
 // Express server listening...
 const port = process.env.PORT || 5000;

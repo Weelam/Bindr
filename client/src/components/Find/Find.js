@@ -8,7 +8,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
-import { getAllUsers, getUser, updateUser } from "../../actions/user";
+import { getAllUsers, getUser, updateUser, sendNotification } from "../../actions/user";
 import { defaultModel } from "../../actions/defaultModel";
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
@@ -77,6 +77,12 @@ const Find = ({ currentUser }) => {
   };
 
   const sendMatch = (recipient) => {
+    const notification = {
+      sender: currentUser,
+      recipient: recipient,
+      content: `${currentUser} wants to match with you!`
+    }
+    sendNotification(notification)
 
   };
 
@@ -106,7 +112,6 @@ const Find = ({ currentUser }) => {
           },
         }));
       }
-
       // add user to wantToMatch array
       setCurrentUserObj((prev) => ({
         ...prev,
@@ -117,6 +122,7 @@ const Find = ({ currentUser }) => {
       }));
       setOpenAlert(true);
       setAcceptedSignal(true);
+      sendMatch(otherUsername)
     } else {
       // user rejected
       if (currentUserObj["profile"]["rejected"].includes(otherUsername)) {
@@ -158,7 +164,7 @@ const Find = ({ currentUser }) => {
         );
         let isProgram = filter["programs"].includes(x["profile"]["program"]);
         let isYear = filter["years"].includes(x["profile"]["year"]);
-        let isFriends = currentUserObj["profile"]["friends"].includes(x["_id"]);
+        let isFriends = currentUserObj["profile"]["friends"].includes(x["username"]);
         if (isFriends) {
           console.log("isFriends", x["profile"]);
         }
@@ -219,7 +225,7 @@ const Find = ({ currentUser }) => {
             let lastItem = index === filteredUsers.length - 1;
             // console.log(filteredUsers);
 
-            if (wantToMatch.includes(item["_id"])) {
+            if (wantToMatch.includes(item["username"])) {
               // if this user is has already been selected as a desired match
               return (
                 <Grid
@@ -238,7 +244,7 @@ const Find = ({ currentUser }) => {
             }
 
             // if this user is someone they don't wanna match with
-            if (rejected.includes(item["_id"])) {
+            if (rejected.includes(item["username"])) {
               return (
                 <Grid
                   onClick={() => {

@@ -85,9 +85,30 @@ export const updateUser = async (username, newUser) => {
 };
 
 // send notification to a user
-export const sendNotification = async (sender, recipient) => {
+// notification {
+//   sender: currentUser,
+//   recipient: recipient,
+//   content: `${currentUser} wants to match with you!`
+// }
+export const sendNotification = async (notification) => {
   const url = `${API_HOST}/api/users`;
-
+  // replace the entire user object with the new one
+  const request = new Request(`${API_HOST}/api/notification/send-notification`, {
+    method: "put",
+    body: JSON.stringify({ notification }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
+  
+  try {
+    const res = await fetch(request);
+    const data = await res.json();
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // get user object (only their profile details, not username and password!)
