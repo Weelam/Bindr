@@ -39,7 +39,7 @@ function App() {
 	
         {!isAdmin ? (
           <>
-            <Navbar auth={currentUser ? true : false} setCurrentUser={setCurrentUser} isAdmin={isAdmin} />
+            <Navbar auth={currentUser ? true : false} currentUser={currentUser} setCurrentUser={setCurrentUser} isAdmin={isAdmin} />
             <Switch>
               <Route exact path="/">
                 {!currentUser ? (
@@ -74,7 +74,7 @@ function App() {
           </>
         ) : (
           <>
-            <Navbar auth={currentUser ? true : false} setCurrentUser={setCurrentUser} isAdmin={isAdmin} />
+            <Navbar auth={currentUser ? true : false} currrentUser={currentUser} setCurrentUser={setCurrentUser} isAdmin={isAdmin} />
             <Switch>
               <Route exact path="/">
                 <AdminDashboard users={users} currentUser={currentUser} />

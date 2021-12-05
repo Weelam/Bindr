@@ -8,7 +8,7 @@ import Notifications from "./Notifications";
 import { useHistory } from "react-router-dom";
 import {logout} from "../../actions/user"
 
-function Navbar({ auth, isAdmin, setCurrentUser }) {
+function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
   let history = useHistory();
 
   const handleLogout = () => {
@@ -43,7 +43,7 @@ function Navbar({ auth, isAdmin, setCurrentUser }) {
                   drop={{isDropped: notifDrop, setIsDropped: setNotifDrop, setOtherDropped: setProfileDrop}}
                   item={<AiFillBell className="bellIcon" />}
                 >
-                  <Notifications />
+                  <Notifications currentUser={currentUser} />
                 </NavItem>
                 <NavItem
                   to="#"

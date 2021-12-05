@@ -78,7 +78,7 @@ export const updateUser = async (username, newUser) => {
   try {
     const res = await fetch(request);
     const data = await res.json();
-    console.log(data)
+    // console.log(data)
   } catch (error) {
     console.log(error);
   }
@@ -105,7 +105,21 @@ export const sendNotification = async (notification) => {
   try {
     const res = await fetch(request);
     const data = await res.json();
-    console.log(data)
+    // console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// get notifications for a user
+export const getNotifications = async (username) => {
+  const url = `${API_HOST}/api/notifications/${username}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    return data
+    
   } catch (error) {
     console.log(error);
   }
