@@ -1,0 +1,57 @@
+$leftWidth: 100px;
+$leftMargin: 0 20px 0 0px;
+$primary: #52b788;
+
+.profilePage-root {
+  margin: 0 auto;
+	input, textarea {
+		box-sizing: border-box;       
+		border-radius: 3px;
+		border: solid 1px;
+	}
+}
+
+.profilePage-inner-div {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  h5 {
+    margin: $leftMargin;
+    width: $leftWidth;
+  }
+
+  input {
+    padding: 3px 5px;
+  }
+}
+
+.profilePage-header {
+  display: flex;
+}
+
+.profilePage-imageContainer {
+  width: $leftWidth;
+  margin: $leftMargin;
+  img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.profilePage-submit {
+	display: flex;
+	div {
+		margin: $leftMargin;
+    width: $leftWidth;
+	}
+  button {
+    background: $primary;
+    transition: filter 300ms;
+    &:hover {
+      background: $primary;
+      filter: brightness(1.2);
+    }
+  }
+}

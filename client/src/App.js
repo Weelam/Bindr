@@ -15,6 +15,7 @@ import AdminReports from "./pages/Admin/AdminReports";
 import AdminCourses from "./pages/Admin/AdminCourses";
 import AdminMessages from "./pages/Admin/AdminMessages";
 import SignupPage from "./pages/SignupPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
 const usersData = data["data"];
@@ -22,24 +23,29 @@ const groups = groupsData["data"];
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null); // user object
-	const [users, setUsers] = useState(usersData)
+  const [users, setUsers] = useState(usersData);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  console.log(currentUser)
+  console.log(currentUser);
   useEffect(() => {
     if (!currentUser) {
-      setIsAdmin(false)
+      setIsAdmin(false);
     }
-  }, [currentUser])
+  }, [currentUser]);
 
   return (
     <div className="App">
       <Router>
         {/* not secure atm, we'll add that in phase 2 */}
-	
+
         {!isAdmin ? (
           <>
-            <Navbar auth={currentUser ? true : false} currentUser={currentUser} setCurrentUser={setCurrentUser} isAdmin={isAdmin} />
+            <Navbar
+              auth={currentUser ? true : false}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              isAdmin={isAdmin}
+            />
             <Switch>
               <Route exact path="/">
                 {!currentUser ? (
@@ -54,27 +60,35 @@ function App() {
               </Route>
 
               <Route path="/login">
-                <LoginPage setCurrentUser={setCurrentUser} setIsAdmin={setIsAdmin} />
+                <LoginPage
+                  setCurrentUser={setCurrentUser}
+                  setIsAdmin={setIsAdmin}
+                />
               </Route>
               <Route path="/signup">
-                <SignupPage/>
+                <SignupPage />
               </Route>
 
               <Route path="/find">
                 {!currentUser ? (
                   <Redirect to="/login" />
                 ) : (
-                  <FindPage
-                    users={users}
-                    currentUser={currentUser}
-                  />
+                  <FindPage users={users} currentUser={currentUser} />
                 )}
+              </Route>
+              <Route path="/profile">
+                {!currentUser ? <Redirect to="/login" /> : <ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
               </Route>
             </Switch>
           </>
         ) : (
           <>
-            <Navbar auth={currentUser ? true : false} currrentUser={currentUser} setCurrentUser={setCurrentUser} isAdmin={isAdmin} />
+            <Navbar
+              auth={currentUser ? true : false}
+              currrentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              isAdmin={isAdmin}
+            />
             <Switch>
               <Route exact path="/">
                 <AdminDashboard users={users} currentUser={currentUser} />
@@ -83,7 +97,11 @@ function App() {
                 <AdminReports users={users} currentUser={currentUser} />
               </Route>
               <Route path="/users">
-                <AdminUsers users={users} setUsers={setUsers} currentUser={currentUser} />
+                <AdminUsers
+                  users={users}
+                  setUsers={setUsers}
+                  currentUser={currentUser}
+                />
               </Route>
               <Route path="/courses">
                 <AdminCourses users={users} currentUser={currentUser} />

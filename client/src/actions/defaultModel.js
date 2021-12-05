@@ -1,7 +1,7 @@
 export const defaultModel = {
     _id: "",
-    username: "",
-    password: "",
+    username: "defaultUsername",
+    password: "defaultPassword",
     profile: {
         role: "user",
         name: "defaultName",

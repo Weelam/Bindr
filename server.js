@@ -107,7 +107,9 @@ app.post("/users/signup", async (req, res) => {
       res.status(500).send("Internal server error");
     } else {
       console.log(error);
-      res.status(400).send("Bad Request"); // bad request for changing the student.
+      if (error.code === 11000) {
+        res.status(400).send("Username already exists!");
+      } // bad request for changing the student.
     }
   }
 });
@@ -116,12 +118,16 @@ app.post("/users/signup", async (req, res) => {
 app.post("/users/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  const user = await User.findByUsernamePassword(username, password).catch(
-    (e) => res.status(400).send("bad username/password")
-  );
-  req.session.user = user._id;
-  req.session.username = user.username;
-  res.send({ currentUser: user.username });
+  try {
+    const user = await User.findByUsernamePassword(username, password);
+    req.session.user = user._id;
+    req.session.username = user.username;
+    res.send({ currentUser: user.username });
+  } catch (error) {
+    console.log("bad username/password")
+    res.status(400).send("bad username/password");
+  }
+
 });
 
 // logout user
@@ -235,18 +241,20 @@ app.get("/api/users/:username", async (req, res) => {
   }
 });
 
-// for updating the user profile itself
+// for updating the user itself
 app.put("/api/users/:username", async (req, res) => {
   const newUser = req.body.newUser;
   const username = req.params.username;
-  // console.log("newUser", newUser
 
   try {
     let currentUser = await User.find({ username: username });
-    currentUser = currentUser[0]
-    currentUser.profile = newUser.profile
-    await currentUser.save()
-    res.send(currentUser)
+    // change profile stuff
+    currentUser = currentUser[0];
+    currentUser.profile = newUser.profile;
+    // change username
+    currentUser.username = newUser.username;
+    await currentUser.save();
+    res.send(currentUser);
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
@@ -255,21 +263,20 @@ app.put("/api/users/:username", async (req, res) => {
 
 // for sending notficiations to users
 app.put("/api/notification/send-notification", async (req, res) => {
-  const notification = req.body.notification;
-  const recipient = notification.recipient
+  let notification = req.body.notification;
+  const recipientID = notification.recipientID;
 
   try {
-    console.log("recipient: ", recipient)
-    let otherUser = await User.find({ username: recipient });
-    otherUser = otherUser[0]
-    otherUser.profile.notifications.push(notification)
-    await otherUser.save()
-    res.send(otherUser)
+    let recipient = await User.findById(recipientID);
+    recipient.profile.notifications.push(notification);
+    await recipient.save();
+    console.log("recipient: ", recipient);
+    res.send(recipient);
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 // get all notifications for a particular user
 app.get("/api/notifications/:username", async (req, res) => {
@@ -277,14 +284,13 @@ app.get("/api/notifications/:username", async (req, res) => {
 
   try {
     let otherUser = await User.find({ username: username });
-    otherUser = otherUser[0]
-    res.send(otherUser.profile.notifications)
+    otherUser = otherUser[0];
+    res.send(otherUser.profile.notifications);
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-
-})
+});
 /*************************************************/
 // Express server listening...
 const port = process.env.PORT || 5000;

@@ -8,7 +8,12 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
-import { getAllUsers, getUser, updateUser, sendNotification } from "../../actions/user";
+import {
+  getAllUsers,
+  getUser,
+  updateUser,
+  sendNotification,
+} from "../../actions/user";
 import { defaultModel } from "../../actions/defaultModel";
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
@@ -36,19 +41,18 @@ const Find = ({ currentUser }) => {
   useEffect(() => {
     getUser(currentUser, setCurrentUserObj);
     getAllUsers(setUsers);
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     handleDisplayedUsers();
   }, [displayPointer, users]);
 
   const handleDisplayedUsers = () => {
-
     setDisplayedUsers((prev) => {
-      let otherUsers = users.filter(otherUser => {
-        return otherUser._id !== currentUserObj._id
-      })
-      console.log(otherUsers)
+      let otherUsers = users.filter((otherUser) => {
+        return otherUser._id !== currentUserObj._id;
+      });
+      console.log(otherUsers);
       return [
         ...prev,
         ...otherUsers.slice(displayPointer["start"], displayPointer["end"]),
@@ -76,38 +80,39 @@ const Find = ({ currentUser }) => {
     setOpenModal(true);
   };
 
-  const sendMatch = (recipient) => {
+  const sendMatch = (recipientID) => {
     const notification = {
-      sender: currentUser,
-      recipient: recipient,
-      content: `${currentUser} wants to match with you!`
-    }
-    sendNotification(notification)
-
+      senderID: currentUserObj["_id"],
+      recipientID: recipientID,
+      content: `${currentUser} wants to match with you!`,
+    };
+    sendNotification(notification);
   };
 
   useEffect(() => {
     // wantToMatch and rejected are being updated
     // call updateUser
-    updateUser(currentUser, currentUserObj);
-  }, [currentUserObj]);
+    if (currentUserObj !== defaultModel) {
+      updateUser(currentUser, currentUserObj);
+    }
+  }, [currentUser, currentUserObj]);
 
   const handleRejectAccept = (accepted, chosenUser) => {
-    const otherUsername = chosenUser["username"];
+    const otherID = chosenUser["_id"];
     if (accepted) {
-      if (currentUserObj["profile"]["wantToMatch"].includes(otherUsername)) {
-        return
+      if (currentUserObj["profile"]["wantToMatch"].includes(otherID)) {
+        return;
       }
       // modify the userobj here...
       // user accepted
       // remove user from rejected array, and add them to wantToMatch array
-      if (currentUserObj["profile"]["rejected"].includes(otherUsername)) {
+      if (currentUserObj["profile"]["rejected"].includes(otherID)) {
         setCurrentUserObj((prev) => ({
           ...prev,
           profile: {
             ...prev["profile"],
             rejected: prev["profile"]["rejected"].filter(
-              (user) => user !== otherUsername
+              (user) => user !== otherID
             ),
           },
         }));
@@ -117,24 +122,24 @@ const Find = ({ currentUser }) => {
         ...prev,
         profile: {
           ...prev["profile"],
-          wantToMatch: [...prev["profile"]["wantToMatch"], otherUsername],
+          wantToMatch: [...prev["profile"]["wantToMatch"], otherID],
         },
       }));
       setOpenAlert(true);
       setAcceptedSignal(true);
-      sendMatch(otherUsername)
+      sendMatch(otherID);
     } else {
       // user rejected
-      if (currentUserObj["profile"]["rejected"].includes(otherUsername)) {
-        return
+      if (currentUserObj["profile"]["rejected"].includes(otherID)) {
+        return;
       }
-      if (currentUserObj["profile"]["wantToMatch"].includes(otherUsername)) {
+      if (currentUserObj["profile"]["wantToMatch"].includes(otherID)) {
         setCurrentUserObj((prev) => ({
           ...prev,
           profile: {
             ...prev["profile"],
             wantToMatch: prev["profile"]["wantToMatch"].filter(
-              (user) => user !== otherUsername
+              (user) => user !== otherID
             ),
           },
         }));
@@ -143,7 +148,7 @@ const Find = ({ currentUser }) => {
         ...prev,
         profile: {
           ...prev["profile"],
-          rejected: [...prev["profile"]["rejected"], otherUsername],
+          rejected: [...prev["profile"]["rejected"], otherID],
         },
       }));
       setOpenAlert(true);
@@ -164,7 +169,9 @@ const Find = ({ currentUser }) => {
         );
         let isProgram = filter["programs"].includes(x["profile"]["program"]);
         let isYear = filter["years"].includes(x["profile"]["year"]);
-        let isFriends = currentUserObj["profile"]["friends"].includes(x["username"]);
+        let isFriends = currentUserObj["profile"]["friends"].includes(
+          x["_id"]
+        );
         if (isFriends) {
           console.log("isFriends", x["profile"]);
         }
@@ -225,7 +232,7 @@ const Find = ({ currentUser }) => {
             let lastItem = index === filteredUsers.length - 1;
             // console.log(filteredUsers);
 
-            if (wantToMatch.includes(item["username"])) {
+            if (wantToMatch.includes(item["_id"])) {
               // if this user is has already been selected as a desired match
               return (
                 <Grid
@@ -244,7 +251,7 @@ const Find = ({ currentUser }) => {
             }
 
             // if this user is someone they don't wanna match with
-            if (rejected.includes(item["username"])) {
+            if (rejected.includes(item["_id"])) {
               return (
                 <Grid
                   onClick={() => {
