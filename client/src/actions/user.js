@@ -61,7 +61,7 @@ export const signup = async (details, history) => {
   }
 };
 
-/*** Fetching User Data ************************************/
+/*** User Data ************************************/
 
 // update user details
 export const updateUser = async (username, newUser) => {
@@ -83,6 +83,12 @@ export const updateUser = async (username, newUser) => {
     console.log(error);
   }
 };
+
+// send notification to a user
+export const sendNotification = async (sender, recipient) => {
+  const url = `${API_HOST}/api/users`;
+
+}
 
 // get user object (only their profile details, not username and password!)
 export const getUser = async (username, setCurrentUserObj) => {

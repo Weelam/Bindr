@@ -9,7 +9,7 @@ import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
 import { getAllUsers, getUser, updateUser } from "../../actions/user";
-import { defaultModel } from "../../actions/defaultMode";
+import { defaultModel } from "../../actions/defaultModel";
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
@@ -43,10 +43,15 @@ const Find = ({ currentUser }) => {
   }, [displayPointer, users]);
 
   const handleDisplayedUsers = () => {
+
     setDisplayedUsers((prev) => {
+      let otherUsers = users.filter(otherUser => {
+        return otherUser._id !== currentUserObj._id
+      })
+      console.log(otherUsers)
       return [
         ...prev,
-        ...users.slice(displayPointer["start"], displayPointer["end"]),
+        ...otherUsers.slice(displayPointer["start"], displayPointer["end"]),
       ];
     });
   };
@@ -71,7 +76,9 @@ const Find = ({ currentUser }) => {
     setOpenModal(true);
   };
 
-  const sendMatch = (recipient) => {};
+  const sendMatch = (recipient) => {
+
+  };
 
   useEffect(() => {
     // wantToMatch and rejected are being updated
@@ -80,21 +87,21 @@ const Find = ({ currentUser }) => {
   }, [currentUserObj]);
 
   const handleRejectAccept = (accepted, chosenUser) => {
-    const otherUserID = chosenUser["_id"];
+    const otherUsername = chosenUser["username"];
     if (accepted) {
-      if (currentUserObj["profile"]["wantToMatch"].includes(otherUserID)) {
+      if (currentUserObj["profile"]["wantToMatch"].includes(otherUsername)) {
         return
       }
       // modify the userobj here...
       // user accepted
       // remove user from rejected array, and add them to wantToMatch array
-      if (currentUserObj["profile"]["rejected"].includes(otherUserID)) {
+      if (currentUserObj["profile"]["rejected"].includes(otherUsername)) {
         setCurrentUserObj((prev) => ({
           ...prev,
           profile: {
             ...prev["profile"],
             rejected: prev["profile"]["rejected"].filter(
-              (user) => user !== otherUserID
+              (user) => user !== otherUsername
             ),
           },
         }));
@@ -105,23 +112,23 @@ const Find = ({ currentUser }) => {
         ...prev,
         profile: {
           ...prev["profile"],
-          wantToMatch: [...prev["profile"]["wantToMatch"], otherUserID],
+          wantToMatch: [...prev["profile"]["wantToMatch"], otherUsername],
         },
       }));
       setOpenAlert(true);
       setAcceptedSignal(true);
     } else {
       // user rejected
-      if (currentUserObj["profile"]["rejected"].includes(otherUserID)) {
+      if (currentUserObj["profile"]["rejected"].includes(otherUsername)) {
         return
       }
-      if (currentUserObj["profile"]["wantToMatch"].includes(otherUserID)) {
+      if (currentUserObj["profile"]["wantToMatch"].includes(otherUsername)) {
         setCurrentUserObj((prev) => ({
           ...prev,
           profile: {
             ...prev["profile"],
             wantToMatch: prev["profile"]["wantToMatch"].filter(
-              (user) => user !== otherUserID
+              (user) => user !== otherUsername
             ),
           },
         }));
@@ -130,7 +137,7 @@ const Find = ({ currentUser }) => {
         ...prev,
         profile: {
           ...prev["profile"],
-          rejected: [...prev["profile"]["rejected"], otherUserID],
+          rejected: [...prev["profile"]["rejected"], otherUsername],
         },
       }));
       setOpenAlert(true);

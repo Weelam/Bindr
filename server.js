@@ -245,6 +245,7 @@ app.put("/api/users/:username", async (req, res) => {
     let currentUser = await User.find({ username: username });
     currentUser = currentUser[0]
     currentUser.profile = newUser.profile
+    console.log(newUser.profile)
     await currentUser.save()
     res.send(currentUser)
   } catch (error) {

@@ -6,7 +6,7 @@ import UserStatus from "../components/Dashboard/UserStatus";
 import Chat from "../components/Chat/Chat";
 import "./Dashboard.css";
 import { getUser, getAllUsers } from "../actions/user";
-import { defaultModel } from "../actions/defaultMode";
+import { defaultModel } from "../actions/defaultModel";
 // const user = {
 //     profileImg:
 //       "https://images.mubicdn.net/images/avatars/108776/cache-108776-1523899185/images-large.png",

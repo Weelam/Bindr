@@ -1,12 +1,13 @@
 export const defaultModel = {
+    _id: "",
     username: "",
     password: "",
     profile: {
-        role: "",
-        name: "",
+        role: "user",
+        name: "defaultName",
         year: 1,
         courses: [],
-        program: "",
+        program: "defaultProgram",
         bio: "",
         profileImg: "",
         groups: [],
