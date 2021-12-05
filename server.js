@@ -92,13 +92,15 @@ app.post("/users/signup", async (req, res) => {
   };
 
   const user = new User({
-    username, password, profile
-  })
+    username,
+    password,
+    profile,
+  });
 
   try {
     // Save the user
     const newUser = await user.save();
-    res.send({message: "Account Created Successfully"});
+    res.send({ message: "Account Created Successfully" });
   } catch (error) {
     if (isMongoError(error)) {
       // check for if mongo server suddenly disconnected before this request.
@@ -137,7 +139,7 @@ app.get("/users/logout", (req, res) => {
 // check if user is authenticated
 app.get("/users/check-session", (req, res) => {
   if (req.session.user) {
-    res.send({ currentUser: req.session.email });
+    res.send({ currentUser: req.session.username });
   } else {
     res.status(401).send();
   }
@@ -231,6 +233,26 @@ app.get("/api/users/:username", async (req, res) => {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
+});
+
+// for updating the user profile itself
+app.put("/api/users/:username", async (req, res) => {
+  const newUser = req.body.newUser;
+  const username = req.params.username;
+  // console.log("newUser", newUser
+
+  try {
+    let currentUser = await User.find({ username: username });
+    currentUser = currentUser[0]
+    currentUser.profile = newUser.profile
+    await currentUser.save()
+    res.send(currentUser)
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+
+
 });
 /*************************************************/
 // Express server listening...

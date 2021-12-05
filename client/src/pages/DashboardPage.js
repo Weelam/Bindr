@@ -6,7 +6,7 @@ import UserStatus from "../components/Dashboard/UserStatus";
 import Chat from "../components/Chat/Chat";
 import "./Dashboard.css";
 import { getUser, getAllUsers } from "../actions/user";
-
+import { defaultModel } from "../actions/defaultMode";
 // const user = {
 //     profileImg:
 //       "https://images.mubicdn.net/images/avatars/108776/cache-108776-1523899185/images-large.png",
@@ -27,7 +27,7 @@ const DashboardPage = ({ currentUser, groups }) => {
   const [isProject, setIsProject] = useState(true);
 
   // code I added
-  const [currentUserObj, setCurrentUserObj] = useState();
+  const [currentUserObj, setCurrentUserObj] = useState(defaultModel);
   useEffect(() => {
     getUser(currentUser, setCurrentUserObj);
     getAllUsers(setAllUsers);
@@ -51,7 +51,7 @@ const DashboardPage = ({ currentUser, groups }) => {
     if (currentUserObj) {
       setProjects(
         groups.filter((proj) => {
-          return currentUserObj.groups.includes(parseInt(proj.groupID));
+          return currentUserObj.profile.groups.includes(parseInt(proj.groupID));
         })
       );
     }
@@ -68,7 +68,7 @@ const DashboardPage = ({ currentUser, groups }) => {
     setGroups(copy);
     setProjects(
       copy.filter((proj) => {
-        return currentUserObj.groups.includes(proj.groupID);
+        return currentUserObj.profile.groups.includes(proj.groupID);
       })
     );
     console.log("updated group~");
@@ -104,7 +104,7 @@ const DashboardPage = ({ currentUser, groups }) => {
       <div id="row">
         <div id="leftColumn">
           {/* <Button>Groups</Button> */}
-          <UserStatus currentUser={currentUserObj} />
+          <UserStatus currentUser={currentUserObj.profile} />
           <button className="choicebutton" onClick={switchToProjects}>
             <span className="projectlisttitle">Projects</span>
           </button>
@@ -114,7 +114,7 @@ const DashboardPage = ({ currentUser, groups }) => {
           </button>
           {isProject ? (
             <ProjectList
-              currentUser={currentUserObj}
+              currentUser={currentUserObj.profile}
               groups={groups}
               updateUser={updateUser}
               updateGroup={handleUpdate}
@@ -123,7 +123,7 @@ const DashboardPage = ({ currentUser, groups }) => {
             />
           ) : (
             <FriendList
-              currentUser={currentUserObj}
+              currentUser={currentUserObj.profile}
               users={allUsers}
               updateUser={updateUser}
               updateGroup={handleUpdate}
@@ -142,7 +142,7 @@ const DashboardPage = ({ currentUser, groups }) => {
               />
             </div>
           ) : (
-            // <Chat id="chatbox" currentUser={currentUserObj} users={allUsers} />
+            // <Chat id="chatbox" currentUser={currentUserObj.profile} users={allUsers} />
             <Board
             project={projects[curProjectind]}
             updateGroup={handleUpdate}

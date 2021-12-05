@@ -35,6 +35,7 @@ export const logout = (setCurrentUser) => {
   const url = `${API_HOST}/users/logout`;
   fetch(url)
     .then((res) => {
+      console.log("/users/logout")
       setCurrentUser(null);
     })
     .catch((error) => {
@@ -63,11 +64,11 @@ export const signup = async (details, history) => {
 /*** Fetching User Data ************************************/
 
 // update user details
-export const updateUser = async (new_obj) => {
-  // new obj is going to contain the udpated user object
-  const request = new Request(`${API_HOST}/api/user/${new_obj.username}`, {
-    method: "post",
-    body: JSON.stringify({ new_obj }),
+export const updateUser = async (username, newUser) => {
+  // replace the entire user object with the new one
+  const request = new Request(`${API_HOST}/api/users/${username}`, {
+    method: "put",
+    body: JSON.stringify({ newUser }),
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json",
@@ -77,6 +78,7 @@ export const updateUser = async (new_obj) => {
   try {
     const res = await fetch(request);
     const data = await res.json();
+    console.log(data)
   } catch (error) {
     console.log(error);
   }
@@ -89,7 +91,7 @@ export const getUser = async (username, setCurrentUserObj) => {
   try {
     const response = await fetch(url);
     data = await response.json();
-    setCurrentUserObj(data["currentUser"]["profile"]);
+    setCurrentUserObj(data["currentUser"]);
   } catch (error) {
     console.log(error);
   }
