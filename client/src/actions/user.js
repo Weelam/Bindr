@@ -223,6 +223,18 @@ export const getUserByID = async (userID, setUserObj) => {
   }
 }
 
+export const getFriends= async (username, setFriends) => {
+  const url = `${API_HOST}/api/friends/${username}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setFriends(data["friends"]);
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // get user object (only their profile details, not username and password!)
 export const getUser = async (username, setUserObj) => {

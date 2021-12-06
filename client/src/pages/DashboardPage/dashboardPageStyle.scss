@@ -1,0 +1,66 @@
+.dashboardPage-root {
+	display: flex;
+	height: 100%;
+}
+
+.dashboardPage-left {
+	height: 100%;
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+
+	.dashboardPage-profile {
+		display: flex;
+	
+		.dashboardPage-profileDetails {
+			* {
+				margin: 10px 0px;
+			}
+		}
+	
+		.dashboardPage-profileImgContainer {
+			width: auto;
+			margin-right: 20px;
+	
+			.dashboardPage-profileImg {
+				height: 120px;
+				width: 120px;
+				border-radius: 50%;
+				border: solid black 1px;
+				object-fit: cover;
+			}
+		}
+	}
+
+	.dashboardPage-leftDivider {
+		margin: 20px 0px;
+	}
+}
+
+.dashboardPage-groupsContainer {
+	display: flex;
+	justify-content: center;
+	button {
+		margin: 10% 0;
+	}
+}
+
+.dashboardPage-right {
+	height: 100%;
+	width: 100%;
+	.dashboardPage-tasks, .dashboardPage-discussions {
+		display: flex;
+		justify-content: center;
+
+		button {
+			margin: 10px 0;
+		}
+
+	}
+}
+
+
+.dashboardPage-mainDivider {
+	height: 100%;
+	margin: 0px 20px !important;
+}

@@ -122,13 +122,12 @@ app.post("/users/login", async (req, res) => {
     const user = await User.findByUsernamePassword(username, password);
     req.session.userID = user._id;
     req.session.username = user.username;
-    console.log(req.session)
+    console.log(req.session);
     res.send({ currentUser: user.username });
   } catch (error) {
-    console.log("bad username/password")
+    console.log("bad username/password");
     res.status(400).send("bad username/password");
   }
-
 });
 
 // logout user
@@ -248,7 +247,7 @@ app.get("/api/usersID/:userID", async (req, res) => {
   const userID = req.params.userID;
   try {
     const user = await User.findById(userID);
-    res.send({ user:user });
+    res.send({ user: user });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
@@ -275,6 +274,18 @@ app.put("/api/users/:username", async (req, res) => {
   }
 });
 
+// get friends
+app.get("/api/friends/:username", async (req, res) => {
+  const username = req.params.username;
+
+  try {
+    let user = await User.find({ username: username });
+    user = user[0];
+    res.send({friends: user.profile.friends})
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // add 2 users as each others friends
 app.put("/api/friends", async (req, res) => {
@@ -290,13 +301,13 @@ app.put("/api/friends", async (req, res) => {
     user2Doc.profile.friends.push(user1._id);
     await user1Doc.save();
     await user2Doc.save();
-    
-    res.send({user1: user1Doc, user2: user2Doc});
+
+    res.send({ user1: user1Doc, user2: user2Doc });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 // for sending notficiations to users
 app.put("/api/notification/send-notification", async (req, res) => {
@@ -318,7 +329,7 @@ app.put("/api/notification/send-notification", async (req, res) => {
 // for sending notficiations to users
 app.put("/api/notification/remove-notification", async (req, res) => {
   const notification = req.body.notification;
-  const recipientID = notification.recipientID
+  const recipientID = notification.recipientID;
   try {
     let recipient = await User.findById(recipientID);
     recipient.profile.notifications.remove(notification);

@@ -1,0 +1,83 @@
+.dashboardPage-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+.dashboardPage-left {
+  height: 100%;
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboardPage-left .dashboardPage-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dashboardPage-left .dashboardPage-profile .dashboardPage-profileDetails * {
+  margin: 10px 0px;
+}
+
+.dashboardPage-left .dashboardPage-profile .dashboardPage-profileImgContainer {
+  width: auto;
+  margin-right: 20px;
+}
+
+.dashboardPage-left .dashboardPage-profile .dashboardPage-profileImgContainer .dashboardPage-profileImg {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: solid black 1px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.dashboardPage-left .dashboardPage-leftDivider {
+  margin: 20px 0px;
+}
+
+.dashboardPage-groupsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dashboardPage-groupsContainer button {
+  margin: 10% 0;
+}
+
+.dashboardPage-right {
+  height: 100%;
+  width: 100%;
+}
+
+.dashboardPage-right .dashboardPage-tasks, .dashboardPage-right .dashboardPage-discussions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dashboardPage-right .dashboardPage-tasks button, .dashboardPage-right .dashboardPage-discussions button {
+  margin: 10px 0;
+}
+
+.dashboardPage-mainDivider {
+  height: 100%;
+  margin: 0px 20px !important;
+}
+/*# sourceMappingURL=dashboardPageStyle.css.map */

@@ -6,7 +6,7 @@ import FindPage from "./pages/FindPage/FindPage";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/NavBar/Navbar";
 import LoginPage from "./pages/LoginPage";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import data from "./users.js";
 import groupsData from "./groups.js";
@@ -59,8 +59,6 @@ function App() {
                 ) : (
                   <DashboardPage
                     currentUser={currentUser}
-                    users={users}
-                    groups={groups}
                   />
                 )}
               </Route>
