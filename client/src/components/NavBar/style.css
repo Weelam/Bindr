@@ -170,10 +170,12 @@
 
 .notifications {
   position: absolute;
+  max-height: 400px;
+  overflow-y: scroll !important;
   z-index: 99999999999999999;
   top: 45px;
   right: 0px;
-  width: 200px;
+  width: 250px;
   /* border: var(--border); */
   border-radius: var(--border-radius);
   background-color: var(--secondary);
@@ -181,6 +183,10 @@
           box-shadow: 0 0 3px #ccc;
   padding: 1rem;
   overflow: hidden;
+}
+
+.notifications::-webkit-scrollbar {
+  display: none;
 }
 
 .notifications h3 {

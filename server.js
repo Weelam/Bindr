@@ -120,8 +120,9 @@ app.post("/users/login", async (req, res) => {
   const password = req.body.password;
   try {
     const user = await User.findByUsernamePassword(username, password);
-    req.session.user = user._id;
+    req.session.userID = user._id;
     req.session.username = user.username;
+    console.log(req.session)
     res.send({ currentUser: user.username });
   } catch (error) {
     console.log("bad username/password")
@@ -144,7 +145,8 @@ app.get("/users/logout", (req, res) => {
 
 // check if user is authenticated
 app.get("/users/check-session", (req, res) => {
-  if (req.session.user) {
+  // console.log("/users/check-session", req.session.userID)
+  if (req.session.userID) {
     res.send({ currentUser: req.session.username });
   } else {
     res.status(401).send();

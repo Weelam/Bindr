@@ -16,6 +16,7 @@ import AdminCourses from "./pages/Admin/AdminCourses";
 import AdminMessages from "./pages/Admin/AdminMessages";
 import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import { checkSession } from "./actions/user";
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
 const usersData = data["data"];
@@ -32,6 +33,11 @@ function App() {
       setIsAdmin(false);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    console.log("check session")
+    checkSession(setCurrentUser)
+  })
 
   return (
     <div className="App">

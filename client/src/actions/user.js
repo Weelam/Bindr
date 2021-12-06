@@ -1,5 +1,26 @@
 const API_HOST = "http://localhost:5000";
 
+// check if a user is logged in through session
+export const checkSession = (setCurrentUser) => {
+  const url = `${API_HOST}/users/check-session`;
+
+  fetch(url)
+  .then(res => {
+      if (res.status === 200) {
+          return res.json();
+      }
+  })  
+  .then(data => {
+      if (data && data.currentUser) {
+        setCurrentUser(data.currentUser);
+      }
+  })
+  .catch(error => {
+      // console.log(error);
+  });
+
+};
+
 /*** Authentication ************************************/
 
 // A function to send a POST request with the user to be logged in
