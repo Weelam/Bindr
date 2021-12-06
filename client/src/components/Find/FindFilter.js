@@ -49,18 +49,19 @@ const FindFilter = ({ filter, setfilter }) => {
   };
 
   const handleYear = (e) => {
-    const year = e.target.value;
+    console.log(typeof e.target.value)
+    const year = parseInt(e.target.value);
     switch (year) {
-      case "1st":
+      case 1:
         filterYear(year);
         break;
-      case "2nd":
+      case 2:
         filterYear(year);
         break;
-      case "3rd":
+      case 3:
         filterYear(year);
         break;
-      case "4th":
+      case 4:
         filterYear(year);
         break;
       default:
@@ -126,7 +127,7 @@ const FindFilter = ({ filter, setfilter }) => {
             type="checkbox"
             id="year1"
             name="year1"
-            value="1st"
+            value={1}
           />
           <label htmlFor="year1"> First </label>
         </div>
@@ -137,7 +138,7 @@ const FindFilter = ({ filter, setfilter }) => {
             type="checkbox"
             id="year2"
             name="year2"
-            value="2nd"
+            value={2}
           />
           <label htmlFor="year2"> Second </label>
         </div>
@@ -148,7 +149,7 @@ const FindFilter = ({ filter, setfilter }) => {
             type="checkbox"
             id="year3"
             name="year3"
-            value="3rd"
+            value={3}
           />
           <label htmlFor="year3"> Third </label>
         </div>
@@ -159,7 +160,7 @@ const FindFilter = ({ filter, setfilter }) => {
             type="checkbox"
             id="year4"
             name="year4"
-            value="4th"
+            value={4}
           />
           <label htmlFor="year4"> Fourth </label>
         </div>

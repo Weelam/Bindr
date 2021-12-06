@@ -144,10 +144,15 @@
 
 .notifications {
     position: absolute;
+    max-height: 400px;
+    overflow-y: scroll !important;
+    &::-webkit-scrollbar {
+        display: none;
+      }
     z-index: 99999999999999999;
     top: 45px;
     right: 0px;
-    width: 200px;
+    width: 250px;
     /* border: var(--border); */
     border-radius: var(--border-radius);
     background-color: var(--secondary);
@@ -182,4 +187,5 @@
 .notifications hr {
     margin-top: 10px;
     margin-bottom: 10px;
+    
 }

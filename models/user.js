@@ -28,10 +28,10 @@ const UserProfileSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
-  groups: [mongoose.Schema.Types.ObjectId],
-  friends: [mongoose.Schema.Types.ObjectId],
-  wantToMatch: [mongoose.Schema.Types.ObjectId],
-  rejected: [mongoose.Schema.Types.ObjectId],
+  groups: Array,
+  friends: Array,
+  wantToMatch: Array,
+  rejected: Array,
   notifications: Array
 });
 

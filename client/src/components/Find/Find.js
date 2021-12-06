@@ -8,8 +8,15 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import FindFilter from "./FindFilter";
 import Divider from "@mui/material/Divider";
 import "./styles/itemStyle.css";
-import { getAllUsers, getUser, updateUser } from "../../actions/user";
-import { defaultModel } from "../../actions/defaultMode";
+import {
+  getAllUsers,
+  getUser,
+  updateUser,
+  sendNotification,
+} from "../../actions/user";
+import { defaultModel } from "../../actions/defaultModel";
+
+
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
@@ -21,7 +28,7 @@ const Find = ({ currentUser }) => {
   const [users, setUsers] = useState([]);
   const [currentUserObj, setCurrentUserObj] = useState(defaultModel);
   const [displayedUsers, setDisplayedUsers] = useState([]);
-  const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 4 });
+  const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 8 });
   const [openModal, setOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
   const [openAlert, setOpenAlert] = useState(false);
@@ -36,7 +43,7 @@ const Find = ({ currentUser }) => {
   useEffect(() => {
     getUser(currentUser, setCurrentUserObj);
     getAllUsers(setUsers);
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     handleDisplayedUsers();
@@ -44,9 +51,12 @@ const Find = ({ currentUser }) => {
 
   const handleDisplayedUsers = () => {
     setDisplayedUsers((prev) => {
+      let otherUsers = users.filter((otherUser) => {
+        return otherUser._id !== currentUserObj._id;
+      });
       return [
         ...prev,
-        ...users.slice(displayPointer["start"], displayPointer["end"]),
+        ...otherUsers.slice(displayPointer["start"], displayPointer["end"]),
       ];
     });
   };
@@ -71,57 +81,66 @@ const Find = ({ currentUser }) => {
     setOpenModal(true);
   };
 
-  const sendMatch = (recipient) => {};
+  const sendMatch = (recipientID) => {
+    const notification = {
+      senderID: currentUserObj["_id"],
+      recipientID: recipientID,
+      content: `${currentUser} wants to match with you!`,
+    };
+    sendNotification(notification);
+  };
 
   useEffect(() => {
     // wantToMatch and rejected are being updated
     // call updateUser
-    updateUser(currentUser, currentUserObj);
-  }, [currentUserObj]);
+    if (currentUserObj !== defaultModel) {
+      updateUser(currentUser, currentUserObj);
+    }
+  }, [currentUser, currentUserObj]);
 
   const handleRejectAccept = (accepted, chosenUser) => {
-    const otherUserID = chosenUser["_id"];
+    const otherID = chosenUser["_id"];
     if (accepted) {
-      if (currentUserObj["profile"]["wantToMatch"].includes(otherUserID)) {
-        return
+      if (currentUserObj["profile"]["wantToMatch"].includes(otherID)) {
+        return;
       }
       // modify the userobj here...
       // user accepted
       // remove user from rejected array, and add them to wantToMatch array
-      if (currentUserObj["profile"]["rejected"].includes(otherUserID)) {
+      if (currentUserObj["profile"]["rejected"].includes(otherID)) {
         setCurrentUserObj((prev) => ({
           ...prev,
           profile: {
             ...prev["profile"],
             rejected: prev["profile"]["rejected"].filter(
-              (user) => user !== otherUserID
+              (user) => user !== otherID
             ),
           },
         }));
       }
-
       // add user to wantToMatch array
       setCurrentUserObj((prev) => ({
         ...prev,
         profile: {
           ...prev["profile"],
-          wantToMatch: [...prev["profile"]["wantToMatch"], otherUserID],
+          wantToMatch: [...prev["profile"]["wantToMatch"], otherID],
         },
       }));
       setOpenAlert(true);
       setAcceptedSignal(true);
+      sendMatch(otherID);
     } else {
       // user rejected
-      if (currentUserObj["profile"]["rejected"].includes(otherUserID)) {
-        return
+      if (currentUserObj["profile"]["rejected"].includes(otherID)) {
+        return;
       }
-      if (currentUserObj["profile"]["wantToMatch"].includes(otherUserID)) {
+      if (currentUserObj["profile"]["wantToMatch"].includes(otherID)) {
         setCurrentUserObj((prev) => ({
           ...prev,
           profile: {
             ...prev["profile"],
             wantToMatch: prev["profile"]["wantToMatch"].filter(
-              (user) => user !== otherUserID
+              (user) => user !== otherID
             ),
           },
         }));
@@ -130,7 +149,7 @@ const Find = ({ currentUser }) => {
         ...prev,
         profile: {
           ...prev["profile"],
-          rejected: [...prev["profile"]["rejected"], otherUserID],
+          rejected: [...prev["profile"]["rejected"], otherID],
         },
       }));
       setOpenAlert(true);
@@ -145,15 +164,18 @@ const Find = ({ currentUser }) => {
 
   const filterUsers = (displayedUsers) => {
     if (currentUserObj) {
+      console.log(displayedUsers)
       return displayedUsers.filter((x) => {
         let isCourses = x["profile"]["courses"].some((course) =>
           filter["courses"].includes(course)
         );
         let isProgram = filter["programs"].includes(x["profile"]["program"]);
         let isYear = filter["years"].includes(x["profile"]["year"]);
-        let isFriends = currentUserObj["profile"]["friends"].includes(x["_id"]);
+        let isFriends = currentUserObj["profile"]["friends"].includes(
+          x["_id"]
+        );
         if (isFriends) {
-          console.log("isFriends", x["profile"]);
+          // console.log("isFriends", x["profile"]);
         }
         if (filter["years"].length === 0) {
           isYear = true;
@@ -168,6 +190,8 @@ const Find = ({ currentUser }) => {
       });
     }
   };
+
+  console.log(filter["years"])
 
   useEffect(() => {
     if (currentUserObj) {

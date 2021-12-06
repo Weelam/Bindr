@@ -8,6 +8,7 @@ const SignupForm = ({ handleSubmit, info, setInfo }) => {
         <label className="loginForm-input">
           <h5>Username</h5>
           <input
+            required
             type="text"
             onChange={(e) => setInfo({ ...info, username: e.target.value })}
           />
@@ -16,6 +17,7 @@ const SignupForm = ({ handleSubmit, info, setInfo }) => {
         <label className="loginForm-input">
           <h5>Name</h5>
           <input
+            
             type="text"
             onChange={(e) => setInfo({ ...info, name: e.target.value })}
           />
@@ -24,6 +26,7 @@ const SignupForm = ({ handleSubmit, info, setInfo }) => {
         <label className="loginForm-input">
           <h5>Password</h5>
           <input
+            
             type="text"
             onChange={(e) => setInfo({ ...info, password: e.target.value })}
           />
@@ -31,15 +34,20 @@ const SignupForm = ({ handleSubmit, info, setInfo }) => {
         <br />
         <label className="loginForm-input">
           <h5>Year</h5>
-          <input
-            type="number"
-            onChange={(e) => setInfo({ ...info, year: e.target.value })}
-          />
+          <select
+          onChange={(e) => setInfo({ ...info, year: e.target.value })}
+          >
+            <option type="number">{1}</option>
+            <option type="number">{2}</option>
+            <option type="number">{3}</option>
+            <option type="number">{4}</option>
+          </select>
         </label>
         <br />
         <label className="loginForm-input">
           <h5>program</h5>
           <input
+            
             type="text"
             onChange={(e) => setInfo({ ...info, program: e.target.value })}
           />
