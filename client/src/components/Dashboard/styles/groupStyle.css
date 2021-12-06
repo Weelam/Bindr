@@ -1,0 +1,25 @@
+.group-root .group-itemContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 2px 0;
+  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  border-radius: 5px;
+  padding: 3px 9px;
+}
+
+.group-root .group-itemContainer:hover {
+  background-color: rgba(82, 183, 136, 0.5);
+  cursor: pointer;
+}
+
+.group-root .group-itemContainer h4 {
+  margin: 10px 0;
+}
+/*# sourceMappingURL=groupStyle.css.map */

@@ -1,6 +1,7 @@
 .dashboardPage-root {
+  position: relative;
   display: flex;
-  height: 100%;
+  height: 85%;
 }
 
 .dashboardPage-left {
@@ -37,12 +38,40 @@
   }
 }
 
+.dashboardPage-friendGroup {
+  height: 55%;
+}
+.dashboardPage-friendsContainer {
+  height: 100%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 .dashboardPage-groupsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.dashboardPage-groups {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dashboardPage-addGroupContainer {
   display: flex;
   justify-content: center;
   button {
-    margin: 10% 0;
+    width: 100%;
   }
+}
+
+.dashboardPage-groupDivider {
+  margin: 10px;
 }
 
 .dashboardPage-right {

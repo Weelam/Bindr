@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { defaultModel } from "../../actions/defaultModel";
 import { getUserByID } from "../../actions/user";
@@ -12,13 +13,13 @@ const Friend = ({ friend, rightSide }) => {
 
   return (
     <div className="friend-root">
-      <div className="friend-itemContainer">
+      <Button className="friend-itemContainer">
 				<div className="friend-profileImgContainer">
 					<img src={user["profile"]["profileImg"]} />
 				</div>
-        <p>{user["username"]}</p>
+        <h4>{user["username"]}</h4>
 
-      </div>
+      </Button>
     </div>
   );
 };

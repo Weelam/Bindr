@@ -1,8 +1,9 @@
 .dashboardPage-root {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100%;
+  height: 85%;
 }
 
 .dashboardPage-left {
@@ -45,7 +46,42 @@
   margin: 20px 0px;
 }
 
+.dashboardPage-friendGroup {
+  height: 55%;
+}
+
+.dashboardPage-friendsContainer {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.dashboardPage-friendsContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .dashboardPage-groupsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+
+.dashboardPage-groups {
+  overflow-y: scroll;
+}
+
+.dashboardPage-groups::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboardPage-addGroupContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,8 +90,12 @@
           justify-content: center;
 }
 
-.dashboardPage-groupsContainer button {
-  margin: 10% 0;
+.dashboardPage-addGroupContainer button {
+  width: 100%;
+}
+
+.dashboardPage-groupDivider {
+  margin: 10px;
 }
 
 .dashboardPage-right {

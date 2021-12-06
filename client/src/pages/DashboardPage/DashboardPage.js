@@ -2,7 +2,12 @@ import { Button, Divider } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { defaultModel } from "../../actions/defaultModel";
-import { createGroup, getFriends, getGroups, getUser } from "../../actions/user";
+import {
+  createGroup,
+  getFriends,
+  getGroups,
+  getUser,
+} from "../../actions/user";
 import Friend from "../../components/Dashboard/Friend";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -12,6 +17,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@mui/styles";
+import Group from "../../components/Dashboard/Group";
 
 // customize mui theme
 const theme = createTheme({
@@ -72,12 +78,12 @@ const DashboardPage = ({ currentUser }) => {
     // getUser, getFriends, getGroups
     getUser(currentUser, setCurrentUserObj);
     getFriends(currentUser, setFriends);
-		getGroups(currentUser, setGroups);
+    getGroups(currentUser, setGroups);
   }, [currentUser]);
 
-	useEffect(() => {
-		console.log(groups)
-	}, [groups])
+  useEffect(() => {
+    console.log(groups);
+  }, [groups]);
 
   // tabs and modals handling
   const handleLeftTab = (e, value) => {
@@ -99,10 +105,10 @@ const DashboardPage = ({ currentUser }) => {
       alert("Select a project name and at least one member!");
       return;
     }
-		// create the group, and then update 'groups' and 'currentUser'
-    createGroup(currentUser, newGroup)
-		getGroups(currentUser, setGroups)
-		getUser(currentUser, setCurrentUserObj)
+    // create the group, and then update 'groups' and 'currentUser'
+    createGroup(currentUser, newGroup);
+    getGroups(currentUser, setGroups);
+    getUser(currentUser, setCurrentUserObj);
     // close modal and set newGroup back to default
     setNewGroup(groupModel);
     setOpenModal(false);
@@ -128,6 +134,11 @@ const DashboardPage = ({ currentUser }) => {
       ...prev,
       projectName: name,
     }));
+  };
+
+  const handleSelectedGroup = (group) => {
+    setSelectedGroup(group);
+    console.log("selected group", group);
   };
 
   const handleCreateTasks = () => {
@@ -178,13 +189,29 @@ const DashboardPage = ({ currentUser }) => {
               </div>
             ) : (
               <div className="dashboardPage-groupsContainer">
-                <IconButton
-                  onClick={() => handleModal(true)}
-                  color="primary"
-                  size="small"
-                >
-                  <AddCircleIcon fontSize="large" color="primary" />
-                </IconButton>
+								<div className="dashboardPage-groups">
+                {groups.map((group, index) => {
+                  return (
+                    <Group
+                      key={index}
+                      handleSelectedGroup={handleSelectedGroup}
+                      group={group}
+                    />
+                  );
+                })}
+								</div>
+								<Divider clasSName="dashboardPage-groupDivider" />
+                <div className="dashboardPage-addGroupContainer">
+                  <Button
+                    onClick={() => handleModal(true)}
+                    color="primary"
+                    size="large"
+										variant="outlined"
+                  >
+                    {/* <AddCircleIcon fontSize="large" color="primary" /> */}
+										Add Group
+                  </Button>
+                </div>
               </div>
             )}
           </div>
