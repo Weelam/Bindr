@@ -28,6 +28,7 @@ const UserProfileSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  // store the objectID of each
   groups: Array,
   friends: Array,
   wantToMatch: Array,

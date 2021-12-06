@@ -176,6 +176,7 @@ const Find = ({ currentUser }) => {
         );
         if (isFriends) {
           // console.log("isFriends", x["profile"]);
+          isFriends = true;
         }
         if (filter["years"].length === 0) {
           isYear = true;

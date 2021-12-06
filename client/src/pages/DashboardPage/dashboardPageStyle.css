@@ -63,7 +63,8 @@
   width: 100%;
 }
 
-.dashboardPage-right .dashboardPage-tasks, .dashboardPage-right .dashboardPage-discussions {
+.dashboardPage-right .dashboardPage-tasks,
+.dashboardPage-right .dashboardPage-discussions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -72,8 +73,64 @@
           justify-content: center;
 }
 
-.dashboardPage-right .dashboardPage-tasks button, .dashboardPage-right .dashboardPage-discussions button {
+.dashboardPage-right .dashboardPage-tasks button,
+.dashboardPage-right .dashboardPage-discussions button {
   margin: 10px 0;
+}
+
+.dashboardPage-selectGroup {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dashboardPage-groupModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 400px;
+  width: 400px;
+  background: white;
+  border: 2px solid #000;
+  -webkit-box-shadow: 24;
+          box-shadow: 24;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.dashboardPage-groupModal::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboardPage-groupModal h2 {
+  margin: 10px;
+}
+
+.dashboardPage-groupModal .friend-itemContainer {
+  margin-left: 10px;
+}
+
+.dashboardPage-groupModal .friend-itemContainer:hover {
+  background-color: white;
+  cursor: auto;
+}
+
+.dashboardPage-groupModal .dashboardPage-modalItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .dashboardPage-mainDivider {

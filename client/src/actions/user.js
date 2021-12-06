@@ -223,6 +223,7 @@ export const getUserByID = async (userID, setUserObj) => {
   }
 }
 
+// get a users friends by their username
 export const getFriends= async (username, setFriends) => {
   const url = `${API_HOST}/api/friends/${username}`;
   let data;
@@ -235,6 +236,47 @@ export const getFriends= async (username, setFriends) => {
     console.log(error);
   }
 }
+
+// get a users groups by their username
+export const getGroups = async (username, setCurrentUserObj) => {
+  const url = `${API_HOST}/api/groups/${username}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// create a new group for a user
+export const createGroup = async (username, newGroup, setCurrentUserObj) => {
+  const url = `${API_HOST}/api/groups/${username}`;
+  const request = new Request(
+    url,
+    {
+      method: "post",
+      body: JSON.stringify({ newGroup }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let data;
+  try {
+    const response = await fetch(request);
+    data = await response.json();
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+
+
+  // get groups will be called in a useEffect callback in dashboard page
+}
+
 
 // get user object (only their profile details, not username and password!)
 export const getUser = async (username, setUserObj) => {

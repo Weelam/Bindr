@@ -219,6 +219,9 @@ app.post("/testUsers", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
+/***Users ************************************/
+
+
 // get all users
 app.get("/api/users", async (req, res) => {
   try {
@@ -274,6 +277,9 @@ app.put("/api/users/:username", async (req, res) => {
   }
 });
 
+/*** Friends ************************************/
+
+
 // get friends
 app.get("/api/friends/:username", async (req, res) => {
   const username = req.params.username;
@@ -308,6 +314,27 @@ app.put("/api/friends", async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+/*** Groups ************************************/
+app.post("/api/groups/:username", async (req, res) => {
+  const username = req.params.username;
+  const newGroup = req.body.newGroup;
+
+  try {
+    let user = await User.find({username: username});
+    // create a new group object 
+    user = user[0];
+    user.profile.groups.push(newGroup);
+    user.save()
+    console.log(user)
+    res.send({user})
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+/*** Notifications ************************************/
 
 // for sending notficiations to users
 app.put("/api/notification/send-notification", async (req, res) => {

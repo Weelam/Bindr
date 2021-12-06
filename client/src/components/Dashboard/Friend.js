@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { defaultModel } from "../../actions/defaultModel";
 import { getUserByID } from "../../actions/user";
-import "./friendStyle.css";
+import "./styles/friendStyle.css";
 
-const Friend = ({ friend }) => {
+const Friend = ({ friend, rightSide }) => {
   const [user, setUser] = useState(defaultModel);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const Friend = ({ friend }) => {
 					<img src={user["profile"]["profileImg"]} />
 				</div>
         <p>{user["username"]}</p>
+
       </div>
     </div>
   );

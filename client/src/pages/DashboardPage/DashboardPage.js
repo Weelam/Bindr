@@ -1,8 +1,8 @@
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { defaultModel } from "../../actions/defaultModel";
-import { getFriends, getUser } from "../../actions/user";
+import { createGroup, getFriends, getUser } from "../../actions/user";
 import Friend from "../../components/Dashboard/Friend";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 import "./dashboardPageStyle.css";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
+import Modal from "@mui/material/Modal";
+import { makeStyles } from "@mui/styles";
 
 // customize mui theme
 const theme = createTheme({
@@ -18,23 +20,53 @@ const theme = createTheme({
   },
 });
 
+// mui styles
+const useStyles = makeStyles({
+  modalItem: {
+    display: "flex",
+    alignItems: "center",
+    "& input": {
+      width: "20px",
+      height: "20px",
+    },
+  },
+  button: (props) => ({
+    width: "100%",
+    color: "white",
+    // flex-grow: 1;
+    margin: " 20px 0",
+    background: props.color,
+    transition: "filter 300ms",
+    "&:hover": {
+      background: props.color,
+      filter: "brightness(1.2)",
+    },
+  }),
+});
+
 const DashboardPage = ({ currentUser }) => {
-	// user data states
+  // usestyles
+  const [props, setProps] = useState({ color: "#52b788" });
+  const classes = useStyles(props);
+  // user data states
   const [currentUserObj, setCurrentUserObj] = useState(defaultModel);
   const [friends, setFriends] = useState([]);
   const [groups, setGroups] = useState([]);
-	const [tasks, setTasks] = useState([]);
-	const [discussions, setDiscussions] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState(); // store the id of the group
 
-	// tab states
+  // tab/modal states
   const [leftTab, setLeftTab] = useState(0);
   const [rightTab, setRightTab] = useState(0);
-
+  const [openModal, setOpenModal] = useState(false);
+  const [modalGroup, setModalGroup] = useState([]);
+	// const [newGroup, setnewGroup] = useState()
   useEffect(() => {
+    // getUser, getFriends, getGroups
     getUser(currentUser, setCurrentUserObj);
     getFriends(currentUser, setFriends);
-  }, []);
+  }, [currentUser]);
 
+  // tabs and modals handling
   const handleLeftTab = (e, value) => {
     setLeftTab(value);
   };
@@ -43,9 +75,25 @@ const DashboardPage = ({ currentUser }) => {
     setRightTab(value);
   };
 
+  const handleModal = (open) => {
+    setOpenModal(open);
+  };
+
+  // creating groups, tasks, discussions
   const handleCreateGroup = () => {
-    console.log("creating group");
+    console.log(modalGroup);
+
     // open a modal to create a group
+    // createGroup(currentUser, modalGroup, setCurrentUserObj)
+  };
+
+  // update selectedGroup
+  const handleModalGroup = (friend) => {
+    if (modalGroup.includes(friend)) {
+      setModalGroup((prev) => prev.filter((item) => item !== friend));
+    } else {
+      setModalGroup((prev) => [...new Set([...prev, friend])]);
+    }
   };
 
   const handleCreateTasks = () => {
@@ -97,7 +145,7 @@ const DashboardPage = ({ currentUser }) => {
             ) : (
               <div className="dashboardPage-groupsContainer">
                 <IconButton
-                  onClick={handleCreateGroup}
+                  onClick={() => handleModal(true)}
                   color="primary"
                   size="small"
                 >
@@ -125,29 +173,70 @@ const DashboardPage = ({ currentUser }) => {
             <Tab label="Tasks" />
             <Tab label="Discussions" />
           </Tabs>
+          {selectedGroup ? (
+            <>
+              {rightTab === 0 && (
+                <div className="dashboardPage-tasks">
+                  <IconButton
+                    onClick={handleCreateTasks}
+                    color="primary"
+                    size="small"
+                  >
+                    <AddCircleIcon fontSize="large" color="primary" />
+                  </IconButton>
+                </div>
+              )}
 
-          {rightTab === 0 && (
-            <div className="dashboardPage-tasks">
-              <IconButton
-                onClick={handleCreateTasks}
-                color="primary"
-                size="small"
-              >
-                <AddCircleIcon fontSize="large" color="primary" />
-              </IconButton>
+              {rightTab === 1 && (
+                <div className="dashboardPage-discussions">
+                  <IconButton
+                    onClick={handleCreateDiscussion}
+                    color="primary"
+                    size="small"
+                  >
+                    <AddCircleIcon fontSize="large" color="primary" />
+                  </IconButton>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="dashboardPage-selectGroup">
+              <h2>Please Select a group</h2>
             </div>
           )}
-          {rightTab === 1 && (
-            <div className="dashboardPage-discussions">
-              <IconButton
-                onClick={handleCreateDiscussion}
-                color="primary"
-                size="small"
+          {/* modal that is opened to create group */}
+          <Modal open={openModal} onClose={() => handleModal(false)}>
+            <div className="dashboardPage-groupModal">
+              <h2>Friends</h2>
+              <div className="dashboardPage-friendsContainer dashboardPage-modalFriends">
+                {friends.map((friend, index) => {
+                  return (
+                    <div key={index} className={classes.modalItem}>
+                      <input
+                        type="checkbox"
+                        onChange={() => handleModalGroup(friend)}
+                        value={friend}
+                      />
+                      <Friend key={index} friend={friend} />
+                    </div>
+                  );
+                })}
+              </div>
+              <input
+                value={}
+                onChange={(e) => handleOther(e, "program")}
+                type="text"
+								placeholder="group name"
+              />
+              <Button
+                className={classes.button}
+                variant="contained"
+                onClick={handleCreateGroup}
               >
-                <AddCircleIcon fontSize="large" color="primary" />
-              </IconButton>
+                Create Group
+              </Button>
             </div>
-          )}
+          </Modal>
         </div>
       </div>
     </ThemeProvider>
