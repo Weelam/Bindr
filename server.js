@@ -243,6 +243,18 @@ app.get("/api/users/:username", async (req, res) => {
   }
 });
 
+// get the user object from userID
+app.get("/api/usersID/:userID", async (req, res) => {
+  const userID = req.params.userID;
+  try {
+    const user = await User.findById(userID);
+    res.send({ user:user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 // for updating the user itself
 app.put("/api/users/:username", async (req, res) => {
   const newUser = req.body.newUser;

@@ -158,14 +158,27 @@ export const getNotifications = async (username) => {
   }
 };
 
+export const getUserByID = async (userID, setUserObj) => {
+  const url = `${API_HOST}/api/usersID/${userID}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setUserObj(data["user"]);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 // get user object (only their profile details, not username and password!)
-export const getUser = async (username, setCurrentUserObj) => {
+export const getUser = async (username, setUserObj) => {
   const url = `${API_HOST}/api/users/${username}`;
   let data;
   try {
     const response = await fetch(url);
     data = await response.json();
-    setCurrentUserObj(data["currentUser"]);
+    setUserObj(data["currentUser"]);
   } catch (error) {
     console.log(error);
   }

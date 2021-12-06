@@ -7,8 +7,15 @@ import ProfileMenu from "./ProfileMenu";
 import Notifications from "./Notifications";
 import { useHistory } from "react-router-dom";
 import {logout} from "../../actions/user"
+import OtherUserModal from "./OtherUserModal";
 
 function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
+  const [notifDrop, setNotifDrop] = useState(false);
+  const [profileDrop, setProfileDrop] = useState(false);
+  // notification modal states
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedUserID, setSelectedUserID] = useState();
+
   let history = useHistory();
 
   const handleLogout = () => {
@@ -16,8 +23,19 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
     history.push("/");
   };
 
-  const [notifDrop, setNotifDrop] = useState(false);
-  const [profileDrop, setProfileDrop] = useState(false);
+
+  // handle Modal for notification
+  const handleModal = (notif) => {
+    setSelectedUserID(notif.senderID);
+    setOpenModal(true);
+    setNotifDrop(false);
+  };
+
+  // run this when a user selects a notifications to click on
+  // accepts or declines the person (TAKES IN USERID RATHER THAN USERNAME!!!)
+  const handleAcceptDecline = (accepted, otherUserID) => {
+
+  }
 
   return (
     <>
@@ -43,7 +61,7 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
                   drop={{isDropped: notifDrop, setIsDropped: setNotifDrop, setOtherDropped: setProfileDrop}}
                   item={<AiFillBell className="bellIcon" />}
                 >
-                  <Notifications currentUser={currentUser} />
+                  <Notifications handleModal={handleModal} currentUser={currentUser} />
                 </NavItem>
                 <NavItem
                   to="#"
@@ -89,6 +107,14 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
             </div>
           </>
         )}
+        {openModal && (
+        <OtherUserModal
+          handleAcceptDecline={handleAcceptDecline}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          userID={selectedUserID}
+        />
+      )}
       </div>
       {/* <Divider className="navBar-Divider"/> */}
     </>
