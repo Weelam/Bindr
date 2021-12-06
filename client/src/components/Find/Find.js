@@ -15,6 +15,8 @@ import {
   sendNotification,
 } from "../../actions/user";
 import { defaultModel } from "../../actions/defaultModel";
+
+
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
@@ -26,7 +28,7 @@ const Find = ({ currentUser }) => {
   const [users, setUsers] = useState([]);
   const [currentUserObj, setCurrentUserObj] = useState(defaultModel);
   const [displayedUsers, setDisplayedUsers] = useState([]);
-  const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 4 });
+  const [displayPointer, setDisplayPointer] = useState({ start: 0, end: 8 });
   const [openModal, setOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
   const [openAlert, setOpenAlert] = useState(false);
@@ -52,13 +54,14 @@ const Find = ({ currentUser }) => {
       let otherUsers = users.filter((otherUser) => {
         return otherUser._id !== currentUserObj._id;
       });
-      console.log(otherUsers);
       return [
         ...prev,
         ...otherUsers.slice(displayPointer["start"], displayPointer["end"]),
       ];
     });
   };
+
+  console.log(displayedUsers, displayPointer["start"], displayPointer["end"])
 
   const lastUserRef = useCallback((node) => {
     if (obs.current) {
@@ -163,6 +166,7 @@ const Find = ({ currentUser }) => {
 
   const filterUsers = (displayedUsers) => {
     if (currentUserObj) {
+      console.log(displayedUsers)
       return displayedUsers.filter((x) => {
         let isCourses = x["profile"]["courses"].some((course) =>
           filter["courses"].includes(course)
@@ -173,7 +177,7 @@ const Find = ({ currentUser }) => {
           x["_id"]
         );
         if (isFriends) {
-          console.log("isFriends", x["profile"]);
+          // console.log("isFriends", x["profile"]);
         }
         if (filter["years"].length === 0) {
           isYear = true;

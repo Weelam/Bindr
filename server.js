@@ -314,6 +314,22 @@ app.put("/api/notification/send-notification", async (req, res) => {
   }
 });
 
+// for sending notficiations to users
+app.put("/api/notification/remove-notification", async (req, res) => {
+  const notification = req.body.notification;
+  const recipientID = notification.recipientID
+  try {
+    let recipient = await User.findById(recipientID);
+    recipient.profile.notifications.remove(notification);
+    await recipient.save();
+    console.log("recipient: ", recipient);
+    res.send(recipient);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 // get all notifications for a particular user
 app.get("/api/notifications/:username", async (req, res) => {
   const username = req.params.username;

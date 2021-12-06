@@ -144,6 +144,31 @@ export const sendNotification = async (notification) => {
   }
 };
 
+// remove notification
+export const removeNotification = async (notification) => {
+    // replace the entire user object with the new one
+    const request = new Request(
+      `${API_HOST}/api/notification/remove-notification`,
+      {
+        method: "put",
+        body: JSON.stringify({ notification }),
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  
+    try {
+      const res = await fetch(request);
+      const data = await res.json();
+      // console.log(data)
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+
 // get notifications for a user
 export const getNotifications = async (username) => {
   const url = `${API_HOST}/api/notifications/${username}`;
@@ -156,6 +181,7 @@ export const getNotifications = async (username) => {
     console.log(error);
   }
 };
+
 
 // add friend
 export const addFriend = async (user1, user2) => {

@@ -13,7 +13,6 @@ const notificationsModel = [{
 const Notifications = ({ currentUser, handleModal }) => {
   const [notifications, setNotifications] = useState(notificationsModel)
 
-
   // load in the notifications at the beginning
   useEffect(async () => {
     const notifications = await getNotifications(currentUser)
@@ -27,7 +26,7 @@ const Notifications = ({ currentUser, handleModal }) => {
       <Divider />
       {notifications.map((notif, i) => {
         return (
-          <NotificationsItem onClick={() => handleModal(notif)} key={i} to="#">{notif["content"]}</NotificationsItem>
+          <NotificationsItem onMouseHover={() => console.log("hovering")} onClick={() => handleModal(notif)} key={i} to="#">{notif["content"]}</NotificationsItem>
         )
       })}
     </div>

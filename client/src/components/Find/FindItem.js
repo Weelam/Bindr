@@ -10,7 +10,7 @@ const FindItem = ({ user, opacity }) => {
       </div>
       <div className="itemFooter">
         <div>
-          <h3>{userProfile["name"]}</h3>
+          <h3>{user["username"]}</h3>
           <span> {userProfile["year"]}</span>
         </div>
         <p>{userProfile["program"]}</p>

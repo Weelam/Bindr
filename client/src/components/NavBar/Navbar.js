@@ -6,35 +6,58 @@ import NavItem from "./NavItem";
 import ProfileMenu from "./ProfileMenu";
 import Notifications from "./Notifications";
 import { useHistory } from "react-router-dom";
-import {addFriend, logout, getUser } from "../../actions/user"
+import {
+  addFriend,
+  logout,
+  getUser,
+  removeNotification,
+} from "../../actions/user";
 import OtherUserModal from "./OtherUserModal";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { defaultModel } from "../../actions/defaultModel";
 
+// taken from material UI snack bar example
+const Alert = React.forwardRef((props, ref) => {
+  return <MuiAlert elevation={6} ref={ref} {...props} />;
+});
+// end
 function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
   const [notifDrop, setNotifDrop] = useState(false);
   const [profileDrop, setProfileDrop] = useState(false);
-  const [currentUserObj, setCurrentUserObj] = useState(defaultModel)
+  const [currentUserObj, setCurrentUserObj] = useState(defaultModel);
   // notification modal states
   const [openModal, setOpenModal] = useState(false);
-  const [selectedUserID, setSelectedUserID] = useState();
+  const [selectedNotification, setSelectedNotification] = useState();
+
+  // snack bar
+  const [openAlert, setOpenAlert] = useState(false);
+  const [acceptedSignal, setAcceptedSignal] = useState(null);
 
   let history = useHistory();
 
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
+  };
 
   useEffect(() => {
     // get current user object
-    getUser(currentUser, setCurrentUserObj)
-  }, [])
+    getUser(currentUser, setCurrentUserObj);
+
+    return () => {
+      setSelectedNotification(null);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout(setCurrentUser);
     history.push("/");
   };
 
-
   // handle Modal for notification
   const handleModal = (notif) => {
-    setSelectedUserID(notif.senderID);
+    setSelectedNotification(notif);
     setOpenModal(true);
     setNotifDrop(false);
   };
@@ -43,11 +66,16 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
   // accepts or declines the person (TAKES IN USERID RATHER THAN USERNAME!!!)
   const handleAcceptDecline = (accepted, otherUserObj) => {
     if (accepted) {
-      addFriend(currentUserObj, otherUserObj)
-      console.log('handleacceptdecline')
-
+      addFriend(currentUserObj, otherUserObj);
+      setAcceptedSignal(true)
+    } else {
+      setAcceptedSignal(false)
     }
-  }
+    // send snackbar alert to user
+    setOpenAlert(true);
+    // remove notification in either cases
+    removeNotification(selectedNotification);
+  };
 
   return (
     <>
@@ -70,16 +98,27 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
                   to="#"
                   outerDiv="notifDiv"
                   linkClass="link iconButton"
-                  drop={{isDropped: notifDrop, setIsDropped: setNotifDrop, setOtherDropped: setProfileDrop}}
+                  drop={{
+                    isDropped: notifDrop,
+                    setIsDropped: setNotifDrop,
+                    setOtherDropped: setProfileDrop,
+                  }}
                   item={<AiFillBell className="bellIcon" />}
                 >
-                  <Notifications handleModal={handleModal} currentUser={currentUser} />
+                  <Notifications
+                    handleModal={handleModal}
+                    currentUser={currentUser}
+                  />
                 </NavItem>
                 <NavItem
                   to="#"
                   outerDiv="profileDiv"
                   linkClass="link iconButton"
-                  drop={{isDropped: profileDrop, setIsDropped: setProfileDrop, setOtherDropped: setNotifDrop}}
+                  drop={{
+                    isDropped: profileDrop,
+                    setIsDropped: setProfileDrop,
+                    setOtherDropped: setNotifDrop,
+                  }}
                   item={<CgProfile className="profileIcon" />}
                 >
                   {/* dropdown */}
@@ -120,13 +159,31 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
           </>
         )}
         {openModal && (
-        <OtherUserModal
-          handleAcceptDecline={handleAcceptDecline}
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          userID={selectedUserID}
-        />
-      )}
+          <OtherUserModal
+            handleAcceptDecline={handleAcceptDecline}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
+            userID={selectedNotification["senderID"]}
+          />
+        )}
+        {/* -- taken from material UI snackbar example --*/}
+        <Snackbar
+          open={openAlert}
+          autoHideDuration={6000}
+          onClose={handleCloseAlert}
+        >
+          <Alert
+            iconMapping={{
+              error: <CancelIcon fontSize="inherit" />,
+            }}
+            onClose={handleCloseAlert}
+            severity={acceptedSignal ? "success" : "error"}
+            sx={{ width: "100%" }}
+          >
+            {acceptedSignal ? "Friend Added" : "Match Declined"}
+          </Alert>
+        </Snackbar>
+        {/* -- end -- */}
       </div>
       {/* <Divider className="navBar-Divider"/> */}
     </>
