@@ -281,7 +281,8 @@ app.put("/api/friends", async (req, res) => {
   const user1 = req.body.user1;
   const user2 = req.body.user2;
 
-  
+  console.log(user1, user2);
+
   try {
     let user1Doc = await User.findById(user1._id);
     let user2Doc = await User.findById(user2._id);

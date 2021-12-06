@@ -61,8 +61,6 @@ const Find = ({ currentUser }) => {
     });
   };
 
-  console.log(displayedUsers, displayPointer["start"], displayPointer["end"])
-
   const lastUserRef = useCallback((node) => {
     if (obs.current) {
       obs.current.disconnect();

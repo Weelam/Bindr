@@ -42,13 +42,14 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
   };
 
   useEffect(() => {
-    // get current user object
+    // get current user object everytime currentUser changes
     getUser(currentUser, setCurrentUserObj);
 
     return () => {
       setSelectedNotification(null);
+      // setCurrentUserObj(null);
     };
-  }, []);
+  }, [currentUser]);
 
   const handleLogout = () => {
     logout(setCurrentUser);
@@ -65,6 +66,10 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
   // run this when a user selects a notifications to click on
   // accepts or declines the person (TAKES IN USERID RATHER THAN USERNAME!!!)
   const handleAcceptDecline = (accepted, otherUserObj) => {
+    if (!currentUserObj) {
+      return
+    }
+    console.log(currentUserObj)
     if (accepted) {
       addFriend(currentUserObj, otherUserObj);
       setAcceptedSignal(true)
