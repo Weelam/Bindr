@@ -321,22 +321,20 @@ app.post("/api/groups/:username", async (req, res) => {
   const username = req.params.username;
   const newGroup = req.body.newGroup;
 
-  const groupDoc = new User({
-    username: username,
-    password: password,
-    profile: profile,
+  // create a new group object, save it, then use that objectID to update user.profile.groups
+  const groupDoc = new Group({
+    projectName: newGroup.projectName,
+    members: newGroup.members,
+    tasks: [],
+    discussions: []
   });
 
   try {
+    await groupDoc.save()
     let user = await User.find({username: username});
-    // create a new group object 
-
-
-
     user = user[0];
-    user.profile.groups.push(newGroup);
-    user.save()
-    console.log(user)
+    user.profile.groups.push(groupDoc._id);
+    await user.save()
     res.send({user})
   } catch (error) {
     console.log(error);

@@ -95,7 +95,7 @@ const DashboardPage = ({ currentUser }) => {
       return;
     }
     // open a modal to create a group
-    // createGroup(currentUser, newGroup["members"], setCurrentUserObj)
+    createGroup(currentUser, newGroup, setCurrentUserObj)
     setNewGroup(groupModel);
     setOpenModal(false);
   };

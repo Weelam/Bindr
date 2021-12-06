@@ -47,7 +47,6 @@ export const login = async (info, setCurrrentUser) => {
     } else {
       console.log("other issues");
       return {login: false, message: "other issues"}
-
     }
   } catch (error) {
     console.log(error);
