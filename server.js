@@ -20,7 +20,7 @@ const { mongoose } = require("./db/mongoose");
 
 // import the mongoose models
 const { User } = require("./models/user");
-const { Group } = require("./models/group")
+const { Group } = require("./models/group");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -222,7 +222,6 @@ app.post("/testUsers", async (req, res) => {
 
 /***Users ************************************/
 
-
 // get all users
 app.get("/api/users", async (req, res) => {
   try {
@@ -280,7 +279,6 @@ app.put("/api/users/:username", async (req, res) => {
 
 /*** Friends ************************************/
 
-
 // get friends
 app.get("/api/friends/:username", async (req, res) => {
   const username = req.params.username;
@@ -288,7 +286,7 @@ app.get("/api/friends/:username", async (req, res) => {
   try {
     let user = await User.find({ username: username });
     user = user[0];
-    res.send({friends: user.profile.friends})
+    res.send({ friends: user.profile.friends });
   } catch (error) {
     console.log(error);
   }
@@ -317,6 +315,24 @@ app.put("/api/friends", async (req, res) => {
 });
 
 /*** Groups ************************************/
+app.get("/api/groups/:username", async (req, res) => {
+  const username = req.params.username;
+  let groupsObj = [];
+  try {
+    let user = await User.find({ username: username });
+    user = user[0];
+    for (const groupID of user.profile.groups) {
+      let group = await Group.findById(groupID);
+      groupsObj.push(group);
+    };
+    // return a list of group objects (not just the id)
+    res.send({ groupsObj });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
 app.post("/api/groups/:username", async (req, res) => {
   const username = req.params.username;
   const newGroup = req.body.newGroup;
@@ -326,21 +342,21 @@ app.post("/api/groups/:username", async (req, res) => {
     projectName: newGroup.projectName,
     members: newGroup.members,
     tasks: [],
-    discussions: []
+    discussions: [],
   });
 
   try {
-    await groupDoc.save()
-    let user = await User.find({username: username});
+    await groupDoc.save();
+    let user = await User.find({ username: username });
     user = user[0];
     user.profile.groups.push(groupDoc._id);
-    await user.save()
-    res.send({user})
+    await user.save();
+    res.send({ user });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 /*** Notifications ************************************/
 

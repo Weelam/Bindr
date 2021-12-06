@@ -230,27 +230,33 @@ export const getFriends= async (username, setFriends) => {
     const response = await fetch(url);
     data = await response.json();
     setFriends(data["friends"]);
-    console.log(data)
   } catch (error) {
     console.log(error);
   }
 }
 
+// ({
+//   ...prev,
+//   profile: {
+//     groups: data["groupsObj"]
+//   }
+// })
+
 // get a users groups by their username
-export const getGroups = async (username, setCurrentUserObj) => {
+export const getGroups = async (username, setGroups) => {
   const url = `${API_HOST}/api/groups/${username}`;
   let data;
   try {
     const response = await fetch(url);
     data = await response.json();
-    console.log(data)
+    setGroups(data["groupsObj"])
   } catch (error) {
     console.log(error);
   }
 }
 
 // create a new group for a user
-export const createGroup = async (username, newGroup, setCurrentUserObj) => {
+export const createGroup = async (username, newGroup) => {
   const url = `${API_HOST}/api/groups/${username}`;
   const request = new Request(
     url,
@@ -271,8 +277,6 @@ export const createGroup = async (username, newGroup, setCurrentUserObj) => {
   } catch (error) {
     console.log(error);
   }
-
-
   // get groups will be called in a useEffect callback in dashboard page
 }
 

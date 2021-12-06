@@ -2,7 +2,7 @@ import { Button, Divider } from "@mui/material";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { defaultModel } from "../../actions/defaultModel";
-import { createGroup, getFriends, getUser } from "../../actions/user";
+import { createGroup, getFriends, getGroups, getUser } from "../../actions/user";
 import Friend from "../../components/Dashboard/Friend";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -72,7 +72,12 @@ const DashboardPage = ({ currentUser }) => {
     // getUser, getFriends, getGroups
     getUser(currentUser, setCurrentUserObj);
     getFriends(currentUser, setFriends);
+		getGroups(currentUser, setGroups);
   }, [currentUser]);
+
+	useEffect(() => {
+		console.log(groups)
+	}, [groups])
 
   // tabs and modals handling
   const handleLeftTab = (e, value) => {
@@ -94,8 +99,11 @@ const DashboardPage = ({ currentUser }) => {
       alert("Select a project name and at least one member!");
       return;
     }
-    // open a modal to create a group
-    createGroup(currentUser, newGroup, setCurrentUserObj)
+		// create the group, and then update 'groups' and 'currentUser'
+    createGroup(currentUser, newGroup)
+		getGroups(currentUser, setGroups)
+		getUser(currentUser, setCurrentUserObj)
+    // close modal and set newGroup back to default
     setNewGroup(groupModel);
     setOpenModal(false);
   };

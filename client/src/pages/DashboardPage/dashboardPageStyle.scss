@@ -60,7 +60,7 @@
 }
 
 .dashboardPage-selectGroup {
-  height: 100%;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,26 +91,10 @@
 			cursor: auto;
 		}
 	}
-
-	
-	button {
-		height: 200px;
-		width: 100%;
-		// flex-grow: 1;
-		margin: 20px 0;
-		background: $primary;
-		transition: filter 300ms;
-		&:hover {
-			background: $primary;
-			filter: brightness(1.2);
-		}
-	
-	}
 }
 .dashboardPage-modalItem {
-	// display: flex;
-	// align-items: center;
-	background-color: red;
+	display: flex;
+	align-items: center;
 	input[type='checkbox'] {
 		-webkit-appearance:none;
 		width:30px;

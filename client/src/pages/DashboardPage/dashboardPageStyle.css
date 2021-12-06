@@ -79,7 +79,7 @@
 }
 
 .dashboardPage-selectGroup {
-  height: 100%;
+  height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -124,13 +124,19 @@
   cursor: auto;
 }
 
-.dashboardPage-groupModal .dashboardPage-modalItem {
+.dashboardPage-modalItem {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.dashboardPage-modalItem input[type='checkbox'] {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
 }
 
 .dashboardPage-mainDivider {
