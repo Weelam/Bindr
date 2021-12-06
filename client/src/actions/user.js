@@ -122,7 +122,6 @@ export const updateUser = async (username, newUser) => {
 //   content: `${currentUser} wants to match with you!`
 // }
 export const sendNotification = async (notification) => {
-  const url = `${API_HOST}/api/users`;
   // replace the entire user object with the new one
   const request = new Request(
     `${API_HOST}/api/notification/send-notification`,
@@ -158,6 +157,34 @@ export const getNotifications = async (username) => {
   }
 };
 
+// add friend
+export const addFriend = async (user1, user2) => {
+  // add each other to friends list
+  console.log(user1, user2)
+
+  // replace the entire user object with the new one
+  const request = new Request(
+    `${API_HOST}/api/friends`,
+    {
+      method: "put",
+      body: JSON.stringify({ user1, user2 }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  try {
+    const res = await fetch(request);
+    const data = await res.json();
+    console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// get user by their id
 export const getUserByID = async (userID, setUserObj) => {
   const url = `${API_HOST}/api/usersID/${userID}`;
   let data;

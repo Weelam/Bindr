@@ -275,6 +275,28 @@ app.put("/api/users/:username", async (req, res) => {
   }
 });
 
+
+// add 2 users as each others friends
+app.put("/api/friends", async (req, res) => {
+  const user1 = req.body.user1;
+  const user2 = req.body.user2;
+
+  
+  try {
+    let user1Doc = await User.findById(user1._id);
+    let user2Doc = await User.findById(user2._id);
+    user1Doc.profile.friends.push(user2._id);
+    user2Doc.profile.friends.push(user1._id);
+    await user1Doc.save();
+    await user2Doc.save();
+    
+    res.send({user1: user1Doc, user2: user2Doc});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
 // for sending notficiations to users
 app.put("/api/notification/send-notification", async (req, res) => {
   let notification = req.body.notification;

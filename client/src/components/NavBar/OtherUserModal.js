@@ -10,6 +10,7 @@ const OtherUserModal = ({
   openModal,
   setOpenModal,
   userID,
+	handleAcceptDecline
 }) => {
 
 	const [userObj, setUserObj] = useState(defaultModel);
@@ -24,16 +25,17 @@ const OtherUserModal = ({
   };
 
   const handleAccept = () => {
-    // handleAcceptDecline(false, userObj);
+		console.log(userObj)
+    handleAcceptDecline(true, userObj);
     setOpenModal(false);
   };
 
   const handleReject = () => {
-    // handleAcceptDecline(true, userObj);
+		console.log(userObj)
+    handleAcceptDecline(false, userObj);
     setOpenModal(false);
   };
 
-	console.log(userObj)
   return (
     <div style={{ position: "relative" }}>
       <Modal open={openModal} onClose={handleClose} footer={"Footer"}>
@@ -47,7 +49,7 @@ const OtherUserModal = ({
           </div>
           <div className="modalDesc">
             <div className="modalDesc-nameyear">
-              <h3>{userObj["profile"]["firstName"]}</h3>
+              <h3>{userObj["username"]}</h3>
               <span>{userObj["profile"]["year"]}</span>
             </div>
             <p className="modalProgram">{userObj["profile"]["program"]}</p>

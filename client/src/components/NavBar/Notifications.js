@@ -7,7 +7,7 @@ import { getNotifications } from "../../actions/user";
 const notificationsModel = [{
   senderID: "sender",
   recipientID: "recipient",
-  content: "content"
+  content: "loading..."
 }]
 
 const Notifications = ({ currentUser, handleModal }) => {

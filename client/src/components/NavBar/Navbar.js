@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import { AiFillBell } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
@@ -6,17 +6,25 @@ import NavItem from "./NavItem";
 import ProfileMenu from "./ProfileMenu";
 import Notifications from "./Notifications";
 import { useHistory } from "react-router-dom";
-import {logout} from "../../actions/user"
+import {addFriend, logout, getUser } from "../../actions/user"
 import OtherUserModal from "./OtherUserModal";
+import { defaultModel } from "../../actions/defaultModel";
 
 function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
   const [notifDrop, setNotifDrop] = useState(false);
   const [profileDrop, setProfileDrop] = useState(false);
+  const [currentUserObj, setCurrentUserObj] = useState(defaultModel)
   // notification modal states
   const [openModal, setOpenModal] = useState(false);
   const [selectedUserID, setSelectedUserID] = useState();
 
   let history = useHistory();
+
+
+  useEffect(() => {
+    // get current user object
+    getUser(currentUser, setCurrentUserObj)
+  }, [])
 
   const handleLogout = () => {
     logout(setCurrentUser);
@@ -33,8 +41,12 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
 
   // run this when a user selects a notifications to click on
   // accepts or declines the person (TAKES IN USERID RATHER THAN USERNAME!!!)
-  const handleAcceptDecline = (accepted, otherUserID) => {
+  const handleAcceptDecline = (accepted, otherUserObj) => {
+    if (accepted) {
+      addFriend(currentUserObj, otherUserObj)
+      console.log('handleacceptdecline')
 
+    }
   }
 
   return (

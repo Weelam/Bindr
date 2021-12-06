@@ -29,7 +29,7 @@ const FindModal = ({ openModal, setOpenModal, user, handleRejectAccept }) => {
           </div>
           <div className="modalDesc">
             <div className="modalDesc-nameyear">
-              <h3>{user["profile"]["firstName"]}</h3>
+              <h3>{user["username"]}</h3>
               <span>{user["profile"]["year"]}</span>
             </div>
             <p className="modalProgram">{user["profile"]["program"]}</p>
