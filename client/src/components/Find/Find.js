@@ -191,6 +191,8 @@ const Find = ({ currentUser }) => {
     }
   };
 
+  console.log(filter["years"])
+
   useEffect(() => {
     if (currentUserObj) {
       setFilteredUsers(filterUsers(displayedUsers));
