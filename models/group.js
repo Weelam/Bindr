@@ -1,24 +1,6 @@
 /* Student mongoose model */
 const mongoose = require("mongoose");
 
-const TaskSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    minlength: 1,
-  },
-  task: {
-    type: String,
-    required: true,
-    minlength: 1,
-  },
-  completed: {
-    type: Boolean,
-    requied: true,
-  }
-  
-})
-
 const CommentSchema = new mongoose.Schema({
   // username of the person
   author: {
@@ -32,6 +14,27 @@ const CommentSchema = new mongoose.Schema({
     required: true,
     minlength: 1,
   }
+})
+
+const TaskSchema = new mongoose.Schema({
+  // the id of the user that is responsible for this task
+  user: "",
+  name: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  task: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  completed: {
+    type: Boolean,
+    requied: true,
+  },
+  deadline: Date,
+  comments: [CommentSchema]  
 })
 
 const DiscussionSchema = new mongoose.Schema({
@@ -52,12 +55,10 @@ const DiscussionSchema = new mongoose.Schema({
   },
   // list of comments inside this discussion
   comments: [CommentSchema] 
-
 })
 
-
 const GroupSchema = new mongoose.Schema({
-    projectname: {
+    projectName: {
       type: String,
       required: true,
       minlength: 1,
@@ -65,8 +66,6 @@ const GroupSchema = new mongoose.Schema({
     members: Array, // array of user id's
     tasks: [TaskSchema],
     discussions: [DiscussionSchema],
-
-
   });
 
 const Group = mongoose.model("Group", GroupSchema);

@@ -20,6 +20,7 @@ const { mongoose } = require("./db/mongoose");
 
 // import the mongoose models
 const { User } = require("./models/user");
+const { Group } = require("./models/group")
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -320,9 +321,18 @@ app.post("/api/groups/:username", async (req, res) => {
   const username = req.params.username;
   const newGroup = req.body.newGroup;
 
+  const groupDoc = new User({
+    username: username,
+    password: password,
+    profile: profile,
+  });
+
   try {
     let user = await User.find({username: username});
     // create a new group object 
+
+
+
     user = user[0];
     user.profile.groups.push(newGroup);
     user.save()

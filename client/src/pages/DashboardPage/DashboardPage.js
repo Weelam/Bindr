@@ -44,6 +44,14 @@ const useStyles = makeStyles({
   }),
 });
 
+// group model
+const groupModel = {
+  projectName: "",
+  members: [],
+  task: [],
+  discussions: [],
+};
+
 const DashboardPage = ({ currentUser }) => {
   // usestyles
   const [props, setProps] = useState({ color: "#52b788" });
@@ -51,15 +59,15 @@ const DashboardPage = ({ currentUser }) => {
   // user data states
   const [currentUserObj, setCurrentUserObj] = useState(defaultModel);
   const [friends, setFriends] = useState([]);
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState([groupModel]);
   const [selectedGroup, setSelectedGroup] = useState(); // store the id of the group
 
   // tab/modal states
   const [leftTab, setLeftTab] = useState(0);
   const [rightTab, setRightTab] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const [modalGroup, setModalGroup] = useState([]);
-	// const [newGroup, setnewGroup] = useState()
+  const [newGroup, setNewGroup] = useState(groupModel);
+
   useEffect(() => {
     // getUser, getFriends, getGroups
     getUser(currentUser, setCurrentUserObj);
@@ -81,19 +89,37 @@ const DashboardPage = ({ currentUser }) => {
 
   // creating groups, tasks, discussions
   const handleCreateGroup = () => {
-    console.log(modalGroup);
-
+    console.log(newGroup);
+    if (!newGroup["projectName"] || !newGroup["members"]) {
+      alert("Select a project name and at least one member!");
+      return;
+    }
     // open a modal to create a group
-    // createGroup(currentUser, modalGroup, setCurrentUserObj)
+    // createGroup(currentUser, newGroup["members"], setCurrentUserObj)
+    setNewGroup(groupModel);
+    setOpenModal(false);
   };
 
   // update selectedGroup
-  const handleModalGroup = (friend) => {
-    if (modalGroup.includes(friend)) {
-      setModalGroup((prev) => prev.filter((item) => item !== friend));
+  const handleCreateGroupMembers = (friend) => {
+    if (newGroup["members"].includes(friend)) {
+      setNewGroup((prev) => ({
+        ...prev,
+        members: prev["members"].filter((item) => item !== friend),
+      }));
     } else {
-      setModalGroup((prev) => [...new Set([...prev, friend])]);
+      setNewGroup((prev) => ({
+        ...prev,
+        members: [...new Set([...prev["members"], friend])],
+      }));
     }
+  };
+
+  const handleCreateGroupName = (name) => {
+    setNewGroup((prev) => ({
+      ...prev,
+      projectName: name,
+    }));
   };
 
   const handleCreateTasks = () => {
@@ -214,7 +240,7 @@ const DashboardPage = ({ currentUser }) => {
                     <div key={index} className={classes.modalItem}>
                       <input
                         type="checkbox"
-                        onChange={() => handleModalGroup(friend)}
+                        onChange={() => handleCreateGroupMembers(friend)}
                         value={friend}
                       />
                       <Friend key={index} friend={friend} />
@@ -223,10 +249,10 @@ const DashboardPage = ({ currentUser }) => {
                 })}
               </div>
               <input
-                value={}
-                onChange={(e) => handleOther(e, "program")}
+                value={newGroup["projectName"]}
+                onChange={(e) => handleCreateGroupName(e.target.value)}
                 type="text"
-								placeholder="group name"
+                placeholder="group name"
               />
               <Button
                 className={classes.button}
