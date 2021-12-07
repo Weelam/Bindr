@@ -11,6 +11,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
 import InputUnstyled from "@mui/base/InputUnstyled";
 import { createTask, getTasks } from "../../actions/user";
+import Task from "./Task";
 
 const taskModel = {
   // the id of the users that are responsible for this task
@@ -48,20 +49,36 @@ const useStyles = makeStyles({
 
 const Tasks = ({ selectedGroup, setSelectedGroup }) => {
   const classes = useStyles({ color: "#52b788" });
-	const [tasks, setTasks] = useState(selectedGroup["tasks"]);
+  const [tasks, setTasks] = useState(selectedGroup["tasks"]);
+  const [finishedTasks, setFinishedTasks] = useState([]);
+  const [unfinishedTasks, setUnfinishedTasks] = useState([]);
   // task creation
   const [openModal, setOpenModal] = useState(false);
   const [newTask, setNewTask] = useState(taskModel);
 
-  useEffect(async () => {
+  useEffect(() => {
     // get the tasks
+		console.log(selectedGroup)
     getTasks(selectedGroup, setTasks);
-		return () => {
-			console.log("unmounted tasks")
-		}
+    return () => {
+      console.log("unmounted tasks");
+    };
   }, [selectedGroup]);
 
 
+	useEffect(() => {
+		// filter the tasks everytime tasks is udpated
+    filterTasks(tasks, setFinishedTasks, setUnfinishedTasks);
+	}, [tasks])
+
+  const filterTasks = (tasks, setFinishedTasks, setUnfinishedTasks) => {
+    let unfinished = tasks.filter((task) => task.completed === false);
+    let finished = tasks.filter((task) => task.completed === true);
+    setUnfinishedTasks(unfinished);
+    setFinishedTasks(finished);
+  };
+
+  // ***************** handlers ******************* //
 
   const handleModal = (open) => {
     setOpenModal(open);
@@ -120,17 +137,19 @@ const Tasks = ({ selectedGroup, setSelectedGroup }) => {
     }
   };
 
-
-
   return (
     <div>
       <div className="tasks-allTasks">
         <div className="tasks-unfinishedTasks">
-					{tasks.map((task, index) => {
-						return <p>{task.name}</p>
-					})}
-				</div>
-        <div className="tasks-finishedTasks"></div>
+          {unfinishedTasks.map((task, index) => {
+            return <p>{task.name}</p>
+          })}
+        </div>
+        <div className="tasks-finishedTasks">
+          {finishedTasks.map((task, index) => {
+            return <Task task={task} />
+          })}
+        </div>
       </div>
 
       {/* **************** Creating tasks ********************* */}
