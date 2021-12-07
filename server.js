@@ -10,6 +10,7 @@ app.use(morgan("combined"));
 
 // get test user data
 const { exampleUsers } = require("./exampleUser.js");
+const {defaultModel} = require("./serverDefaultModel");
 
 // enable cors for dev
 const cors = require("cors");
@@ -21,6 +22,7 @@ const { mongoose } = require("./db/mongoose");
 // import the mongoose models
 const { User } = require("./models/user");
 const { Group } = require("./models/group");
+const { Report } = require("./models/report");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -124,7 +126,7 @@ app.post("/users/login", async (req, res) => {
     req.session.userID = user._id;
     req.session.username = user.username;
     console.log(req.session);
-    res.send({ currentUser: user.username });
+    res.send({ user: user });
   } catch (error) {
     console.log("bad username/password");
     res.status(400).send("bad username/password");
@@ -220,7 +222,7 @@ app.post("/testUsers", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
-/*** Courses/Programs ************************************/
+/*** Courses/Programs/Reports ************************************/
 
 // get all courses
 app.get("/api/courses", async (req, res) => {
@@ -252,7 +254,23 @@ app.get("/api/programs", async (req, res) => {
   }
 })
 
+// get all reports
+
+
 /*** Users ************************************/
+
+app.delete("/api/users/:userID", async (req, res) => {
+  const userID = req.params.userID;
+
+  try {
+    const users = await User.findByIdAndDelete(userID);
+    const updatedUsers = await User.find(); 
+    res.send({updatedUsers});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
 
 // get all users
 app.get("/api/users", async (req, res) => {
@@ -281,7 +299,10 @@ app.get("/api/users/:username", async (req, res) => {
 app.get("/api/usersID/:userID", async (req, res) => {
   const userID = req.params.userID;
   try {
-    const user = await User.findById(userID);
+    let user = await User.findById(userID);
+    if (!user) {
+      user = defaultModel
+    }
     res.send({ user: user });
   } catch (error) {
     console.log(error);

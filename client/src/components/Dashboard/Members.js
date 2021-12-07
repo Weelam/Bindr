@@ -8,7 +8,7 @@ const Members = ({ members }) => {
       {members.map((member, index) => {
         return (
           <div className="members-memberContainer">
-            <Member member={member} />
+            <Member key={member.username} member={member} />
           </div>
         );
       })}

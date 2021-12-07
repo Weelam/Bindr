@@ -13,13 +13,6 @@ const reports = [
   { user: "b", content: "Ths guy is trolling me" },
 ];
 
-const messages = [
-  {
-    user: "a",
-    content: "hello",
-  },
-];
-
 const AdminDashboard = ({ currentUser, users }) => {
   return (
     <>
@@ -30,25 +23,12 @@ const AdminDashboard = ({ currentUser, users }) => {
           <ul>
             {reports.map((report, i) => {
               return (
-                <Link to="reports">
-                  <div key={i} className="Widget-liContainer">
+                <Link  key={i} to="reports">
+                  <div className="Widget-liContainer">
                     <li>
                       {report["user"]} - {report["content"]}
                     </li>
                   </div>{" "}
-                </Link>
-              );
-            })}
-          </ul>
-        </Widget>
-        <Widget className="Widget-messages" title="Messages" header="something">
-          <ul>
-            {messages.map((message, i) => {
-              return (
-                <Link key={i} to="messages">
-                  <div className="Widget-liContainer">
-                    <li> {message["user"]} has messaged you </li>
-                  </div>
                 </Link>
               );
             })}

@@ -146,16 +146,10 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
                 item={<h3 className="logo">Logo</h3>}
               />
               <div className="linkMenu">
-                <NavItem to="reports" linkClass="link" item="reports" />
+                <NavItem to="reports" linkClass="link" item="Reports" />
               </div>
               <div className="linkMenu">
-                <NavItem to="users" linkClass="link" item="users" />
-              </div>
-              <div className="linkMenu">
-                <NavItem to="courses" linkClass="link" item="courses" />
-              </div>
-              <div className="linkMenu">
-                <NavItem to="messages" linkClass="link" item="messages" />
+                <NavItem to="users" linkClass="link" item="Users" />
               </div>
             </div>
             <div className="navButton" onClick={handleLogout}>

@@ -16,7 +16,6 @@ import {
 } from "../../actions/user";
 import { defaultModel } from "../../actions/defaultModel";
 
-
 // taken from material UI snack bar example
 const Alert = React.forwardRef((props, ref) => {
   return <MuiAlert elevation={6} ref={ref} {...props} />;
@@ -165,14 +164,13 @@ const Find = ({ currentUser }) => {
   const filterUsers = (displayedUsers) => {
     if (currentUserObj) {
       return displayedUsers.filter((x) => {
+        let isAdmin = x["profile"]["role"] === "admin";
         let isCourses = x["profile"]["courses"].some((course) =>
           filter["courses"].includes(course)
         );
         let isProgram = filter["programs"].includes(x["profile"]["program"]);
         let isYear = filter["years"].includes(x["profile"]["year"]);
-        let isFriends = currentUserObj["profile"]["friends"].includes(
-          x["_id"]
-        );
+        let isFriends = currentUserObj["profile"]["friends"].includes(x["_id"]);
         if (isFriends) {
           // console.log("isFriends", x["profile"]);
           isFriends = true;
@@ -186,7 +184,7 @@ const Find = ({ currentUser }) => {
         if (filter["courses"].length === 0) {
           isCourses = true;
         }
-        return isCourses && isYear && isProgram && !isFriends;
+        return isCourses && isYear && isProgram && !isFriends && !isAdmin;
       });
     }
   };

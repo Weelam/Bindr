@@ -1,24 +1,22 @@
 const API_HOST = "http://localhost:5000";
-
 // check if a user is logged in through session
 export const checkSession = (setCurrentUser) => {
   const url = `${API_HOST}/users/check-session`;
 
   fetch(url)
-  .then(res => {
+    .then((res) => {
       if (res.status === 200) {
-          return res.json();
+        return res.json();
       }
-  })  
-  .then(data => {
+    })
+    .then((data) => {
       if (data && data.currentUser) {
         setCurrentUser(data.currentUser);
       }
-  })
-  .catch(error => {
+    })
+    .catch((error) => {
       // console.log(error);
-  });
-
+    });
 };
 
 /*** Authentication ************************************/
@@ -38,15 +36,20 @@ export const login = async (info, setCurrrentUser) => {
     const res = await fetch(request);
     if (res.status === 200) {
       const data = await res.json();
-      setCurrrentUser(data.currentUser);
-      console.log("logged in currentUser: ", data.currentUser);
-      return {login: true, message: "login successful"}
+      const user = data.user;
+      setCurrrentUser(user.username);
+      console.log("logged in currentUser: ", user.username);
+      return {
+        login: true,
+        message: "login successful",
+        role: user.profile.role,
+      };
     } else if (res.status === 400) {
-      console.log("bad username/password")
-      return {login: false, message: "bad username/password"}
+      console.log("bad username/password");
+      return { login: false, message: "bad username/password" };
     } else {
       console.log("other issues");
-      return {login: false, message: "other issues"}
+      return { login: false, message: "other issues" };
     }
   } catch (error) {
     console.log(error);
@@ -101,13 +104,13 @@ export const getAllCourses = async (setAllCourses) => {
   try {
     const response = await fetch(url);
     data = await response.json();
-    console.log(data)
-    setAllCourses(data["courses"])
+    console.log(data);
+    setAllCourses(data["courses"]);
     return data;
   } catch (error) {
     console.log(error);
   }
-}
+};
 // const response = await fetch(url);
 // data = await response.json();
 // return data;
@@ -118,17 +121,36 @@ export const getAllPrograms = async (setAllPrograms) => {
   try {
     const response = await fetch(url);
     data = await response.json();
-    setAllPrograms(data["programs"])
+    setAllPrograms(data["programs"]);
     return data;
   } catch (error) {
     console.log(error);
   }
-}
-
+};
 
 /*** User Data ************************************/
 
+// delete a user by their id
+export const removeUser = async (userID, setUsers) => {
+  // replace the entire user object with the new one
+  const request = new Request(`${API_HOST}/api/users/${userID}`, {
+    method: "delete",
+    body: JSON.stringify({}),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
 
+  try {
+    const res = await fetch(request);
+    const data = await res.json();
+    setUsers(data.updatedUsers);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // update user details
 export const updateUser = async (username, newUser) => {
@@ -182,28 +204,27 @@ export const sendNotification = async (notification) => {
 
 // remove notification
 export const removeNotification = async (notification) => {
-    // replace the entire user object with the new one
-    const request = new Request(
-      `${API_HOST}/api/notification/remove-notification`,
-      {
-        method: "put",
-        body: JSON.stringify({ notification }),
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  
-    try {
-      const res = await fetch(request);
-      const data = await res.json();
-      // console.log(data)
-    } catch (error) {
-      console.log(error);
+  // replace the entire user object with the new one
+  const request = new Request(
+    `${API_HOST}/api/notification/remove-notification`,
+    {
+      method: "put",
+      body: JSON.stringify({ notification }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
     }
-}
+  );
 
+  try {
+    const res = await fetch(request);
+    const data = await res.json();
+    // console.log(data)
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // get notifications for a user
 export const getNotifications = async (username) => {
@@ -218,33 +239,29 @@ export const getNotifications = async (username) => {
   }
 };
 
-
 // add friend
 export const addFriend = async (user1, user2) => {
   // add each other to friends list
-  console.log(user1, user2)
+  console.log(user1, user2);
 
   // replace the entire user object with the new one
-  const request = new Request(
-    `${API_HOST}/api/friends`,
-    {
-      method: "put",
-      body: JSON.stringify({ user1, user2 }),
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const request = new Request(`${API_HOST}/api/friends`, {
+    method: "put",
+    body: JSON.stringify({ user1, user2 }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
 
   try {
     const res = await fetch(request);
     const data = await res.json();
-    console.log(data)
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 // get user by their id
 export const getUserByID = async (userID, setUserObj) => {
@@ -254,14 +271,14 @@ export const getUserByID = async (userID, setUserObj) => {
     const response = await fetch(url);
     data = await response.json();
     setUserObj(data["user"]);
-    return data["user"]
+    return data["user"];
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 // get a users friends by their username
-export const getFriends= async (username, setFriends) => {
+export const getFriends = async (username, setFriends) => {
   const url = `${API_HOST}/api/friends/${username}`;
   let data;
   try {
@@ -271,7 +288,7 @@ export const getFriends= async (username, setFriends) => {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 // get user object (only their profile details, not username and password!)
 export const getUser = async (username, setUserObj) => {
@@ -314,118 +331,108 @@ export const getGroups = async (username, setGroups) => {
   try {
     const response = await fetch(url);
     data = await response.json();
-    setGroups(data["groupsObj"])
+    setGroups(data["groupsObj"]);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 // create a new group for a user
 export const createGroup = async (username, newGroup, setUserObj) => {
   console.log(newGroup);
   const url = `${API_HOST}/api/groups/${username}`;
-  const request = new Request(
-    url,
-    {
-      method: "post",
-      body: JSON.stringify({ newGroup }),
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const request = new Request(url, {
+    method: "post",
+    body: JSON.stringify({ newGroup }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
   let data;
   try {
     const response = await fetch(request);
     data = await response.json();
-    let newGroups = data.user.profile.groups
-    setUserObj(prev => ({
+    let newGroups = data.user.profile.groups;
+    setUserObj((prev) => ({
       ...prev,
       profile: {
         ...prev.profile,
-        groups: newGroups
-      }
-    }))
+        groups: newGroups,
+      },
+    }));
   } catch (error) {
     console.log(error);
   }
   // get groups will be called in a useEffect callback in dashboard page
-}
+};
 
 /*** Tasks ************************************/
-
 
 // get all the tasks for a group
 export const getTasks = async (group, setTasks) => {
   const url = `${API_HOST}/api/task/${group._id}`;
-  console.log("getTasks gid: ", group._id)
+  console.log("getTasks gid: ", group._id);
   let data;
   try {
     const response = await fetch(url);
     data = await response.json();
-    setTasks(data.tasks)
-    console.log("getTasks", data)
-    return data
+    setTasks(data.tasks);
+    console.log("getTasks", data);
+    return data;
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 // create a task for a group
 export const createTask = async (group, newTask, setGroup) => {
-  console.log(newTask)
+  console.log(newTask);
   const url = `${API_HOST}/api/task/${group._id}`;
-  const request = new Request(
-    url,
-    {
-      method: "post",
-      body: JSON.stringify({ newTask }),
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const request = new Request(url, {
+    method: "post",
+    body: JSON.stringify({ newTask }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
   let data;
   try {
     const response = await fetch(request);
     data = await response.json();
-    setGroup(prev => ({
+    setGroup((prev) => ({
       ...prev,
-      tasks: data.group.tasks
-    }))
+      tasks: data.group.tasks,
+    }));
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-// update Tasks for a group 
+// update Tasks for a group
 export const updateTask = async (group, task, newTask, setTasks) => {
-  console.log(group, task, newTask)
+  console.log(group, task, newTask);
   const url = `${API_HOST}/api/task/${task._id}`;
-  const request = new Request(
-    url,
-    {
-      method: "put",
-      body: JSON.stringify({ newTask, groupID: group._id }),
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const request = new Request(url, {
+    method: "put",
+    body: JSON.stringify({ newTask, groupID: group._id }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+  });
   let tasks;
   try {
     const response = await fetch(request);
     tasks = await response.json();
-    console.log(tasks)
-    setTasks(tasks.tasks)
+    console.log(tasks);
+    setTasks(tasks.tasks);
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const sortByDate = (a, b) => {
-		return new Date(b.dateAdded) - new Date(a.dateAdded) 
-}
+  return new Date(b.dateAdded) - new Date(a.dateAdded);
+};
