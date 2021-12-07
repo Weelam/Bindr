@@ -164,7 +164,6 @@ const Find = ({ currentUser }) => {
 
   const filterUsers = (displayedUsers) => {
     if (currentUserObj) {
-      console.log(displayedUsers)
       return displayedUsers.filter((x) => {
         let isCourses = x["profile"]["courses"].some((course) =>
           filter["courses"].includes(course)
@@ -176,6 +175,7 @@ const Find = ({ currentUser }) => {
         );
         if (isFriends) {
           // console.log("isFriends", x["profile"]);
+          isFriends = true;
         }
         if (filter["years"].length === 0) {
           isYear = true;
@@ -190,8 +190,6 @@ const Find = ({ currentUser }) => {
       });
     }
   };
-
-  console.log(filter["years"])
 
   useEffect(() => {
     if (currentUserObj) {

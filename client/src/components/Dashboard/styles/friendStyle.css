@@ -1,0 +1,31 @@
+.friend-root .friend-itemContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 3px 9px;
+  width: 100%;
+}
+
+.friend-root .friend-itemContainer:hover {
+  background-color: rgba(82, 183, 136, 0.5);
+  cursor: pointer;
+}
+
+.friend-root .friend-itemContainer .friend-profileImgContainer {
+  margin-right: 7%;
+}
+
+.friend-root .friend-itemContainer .friend-profileImgContainer img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=friendStyle.css.map */

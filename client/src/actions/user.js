@@ -47,7 +47,6 @@ export const login = async (info, setCurrrentUser) => {
     } else {
       console.log("other issues");
       return {login: false, message: "other issues"}
-
     }
   } catch (error) {
     console.log(error);
@@ -92,7 +91,44 @@ export const signup = async (details, history) => {
   }
 };
 
+/*** Courses/Programs Data ************************************/
+// get all courses
+// get all programs
+
+export const getAllCourses = async (setAllCourses) => {
+  const url = `${API_HOST}/api/courses`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    console.log(data)
+    setAllCourses(data["courses"])
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+// const response = await fetch(url);
+// data = await response.json();
+// return data;
+
+export const getAllPrograms = async (setAllPrograms) => {
+  const url = `${API_HOST}/api/programs`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setAllPrograms(data["programs"])
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 /*** User Data ************************************/
+
+
 
 // update user details
 export const updateUser = async (username, newUser) => {
@@ -218,11 +254,24 @@ export const getUserByID = async (userID, setUserObj) => {
     const response = await fetch(url);
     data = await response.json();
     setUserObj(data["user"]);
+    return data["user"]
   } catch (error) {
     console.log(error);
   }
 }
 
+// get a users friends by their username
+export const getFriends= async (username, setFriends) => {
+  const url = `${API_HOST}/api/friends/${username}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setFriends(data["friends"]);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // get user object (only their profile details, not username and password!)
 export const getUser = async (username, setUserObj) => {
@@ -248,3 +297,135 @@ export const getAllUsers = async (setUsers) => {
     console.log(error);
   }
 };
+
+// ({
+//   ...prev,
+//   profile: {
+//     groups: data["groupsObj"]
+//   }
+// })
+
+/*** Group ************************************/
+
+// get a users groups by their username
+export const getGroups = async (username, setGroups) => {
+  const url = `${API_HOST}/api/groups/${username}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setGroups(data["groupsObj"])
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// create a new group for a user
+export const createGroup = async (username, newGroup, setUserObj) => {
+  console.log(newGroup);
+  const url = `${API_HOST}/api/groups/${username}`;
+  const request = new Request(
+    url,
+    {
+      method: "post",
+      body: JSON.stringify({ newGroup }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let data;
+  try {
+    const response = await fetch(request);
+    data = await response.json();
+    let newGroups = data.user.profile.groups
+    setUserObj(prev => ({
+      ...prev,
+      profile: {
+        ...prev.profile,
+        groups: newGroups
+      }
+    }))
+  } catch (error) {
+    console.log(error);
+  }
+  // get groups will be called in a useEffect callback in dashboard page
+}
+
+/*** Tasks ************************************/
+
+
+// get all the tasks for a group
+export const getTasks = async (group, setTasks) => {
+  const url = `${API_HOST}/api/task/${group._id}`;
+  console.log("getTasks gid: ", group._id)
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setTasks(data.tasks)
+    console.log("getTasks", data)
+    return data
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// create a task for a group
+export const createTask = async (group, newTask, setGroup) => {
+  console.log(newTask)
+  const url = `${API_HOST}/api/task/${group._id}`;
+  const request = new Request(
+    url,
+    {
+      method: "post",
+      body: JSON.stringify({ newTask }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let data;
+  try {
+    const response = await fetch(request);
+    data = await response.json();
+    setGroup(prev => ({
+      ...prev,
+      tasks: data.group.tasks
+    }))
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// update Tasks for a group 
+export const updateTask = async (group, task, newTask, setTasks) => {
+  console.log(group, task, newTask)
+  const url = `${API_HOST}/api/task/${task._id}`;
+  const request = new Request(
+    url,
+    {
+      method: "put",
+      body: JSON.stringify({ newTask, groupID: group._id }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let tasks;
+  try {
+    const response = await fetch(request);
+    tasks = await response.json();
+    console.log(tasks)
+    setTasks(tasks.tasks)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const sortByDate = (a, b) => {
+		return new Date(b.dateAdded) - new Date(a.dateAdded) 
+}

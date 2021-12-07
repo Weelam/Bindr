@@ -5,13 +5,19 @@ import "./styles/filterStyle.css";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import FindFilterForm from "./FindFilterForm";
-
+import { getAllCourses, getAllPrograms } from "../../actions/user";
 const FindFilter = ({ filter, setfilter }) => {
-  const [anchor1, setAnchor1] = useState(null);
-  const [anchor2, setAnchor2] = useState(null);
+  // retrieve all couress and programs data
+  const [allCourses, setAllCourses] = useState([]);
+  const [allPrograms, setAllPrograms] = useState([]);
 
   const [course, setCourse] = useState("");
   const [program, setProgram] = useState("");
+
+  useEffect(() => {
+    getAllCourses(setAllCourses);
+    getAllPrograms(setAllPrograms);
+  }, []);
 
   const handleClose = (setAnchor) => {
     setAnchor(null);
@@ -20,7 +26,6 @@ const FindFilter = ({ filter, setfilter }) => {
   const handleCourse = (e) => {
     e.preventDefault();
     setfilter((prev) => ({ ...prev, courses: [...prev["courses"], course] }));
-    handleClose(setAnchor1);
     setCourse("");
   };
 
@@ -30,7 +35,6 @@ const FindFilter = ({ filter, setfilter }) => {
       ...prev,
       programs: [...prev["programs"], program],
     }));
-    handleClose(setAnchor2);
     setProgram("");
   };
 
@@ -49,7 +53,7 @@ const FindFilter = ({ filter, setfilter }) => {
   };
 
   const handleYear = (e) => {
-    console.log(typeof e.target.value)
+    console.log(typeof e.target.value);
     const year = parseInt(e.target.value);
     switch (year) {
       case 1:
@@ -92,7 +96,7 @@ const FindFilter = ({ filter, setfilter }) => {
         setCourse={setCourse}
         value={course}
         type="courses"
-        list={["CSC309", "CSC373", "CSC111", "CSC473", "CSC369"]}
+        list={allCourses}
       />
       {filter["courses"].map((course, index) => {
         return (
@@ -108,7 +112,7 @@ const FindFilter = ({ filter, setfilter }) => {
         setCourse={setProgram}
         value={program}
         type="programs"
-        list={["Gender Studies", "Hamburger Flipping", "Political Science", "Cinema Studies"]}
+        list={allPrograms}
       />
       {filter["programs"].map((program, index) => {
         return (
@@ -118,7 +122,7 @@ const FindFilter = ({ filter, setfilter }) => {
           </div>
         );
       })}
-      
+
       <h4> Year </h4>
       <form className="filterYear">
         <div>

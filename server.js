@@ -20,6 +20,7 @@ const { mongoose } = require("./db/mongoose");
 
 // import the mongoose models
 const { User } = require("./models/user");
+const { Group } = require("./models/group");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -83,7 +84,7 @@ app.post("/users/signup", async (req, res) => {
     courses: [],
     program: req.body.program,
     bio: "",
-    profileImg: "",
+    profileImg: req.body.profileImg,
     groups: [],
     friends: [],
     wantToMatch: [],
@@ -122,13 +123,12 @@ app.post("/users/login", async (req, res) => {
     const user = await User.findByUsernamePassword(username, password);
     req.session.userID = user._id;
     req.session.username = user.username;
-    console.log(req.session)
+    console.log(req.session);
     res.send({ currentUser: user.username });
   } catch (error) {
-    console.log("bad username/password")
+    console.log("bad username/password");
     res.status(400).send("bad username/password");
   }
-
 });
 
 // logout user
@@ -220,6 +220,40 @@ app.post("/testUsers", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
+/*** Courses/Programs ************************************/
+
+// get all courses
+app.get("/api/courses", async (req, res) => {
+  let courses = [];
+  try {
+    const users = await User.find();
+    users.forEach(user => {
+      courses = [...new Set([...courses, ...user.profile.courses])]
+    })
+    res.send({courses});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+// get all programs
+app.get("/api/programs", async (req, res) => {
+  let programs = [];
+  try {
+    const users = await User.find();
+    users.forEach(user => {
+      programs = [...new Set([...programs, user.profile.program])]
+    })
+    res.send({programs});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+/*** Users ************************************/
+
 // get all users
 app.get("/api/users", async (req, res) => {
   try {
@@ -248,7 +282,7 @@ app.get("/api/usersID/:userID", async (req, res) => {
   const userID = req.params.userID;
   try {
     const user = await User.findById(userID);
-    res.send({ user:user });
+    res.send({ user: user });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
@@ -275,6 +309,20 @@ app.put("/api/users/:username", async (req, res) => {
   }
 });
 
+/*** Friends ************************************/
+
+// get friends
+app.get("/api/friends/:username", async (req, res) => {
+  const username = req.params.username;
+
+  try {
+    let user = await User.find({ username: username });
+    user = user[0];
+    res.send({ friends: user.profile.friends });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // add 2 users as each others friends
 app.put("/api/friends", async (req, res) => {
@@ -290,13 +338,116 @@ app.put("/api/friends", async (req, res) => {
     user2Doc.profile.friends.push(user1._id);
     await user1Doc.save();
     await user2Doc.save();
-    
-    res.send({user1: user1Doc, user2: user2Doc});
+
+    res.send({ user1: user1Doc, user2: user2Doc });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
+
+/*** Groups ************************************/
+app.get("/api/groups/:username", async (req, res) => {
+  const username = req.params.username;
+  let groupsObj = [];
+  try {
+    let user = await User.find({ username: username });
+    user = user[0];
+    for (const groupID of user.profile.groups) {
+      let group = await Group.findById(groupID);
+      groupsObj.push(group);
+    }
+    // return a list of group objects (not just the id)
+    res.send({ groupsObj });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/api/groups/:username", async (req, res) => {
+  const username = req.params.username;
+  const newGroup = req.body.newGroup;
+
+  // create a new group object, save it, then use that objectID to update user.profile.groups
+  const groupDoc = new Group({
+    projectName: newGroup.projectName,
+    members: newGroup.members,
+    tasks: [],
+    discussions: [],
+  });
+
+  try {
+    await groupDoc.save();
+    let user = await User.find({ username: username });
+    user = user[0];
+    user.profile.groups.push(groupDoc._id);
+    await user.save();
+    res.send({ user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+/*** Tasks ************************************/
+
+// get all tasks for groupID
+app.get("/api/task/:groupID", async (req, res) => {
+  const groupID = req.params.groupID;
+
+  try {
+    let group = await Group.findById(groupID)
+    res.send({ tasks: group.tasks });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// adding a task to groupID
+app.post("/api/task/:groupID", async (req, res) => {
+  const groupID = req.params.groupID;
+  const newTask = req.body.newTask;
+
+  try {
+    let group = await Group.findById(groupID);
+    group.tasks.push(newTask);
+    await group.save();
+    console.log(group);
+    res.send({ group });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// updating a task with taskID
+app.put("/api/task/:taskID", async (req, res) => {
+  const taskID = req.params.taskID;
+  const newTask = req.body.newTask;
+  const groupID = req.body.groupID;
+
+  try {
+    let group = await Group.findById(groupID);
+    let task = group.tasks.id(taskID)
+    // update task
+    task.users = newTask.users;
+    task.deadline = newTask.deadline;
+    task.desc = newTask.desc;
+    task.completed = newTask.completed;
+    task.name = newTask.name;
+    task.comments = newTask.comments;
+    // 
+    await group.save()
+    res.send({ tasks: group.tasks });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+/*** Notifications ************************************/
 
 // for sending notficiations to users
 app.put("/api/notification/send-notification", async (req, res) => {
@@ -318,7 +469,7 @@ app.put("/api/notification/send-notification", async (req, res) => {
 // for sending notficiations to users
 app.put("/api/notification/remove-notification", async (req, res) => {
   const notification = req.body.notification;
-  const recipientID = notification.recipientID
+  const recipientID = notification.recipientID;
   try {
     let recipient = await User.findById(recipientID);
     recipient.profile.notifications.remove(notification);

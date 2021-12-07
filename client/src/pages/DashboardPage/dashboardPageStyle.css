@@ -1,0 +1,197 @@
+.dashboardPage-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 85%;
+}
+
+.dashboardPage-left {
+  position: relative;
+  height: 100%;
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.dashboardPage-left .dashboardPage-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dashboardPage-left .dashboardPage-profile .dashboardPage-profileDetails * {
+  margin: 10px 0px;
+}
+
+.dashboardPage-left .dashboardPage-profile .dashboardPage-profileImgContainer {
+  width: auto;
+  margin-right: 20px;
+}
+
+.dashboardPage-left .dashboardPage-profile .dashboardPage-profileImgContainer .dashboardPage-profileImg {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: solid black 1px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.dashboardPage-left .dashboardPage-leftDivider {
+  margin: 20px 0px;
+}
+
+.dashboardPage-friendGroup {
+  height: 55%;
+}
+
+.dashboardPage-friendsContainer {
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.dashboardPage-friendsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboardPage-groupsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+
+.dashboardPage-groups {
+  overflow-y: scroll;
+  height: 80%;
+}
+
+.dashboardPage-groups::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboardPage-addGroupContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: white;
+}
+
+.dashboardPage-addGroupContainer button {
+  width: 100%;
+}
+
+.dashboardPage-groupDivider {
+  margin: 10px;
+}
+
+.dashboardPage-right {
+  height: 100%;
+  width: 75%;
+}
+
+.dashboardPage-right .dashboardPage-tasks,
+.dashboardPage-right .dashboardPage-discussions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dashboardPage-right .dashboardPage-tasks button,
+.dashboardPage-right .dashboardPage-discussions button {
+  margin: 10px 0;
+}
+
+.dashboardPage-selectGroup {
+  height: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dashboardPage-groupModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 400px;
+  width: 400px;
+  background: white;
+  border: 1px solid #000;
+  -webkit-box-shadow: 24;
+          box-shadow: 24;
+  padding: 20px;
+  overflow-y: hidden;
+}
+
+.dashboardPage-groupModal h2 {
+  margin: 10px;
+}
+
+.dashboardPage-groupModal .friend-itemContainer {
+  margin-left: 10px;
+}
+
+.dashboardPage-groupModal .friend-itemContainer:hover {
+  background-color: white;
+  cursor: auto;
+}
+
+.dashboardPage-modalFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: white;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.dashboardPage-modalFooter input {
+  background: #ebebeb;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 10px 5px;
+  width: 80%;
+  margin: 10px 0;
+}
+
+.dashboardPage-mainDivider {
+  height: 100%;
+  margin: 0px 20px !important;
+}
+/*# sourceMappingURL=dashboardPageStyle.css.map */

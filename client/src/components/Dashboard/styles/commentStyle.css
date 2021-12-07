@@ -1,0 +1,11 @@
+.comment-root {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.comment-author {
+  font-weight: bold;
+  margin-right: 10px;
+}
+/*# sourceMappingURL=commentStyle.css.map */

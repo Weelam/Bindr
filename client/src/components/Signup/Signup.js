@@ -10,6 +10,7 @@ const Signup = () => {
     password: "",
     year: null,
     program: "",
+    profileImg: "https://cdn.digg.com/wp-content/uploads/2021/11/08135427/Screen-Shot-2021-11-08-at-8.54.17-AM.jpg"
   });
   const history = useHistory();
 

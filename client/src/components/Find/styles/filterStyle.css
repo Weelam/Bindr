@@ -9,6 +9,15 @@
           flex-direction: column;
 }
 
+.filterRoot input {
+  background: #ebebeb;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 5px 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 .filterRoot form {
   margin: 10px 0px;
 }

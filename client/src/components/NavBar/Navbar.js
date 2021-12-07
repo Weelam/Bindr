@@ -91,7 +91,7 @@ function Navbar({ auth, isAdmin, setCurrentUser, currentUser }) {
               <NavItem
                 to="/"
                 linkClass="link"
-                item={<h3 className="logo">Logo</h3>}
+                item={<h3 className="logo">Bindr</h3>}
               />
               <div className="linkMenu">
                 <NavItem to="find" linkClass="link" item="Find" />

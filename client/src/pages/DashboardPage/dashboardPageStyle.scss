@@ -1,0 +1,153 @@
+.dashboardPage-root {
+  display: flex;
+  height: 85%;
+
+}
+
+.dashboardPage-left {
+  position: relative;
+  height: 100%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+
+  .dashboardPage-profile {
+    display: flex;
+
+    .dashboardPage-profileDetails {
+      * {
+        margin: 10px 0px;
+      }
+    }
+
+    .dashboardPage-profileImgContainer {
+      width: auto;
+      margin-right: 20px;
+
+      .dashboardPage-profileImg {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        border: solid black 1px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .dashboardPage-leftDivider {
+    margin: 20px 0px;
+  }
+}
+
+.dashboardPage-friendGroup {
+  height: 55%;
+}
+.dashboardPage-friendsContainer {
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+}
+.dashboardPage-groupsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dashboardPage-groups {
+  overflow-y: scroll;
+  height: 80%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dashboardPage-addGroupContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: white;
+  button {
+    width: 100%;
+  }
+}
+
+.dashboardPage-groupDivider {
+  margin: 10px;
+}
+
+.dashboardPage-right {
+  height: 100%;
+  width: 75%;
+  .dashboardPage-tasks,
+  .dashboardPage-discussions {
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin: 10px 0;
+    }
+  }
+}
+
+.dashboardPage-selectGroup {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboardPage-groupModal {
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	height: 400px;
+  width: 400px;
+	background: white;
+  border: 1px solid #000;
+  box-shadow: 24;
+	padding: 20px;
+  overflow-y: hidden;
+	h2 {
+		margin: 10px;
+	}
+	.friend-itemContainer {
+		margin-left: 10px;
+		&:hover {
+			background-color:white;
+			cursor: auto;
+		}
+	}
+}
+
+.dashboardPage-modalFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  input {
+    background: rgb(235, 235, 235);
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 10px 5px;
+    width: 80%;
+    margin: 10px 0;
+  }
+}
+
+.dashboardPage-mainDivider {
+  height: 100%;
+  margin: 0px 20px !important;
+
+}
+
