@@ -18,6 +18,8 @@ import IconButton from "@mui/material/IconButton";
 import Modal from "@mui/material/Modal";
 import { makeStyles } from "@mui/styles";
 import Group from "../../components/Dashboard/Group";
+import Tasks from "../../components/Dashboard/Tasks";
+import Members from "../../components/Dashboard/Members";
 
 // customize mui theme
 const theme = createTheme({
@@ -31,6 +33,7 @@ const useStyles = makeStyles({
   modalItem: {
     display: "flex",
     alignItems: "center",
+    // height: "10px",
     "& input": {
       width: "20px",
       height: "20px",
@@ -40,7 +43,7 @@ const useStyles = makeStyles({
     width: "100%",
     color: "white",
     // flex-grow: 1;
-    margin: " 20px 0",
+    margin: "20px 0",
     background: props.color,
     transition: "filter 300ms",
     "&:hover": {
@@ -81,10 +84,6 @@ const DashboardPage = ({ currentUser }) => {
     getGroups(currentUser, setGroups);
   }, [currentUser]);
 
-  useEffect(() => {
-    console.log(groups);
-  }, [groups]);
-
   // tabs and modals handling
   const handleLeftTab = (e, value) => {
     setLeftTab(value);
@@ -106,7 +105,10 @@ const DashboardPage = ({ currentUser }) => {
       return;
     }
     // create the group, and then update 'groups' and 'currentUser'
-    createGroup(currentUser, newGroup);
+    createGroup(currentUser, {
+      ...newGroup,
+      members: [...newGroup["members"], currentUserObj["_id"]],
+    });
     getGroups(currentUser, setGroups);
     getUser(currentUser, setCurrentUserObj);
     // close modal and set newGroup back to default
@@ -141,10 +143,6 @@ const DashboardPage = ({ currentUser }) => {
     console.log("selected group", group);
   };
 
-  const handleCreateTasks = () => {
-    console.log("creating tasks");
-  };
-
   const handleCreateDiscussion = () => {
     console.log("creating discussions");
   };
@@ -152,7 +150,7 @@ const DashboardPage = ({ currentUser }) => {
   return (
     <ThemeProvider theme={theme}>
       <div className="dashboardPage-root">
-        {/* left side */}
+        {/* ************************ left side **********************	*/}
         <div className="dashboardPage-left">
           <div className="dashboardPage-profile">
             <div className="dashboardPage-profileImgContainer">
@@ -189,34 +187,36 @@ const DashboardPage = ({ currentUser }) => {
               </div>
             ) : (
               <div className="dashboardPage-groupsContainer">
-								<div className="dashboardPage-groups">
-                {groups.map((group, index) => {
-                  return (
-                    <Group
-                      key={index}
-                      handleSelectedGroup={handleSelectedGroup}
-                      group={group}
-                    />
-                  );
-                })}
-								</div>
-								<Divider clasSName="dashboardPage-groupDivider" />
+                <div className="dashboardPage-groups">
+                  {groups.map((group, index) => {
+                    return (
+                      <Group
+                        key={index}
+                        handleSelectedGroup={handleSelectedGroup}
+                        group={group}
+                      />
+                    );
+                  })}
+                </div>
                 <div className="dashboardPage-addGroupContainer">
+                  <Divider clasSName="dashboardPage-groupDivider" />
                   <Button
                     onClick={() => handleModal(true)}
                     color="primary"
                     size="large"
-										variant="outlined"
+                    variant="outlined"
                   >
                     {/* <AddCircleIcon fontSize="large" color="primary" /> */}
-										Add Group
+                    Add Group
                   </Button>
                 </div>
               </div>
             )}
           </div>
         </div>
-        {/* right side	*/}
+
+        {/* ************************ right side **********************	*/}
+
         <Divider
           variant="middle"
           orientation="vertical"
@@ -233,30 +233,23 @@ const DashboardPage = ({ currentUser }) => {
           >
             <Tab label="Tasks" />
             <Tab label="Discussions" />
+            <Tab label="Members" />
           </Tabs>
+					
           {selectedGroup ? (
             <>
               {rightTab === 0 && (
                 <div className="dashboardPage-tasks">
-                  <IconButton
-                    onClick={handleCreateTasks}
-                    color="primary"
-                    size="small"
-                  >
-                    <AddCircleIcon fontSize="large" color="primary" />
-                  </IconButton>
+                  <Tasks group={selectedGroup} />
                 </div>
               )}
 
               {rightTab === 1 && (
-                <div className="dashboardPage-discussions">
-                  <IconButton
-                    onClick={handleCreateDiscussion}
-                    color="primary"
-                    size="small"
-                  >
-                    <AddCircleIcon fontSize="large" color="primary" />
-                  </IconButton>
+                <div className="dashboardPage-discussions">in progress...</div>
+              )}
+              {rightTab === 2 && (
+                <div className="dashboardPage-groupMembers">
+                  <Members members={selectedGroup["members"]} />
                 </div>
               )}
             </>
@@ -265,6 +258,7 @@ const DashboardPage = ({ currentUser }) => {
               <h2>Please Select a group</h2>
             </div>
           )}
+
           {/* modal that is opened to create group */}
           <Modal open={openModal} onClose={() => handleModal(false)}>
             <div className="dashboardPage-groupModal">
@@ -283,19 +277,21 @@ const DashboardPage = ({ currentUser }) => {
                   );
                 })}
               </div>
-              <input
-                value={newGroup["projectName"]}
-                onChange={(e) => handleCreateGroupName(e.target.value)}
-                type="text"
-                placeholder="group name"
-              />
-              <Button
-                className={classes.button}
-                variant="contained"
-                onClick={handleCreateGroup}
-              >
-                Create Group
-              </Button>
+              <div className="dashboardPage-modalFooter">
+                <input
+                  value={newGroup["projectName"]}
+                  onChange={(e) => handleCreateGroupName(e.target.value)}
+                  type="text"
+                  placeholder="group name"
+                />
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  onClick={handleCreateGroup}
+                >
+                  Create Group
+                </Button>
+              </div>
             </div>
           </Modal>
         </div>

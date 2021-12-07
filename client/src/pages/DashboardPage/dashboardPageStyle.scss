@@ -1,10 +1,10 @@
 .dashboardPage-root {
-  position: relative;
   display: flex;
   height: 85%;
 }
 
 .dashboardPage-left {
+  position: relative;
   height: 100%;
   width: 25%;
   display: flex;
@@ -43,15 +43,16 @@
 }
 .dashboardPage-friendsContainer {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  position: relative;
   &::-webkit-scrollbar {
     display: none;
   }
+
 }
 .dashboardPage-groupsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 100%;
 }
 
@@ -63,6 +64,9 @@
 }
 
 .dashboardPage-addGroupContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   button {
@@ -121,15 +125,14 @@
 		}
 	}
 }
-.dashboardPage-modalItem {
-	display: flex;
-	align-items: center;
-	input[type='checkbox'] {
-		-webkit-appearance:none;
-		width:30px;
-		height:30px;
-	}
+
+.dashboardPage-modalFooter {
+  background: white;
+  position: absolute;
+  bottom: 0px;
+  width: auto;
 }
+
 .dashboardPage-mainDivider {
   height: 100%;
   margin: 0px 20px !important;

@@ -257,6 +257,7 @@ export const getGroups = async (username, setGroups) => {
 
 // create a new group for a user
 export const createGroup = async (username, newGroup) => {
+  console.log(newGroup);
   const url = `${API_HOST}/api/groups/${username}`;
   const request = new Request(
     url,

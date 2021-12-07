@@ -1,0 +1,31 @@
+.member-root .member-itemContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 10px 0;
+  border-radius: 5px;
+  padding: 3px 9px;
+  width: 100%;
+}
+
+.member-root .member-itemContainer:hover {
+  background-color: rgba(82, 183, 136, 0.5);
+  cursor: pointer;
+}
+
+.member-root .member-itemContainer .member-profileImgContainer {
+  margin-right: 20px;
+}
+
+.member-root .member-itemContainer .member-profileImgContainer img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+/*# sourceMappingURL=memberStyle.css.map */

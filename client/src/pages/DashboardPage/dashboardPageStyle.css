@@ -1,5 +1,4 @@
 .dashboardPage-root {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -7,6 +6,7 @@
 }
 
 .dashboardPage-left {
+  position: relative;
   height: 100%;
   width: 25%;
   display: -webkit-box;
@@ -52,7 +52,8 @@
 
 .dashboardPage-friendsContainer {
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  position: relative;
 }
 
 .dashboardPage-friendsContainer::-webkit-scrollbar {
@@ -67,9 +68,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   height: 100%;
 }
 
@@ -82,6 +80,9 @@
 }
 
 .dashboardPage-addGroupContainer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -164,19 +165,11 @@
   cursor: auto;
 }
 
-.dashboardPage-modalItem {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.dashboardPage-modalItem input[type='checkbox'] {
-  -webkit-appearance: none;
-  width: 30px;
-  height: 30px;
+.dashboardPage-modalFooter {
+  background: white;
+  position: absolute;
+  bottom: 0px;
+  width: auto;
 }
 
 .dashboardPage-mainDivider {
