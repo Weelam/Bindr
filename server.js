@@ -220,7 +220,39 @@ app.post("/testUsers", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
-/***Users ************************************/
+/*** Courses/Programs ************************************/
+
+// get all courses
+app.get("/api/courses", async (req, res) => {
+  let courses = [];
+  try {
+    const users = await User.find();
+    users.forEach(user => {
+      courses = [...new Set([...courses, ...user.profile.courses])]
+    })
+    res.send({courses});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+// get all programs
+app.get("/api/programs", async (req, res) => {
+  let programs = [];
+  try {
+    const users = await User.find();
+    users.forEach(user => {
+      programs = [...new Set([...programs, user.profile.program])]
+    })
+    res.send({programs});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
+
+/*** Users ************************************/
 
 // get all users
 app.get("/api/users", async (req, res) => {

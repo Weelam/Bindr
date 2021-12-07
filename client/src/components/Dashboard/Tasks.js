@@ -244,6 +244,7 @@ const Tasks = ({ selectedGroup, setSelectedGroup, currentUser }) => {
             </div>
             <Divider />
           </div>
+					<Divider />
 
           <div className="tasks-modalFooter">
             <Button

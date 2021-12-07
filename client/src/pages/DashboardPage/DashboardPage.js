@@ -266,7 +266,7 @@ const DashboardPage = ({ currentUser }) => {
           {/* modal that is opened to create group */}
           <Modal open={openModal} onClose={() => handleModal(false)}>
             <div className="dashboardPage-groupModal">
-              <h2>Friends</h2>
+              <h2>Select Members</h2>
               <div className="dashboardPage-friendsContainer dashboardPage-modalFriends">
                 {friends.map((friend, index) => {
                   return (

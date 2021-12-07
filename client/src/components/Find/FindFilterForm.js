@@ -1,7 +1,7 @@
 import React from "react";
 
 const FindFilterForm = ({handleCourse, setCourse, value, type, list}) => {
-
+  console.log(list)
   return (
     <form onSubmit={handleCourse}>
       <input
@@ -13,7 +13,7 @@ const FindFilterForm = ({handleCourse, setCourse, value, type, list}) => {
 
       <datalist id={type}>
         {/* map all the courses here */}
-        {list.map((item, index) => (<option key={index} value={item}/>))}
+        {list && list.map((item, index) => (<option key={index} value={item}/>))}
       </datalist>
 
       <input className="filterSubmit" type="submit" value="Submit" />

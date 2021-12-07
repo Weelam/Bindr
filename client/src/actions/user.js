@@ -91,7 +91,44 @@ export const signup = async (details, history) => {
   }
 };
 
+/*** Courses/Programs Data ************************************/
+// get all courses
+// get all programs
+
+export const getAllCourses = async (setAllCourses) => {
+  const url = `${API_HOST}/api/courses`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    console.log(data)
+    setAllCourses(data["courses"])
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+// const response = await fetch(url);
+// data = await response.json();
+// return data;
+
+export const getAllPrograms = async (setAllPrograms) => {
+  const url = `${API_HOST}/api/programs`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setAllPrograms(data["programs"])
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 /*** User Data ************************************/
+
+
 
 // update user details
 export const updateUser = async (username, newUser) => {
