@@ -46,18 +46,26 @@ const useStyles = makeStyles({
   }),
 });
 
-const Tasks = ({ selectedGroup }) => {
+const Tasks = ({ selectedGroup, setSelectedGroup }) => {
   const classes = useStyles({ color: "#52b788" });
-  const [group, setGroup] = useState(selectedGroup);
-  const [tasks, setTasks] = useState(selectedGroup["tasks"]);
+	const [tasks, setTasks] = useState(selectedGroup["tasks"]);
   // task creation
   const [openModal, setOpenModal] = useState(false);
   const [newTask, setNewTask] = useState(taskModel);
 
-  useEffect(() => {
+	console.log(tasks);
+
+  useEffect(async () => {
     // get the tasks
-    getTasks(group, setTasks);
-  }, [group]);
+		console.log(selectedGroup)
+    let data = await getTasks(selectedGroup, setTasks);
+		console.log("retrieved tasks", data)
+		return () => {
+			console.log("unmounted tasks")
+		}
+  }, [selectedGroup]);
+
+
 
   const handleModal = (open) => {
     setOpenModal(open);
@@ -74,7 +82,7 @@ const Tasks = ({ selectedGroup }) => {
       return;
     }
     // call createTask to create and add the task
-    createTask(group, newTask, setGroup);
+    createTask(selectedGroup, newTask, setSelectedGroup);
 
     // reset newTask back to model and close the modal
     setNewTask(taskModel);
@@ -116,7 +124,7 @@ const Tasks = ({ selectedGroup }) => {
     }
   };
 
-	console.log(tasks);
+
 
   return (
     <div>
@@ -178,7 +186,7 @@ const Tasks = ({ selectedGroup }) => {
             </div>
             <h3>Assign Members</h3>
             <div className="tasks-modalMembers">
-              {group["members"].map((member, index) => {
+              {selectedGroup["members"].map((member, index) => {
                 return (
                   <div key={index} className="tasks-modalCheckbox">
                     <input

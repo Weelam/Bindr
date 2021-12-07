@@ -314,11 +314,14 @@ export const createGroup = async (username, newGroup) => {
 // get all the tasks for a group
 export const getTasks = async (group, setTasks) => {
   const url = `${API_HOST}/api/task/${group._id}`;
+  console.log("getTasks gid: ", group._id)
   let data;
   try {
     const response = await fetch(url);
     data = await response.json();
     setTasks(data.tasks)
+    console.log("getTasks", data)
+    return data
   } catch (error) {
     console.log(error);
   }
