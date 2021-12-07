@@ -81,8 +81,14 @@ const DashboardPage = ({ currentUser }) => {
     // getUser, getFriends, getGroups
     getUser(currentUser, setCurrentUserObj);
     getFriends(currentUser, setFriends);
-    getGroups(currentUser, setGroups);
   }, [currentUser]);
+
+	useEffect(() => {
+		// want to reupdate the groups when currentUserObj updates
+		getGroups(currentUser, setGroups);
+
+	}, [currentUserObj])
+
 
   // tabs and modals handling
   const handleLeftTab = (e, value) => {
@@ -108,9 +114,8 @@ const DashboardPage = ({ currentUser }) => {
     createGroup(currentUser, {
       ...newGroup,
       members: [...newGroup["members"], currentUserObj["_id"]],
-    });
-    getGroups(currentUser, setGroups);
-    getUser(currentUser, setCurrentUserObj);
+    }, setCurrentUserObj);
+
     // close modal and set newGroup back to default
     setNewGroup(groupModel);
     setOpenModal(false);

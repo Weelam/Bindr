@@ -53,13 +53,9 @@ const Tasks = ({ selectedGroup, setSelectedGroup }) => {
   const [openModal, setOpenModal] = useState(false);
   const [newTask, setNewTask] = useState(taskModel);
 
-	console.log(tasks);
-
   useEffect(async () => {
     // get the tasks
-		console.log(selectedGroup)
-    let data = await getTasks(selectedGroup, setTasks);
-		console.log("retrieved tasks", data)
+    getTasks(selectedGroup, setTasks);
 		return () => {
 			console.log("unmounted tasks")
 		}

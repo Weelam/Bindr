@@ -283,7 +283,7 @@ export const getGroups = async (username, setGroups) => {
 }
 
 // create a new group for a user
-export const createGroup = async (username, newGroup) => {
+export const createGroup = async (username, newGroup, setUserObj) => {
   console.log(newGroup);
   const url = `${API_HOST}/api/groups/${username}`;
   const request = new Request(
@@ -301,7 +301,14 @@ export const createGroup = async (username, newGroup) => {
   try {
     const response = await fetch(request);
     data = await response.json();
-    console.log(data)
+    let newGroups = data.user.profile.groups
+    setUserObj(prev => ({
+      ...prev,
+      profile: {
+        ...prev.profile,
+        groups: newGroups
+      }
+    }))
   } catch (error) {
     console.log(error);
   }
