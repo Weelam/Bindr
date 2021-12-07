@@ -1,0 +1,41 @@
+.task-root {
+  border: 1px solid black;
+}
+
+.task-summary .MuiAccordionSummary-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.task-checkbox {
+  margin: 0 10px;
+}
+
+.task-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.task-details .tasks-sideTitles {
+  font-weight: bold;
+  margin-right: 1.5rem;
+  width: 100px;
+}
+
+.task-details .tasks-sideTitles p {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.tasks-commentTitle {
+  font-weight: bold;
+}
+/*# sourceMappingURL=taskStyle.css.map */

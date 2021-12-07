@@ -1,3 +1,7 @@
+.tasks-root {
+  height: 90%;
+}
+
 .tasks-modal {
   input {
     background: rgb(235, 235, 235);
@@ -53,7 +57,7 @@
     border: 1px solid black;
     border-radius: 2px;
     width: 100%;
-		height: 100px;
+    height: 100px;
     padding: 10px 5px;
   }
 }
@@ -82,4 +86,48 @@
   button {
     width: 80%;
   }
+}
+
+.tasks-allTasks {
+  display: flex;
+  justify-content: space-between;
+  height: 90%;
+
+  .tasks-unfinishedTasks {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    .tasks-sideTitle {
+      font-weight: bold;
+    }
+  }
+
+  .tasks-finishedTasks {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    .tasks-sideTitle {
+      font-weight: bold;
+    }
+  }
+}
+
+.tasks-createButton {
+  height: 10%;
+	display: flex;
+	justify-content: center;
+}
+
+.tasks-taskItems {
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+	
+}
+
+.tasks-assignedUsers {
+	margin-right: 5px;
 }

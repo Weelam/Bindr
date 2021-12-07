@@ -1,3 +1,7 @@
+.tasks-root {
+  height: 90%;
+}
+
 .tasks-modal {
   position: absolute;
   top: 50%;
@@ -98,5 +102,69 @@
 
 .tasks-modalFooter button {
   width: 80%;
+}
+
+.tasks-allTasks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 90%;
+}
+
+.tasks-allTasks .tasks-unfinishedTasks {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 10px;
+}
+
+.tasks-allTasks .tasks-unfinishedTasks .tasks-sideTitle {
+  font-weight: bold;
+}
+
+.tasks-allTasks .tasks-finishedTasks {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 10px;
+}
+
+.tasks-allTasks .tasks-finishedTasks .tasks-sideTitle {
+  font-weight: bold;
+}
+
+.tasks-createButton {
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tasks-taskItems {
+  overflow-y: scroll;
+}
+
+.tasks-taskItems::-webkit-scrollbar {
+  display: none;
+}
+
+.tasks-assignedUsers {
+  margin-right: 5px;
 }
 /*# sourceMappingURL=tasksStyle.css.map */

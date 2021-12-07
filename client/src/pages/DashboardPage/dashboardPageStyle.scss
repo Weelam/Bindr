@@ -59,6 +59,7 @@
 
 .dashboardPage-groups {
   overflow-y: scroll;
+  height: 80%;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -70,6 +71,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  background: white;
   button {
     width: 100%;
   }
@@ -81,7 +83,7 @@
 
 .dashboardPage-right {
   height: 100%;
-  width: 100%;
+  width: 75%;
   .dashboardPage-tasks,
   .dashboardPage-discussions {
     display: flex;

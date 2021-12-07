@@ -84,7 +84,7 @@ app.post("/users/signup", async (req, res) => {
     courses: [],
     program: req.body.program,
     bio: "",
-    profileImg: "",
+    profileImg: req.body.profileImg,
     groups: [],
     friends: [],
     wantToMatch: [],
@@ -324,7 +324,7 @@ app.get("/api/groups/:username", async (req, res) => {
     for (const groupID of user.profile.groups) {
       let group = await Group.findById(groupID);
       groupsObj.push(group);
-    };
+    }
     // return a list of group objects (not just the id)
     res.send({ groupsObj });
   } catch (error) {
@@ -352,6 +352,63 @@ app.post("/api/groups/:username", async (req, res) => {
     user.profile.groups.push(groupDoc._id);
     await user.save();
     res.send({ user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+/*** Tasks ************************************/
+
+// get all tasks for groupID
+app.get("/api/task/:groupID", async (req, res) => {
+  const groupID = req.params.groupID;
+
+  try {
+    let group = await Group.findById(groupID)
+    res.send({ tasks: group.tasks });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// adding a task to groupID
+app.post("/api/task/:groupID", async (req, res) => {
+  const groupID = req.params.groupID;
+  const newTask = req.body.newTask;
+
+  try {
+    let group = await Group.findById(groupID);
+    group.tasks.push(newTask);
+    await group.save();
+    console.log(group);
+    res.send({ group });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// updating a task with taskID
+app.put("/api/task/:taskID", async (req, res) => {
+  const taskID = req.params.taskID;
+  const newTask = req.body.newTask;
+  const groupID = req.body.groupID;
+
+  try {
+    let group = await Group.findById(groupID);
+    let task = group.tasks.id(taskID)
+    // update task
+    task.users = newTask.users;
+    task.deadline = newTask.deadline;
+    task.desc = newTask.desc;
+    task.completed = newTask.completed;
+    task.name = newTask.name;
+    task.comments = newTask.comments;
+    // 
+    await group.save()
+    res.send({ tasks: group.tasks });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");

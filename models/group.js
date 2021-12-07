@@ -13,18 +13,19 @@ const CommentSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-  }
+  },
+  dateAdded: Date
 })
 
 const TaskSchema = new mongoose.Schema({
   // the id of the user that is responsible for this task
-  user: "",
+  users: Array,
   name: {
     type: String,
     required: true,
     minlength: 1,
   },
-  task: {
+  desc: {
     type: String,
     required: true,
     minlength: 1,

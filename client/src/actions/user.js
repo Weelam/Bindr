@@ -217,6 +217,7 @@ export const getUserByID = async (userID, setUserObj) => {
     const response = await fetch(url);
     data = await response.json();
     setUserObj(data["user"]);
+    return data["user"]
   } catch (error) {
     console.log(error);
   }
@@ -341,7 +342,7 @@ export const createTask = async (group, newTask, setGroup) => {
   const request = new Request(
     url,
     {
-      method: "put",
+      method: "post",
       body: JSON.stringify({ newTask }),
       headers: {
         Accept: "application/json, text/plain, */*",
@@ -362,3 +363,32 @@ export const createTask = async (group, newTask, setGroup) => {
   }
 }
 
+// update Tasks for a group 
+export const updateTask = async (group, task, newTask, setTasks) => {
+  console.log(group, task, newTask)
+  const url = `${API_HOST}/api/task/${task._id}`;
+  const request = new Request(
+    url,
+    {
+      method: "put",
+      body: JSON.stringify({ newTask, groupID: group._id }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let tasks;
+  try {
+    const response = await fetch(request);
+    tasks = await response.json();
+    console.log(tasks)
+    setTasks(tasks.tasks)
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const sortByDate = (a, b) => {
+		return new Date(b.dateAdded) - new Date(a.dateAdded) 
+}

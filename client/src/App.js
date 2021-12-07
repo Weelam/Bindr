@@ -17,6 +17,8 @@ import AdminMessages from "./pages/Admin/AdminMessages";
 import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { checkSession } from "./actions/user";
+import CssBaseline from '@mui/material/CssBaseline';
+
 // This is the mock data from users.json, and it will be passed around as a prop through out the application
 // each user already has a list of courses, which we will pull externally
 const usersData = data["data"];
@@ -41,6 +43,7 @@ function App() {
 
   return (
     <div className="App">
+      <CssBaseline />
       <Router>
         {/* not secure atm, we'll add that in phase 2 */}
 

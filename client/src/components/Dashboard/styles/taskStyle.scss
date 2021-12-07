@@ -1,0 +1,33 @@
+.task-root {
+
+	border: 1px solid black;
+}
+
+.task-summary {
+  .MuiAccordionSummary-content {
+    display: flex;
+		align-items: center;
+		
+  }
+}
+
+.task-checkbox {
+	margin: 0 10px;
+}
+
+.task-details {
+	display: flex;
+	align-items: center;
+	.tasks-sideTitles {
+		font-weight: bold;
+		margin-right: 1.5rem;
+		width: 100px;
+
+		p {
+			flex-wrap: wrap;
+		}
+	}
+}
+.tasks-commentTitle {
+	font-weight: bold;
+}

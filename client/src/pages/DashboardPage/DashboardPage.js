@@ -83,12 +83,10 @@ const DashboardPage = ({ currentUser }) => {
     getFriends(currentUser, setFriends);
   }, [currentUser]);
 
-	useEffect(() => {
-		// want to reupdate the groups when currentUserObj updates
-		getGroups(currentUser, setGroups);
-
-	}, [currentUserObj])
-
+  useEffect(() => {
+    // want to reupdate the groups when currentUserObj updates
+    getGroups(currentUser, setGroups);
+  }, [currentUserObj]);
 
   // tabs and modals handling
   const handleLeftTab = (e, value) => {
@@ -105,16 +103,19 @@ const DashboardPage = ({ currentUser }) => {
 
   // creating groups, tasks, discussions
   const handleCreateGroup = () => {
-    console.log(newGroup);
-    if (!newGroup["projectName"] || !newGroup["members"]) {
+    if (!newGroup["projectName"] || newGroup["members"].length < 1) {
       alert("Select a project name and at least one member!");
       return;
     }
     // create the group, and then update 'groups' and 'currentUser'
-    createGroup(currentUser, {
-      ...newGroup,
-      members: [...newGroup["members"], currentUserObj["_id"]],
-    }, setCurrentUserObj);
+    createGroup(
+      currentUser,
+      {
+        ...newGroup,
+        members: [...newGroup["members"], currentUserObj["_id"]],
+      },
+      setCurrentUserObj
+    );
 
     // close modal and set newGroup back to default
     setNewGroup(groupModel);
@@ -240,23 +241,21 @@ const DashboardPage = ({ currentUser }) => {
             <Tab label="Discussions" />
             <Tab label="Members" />
           </Tabs>
-					
+
           {selectedGroup ? (
             <>
               {rightTab === 0 && (
-                <div className="dashboardPage-tasks">
-                  <Tasks selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup}/>
-                </div>
+                <Tasks
+									currentUser={currentUser}
+                  selectedGroup={selectedGroup}
+                  setSelectedGroup={setSelectedGroup}
+                />
               )}
 
               {rightTab === 1 && (
                 <div className="dashboardPage-discussions">in progress...</div>
               )}
-              {rightTab === 2 && (
-                <div className="dashboardPage-groupMembers">
-                  <Members members={selectedGroup["members"]} />
-                </div>
-              )}
+              {rightTab === 2 && <Members members={selectedGroup["members"]} />}
             </>
           ) : (
             <div className="dashboardPage-selectGroup">

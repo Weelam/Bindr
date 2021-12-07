@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   }),
 });
 
-const Tasks = ({ selectedGroup, setSelectedGroup }) => {
+const Tasks = ({ selectedGroup, setSelectedGroup, currentUser }) => {
   const classes = useStyles({ color: "#52b788" });
   const [tasks, setTasks] = useState(selectedGroup["tasks"]);
   const [finishedTasks, setFinishedTasks] = useState([]);
@@ -58,19 +58,20 @@ const Tasks = ({ selectedGroup, setSelectedGroup }) => {
 
   useEffect(() => {
     // get the tasks
-		console.log(selectedGroup)
+    console.log(selectedGroup);
     getTasks(selectedGroup, setTasks);
     return () => {
       console.log("unmounted tasks");
     };
   }, [selectedGroup]);
 
-
-	useEffect(() => {
-		// filter the tasks everytime tasks is udpated
+  useEffect(() => {
+    // filter the tasks everytime tasks is udpated
     filterTasks(tasks, setFinishedTasks, setUnfinishedTasks);
-	}, [tasks])
-
+  }, [tasks]);
+	
+	console.log(tasks)
+	
   const filterTasks = (tasks, setFinishedTasks, setUnfinishedTasks) => {
     let unfinished = tasks.filter((task) => task.completed === false);
     let finished = tasks.filter((task) => task.completed === true);
@@ -92,6 +93,11 @@ const Tasks = ({ selectedGroup, setSelectedGroup }) => {
 
     if (newTask["users"].length === 0) {
       alert("Must assign at least one member");
+      return;
+    }
+
+    if (!newTask["desc"]) {
+      alert("Must provide a description");
       return;
     }
     // call createTask to create and add the task
@@ -138,17 +144,39 @@ const Tasks = ({ selectedGroup, setSelectedGroup }) => {
   };
 
   return (
-    <div>
+    <div className="tasks-root">
       <div className="tasks-allTasks">
         <div className="tasks-unfinishedTasks">
-          {unfinishedTasks.map((task, index) => {
-            return <p>{task.name}</p>
-          })}
+          <p className="tasks-sideTitle">Todo</p>
+          <div className="tasks-taskItems">
+            {unfinishedTasks.map((task, index) => {
+              return (
+                <Task
+                  currentUser={currentUser}
+                  key={task._id}
+                  selectedGroup={selectedGroup}
+                  task={task}
+                  setTasks={setTasks}
+                />
+              );
+            })}
+          </div>
         </div>
         <div className="tasks-finishedTasks">
-          {finishedTasks.map((task, index) => {
-            return <Task task={task} />
-          })}
+          <p className="tasks-sideTitle">Finished</p>
+          <div className="tasks-taskItems">
+            {finishedTasks.map((task, index) => {
+              return (
+                <Task
+                  currentUser={currentUser}
+                  key={task._id}
+                  selectedGroup={selectedGroup}
+                  task={task}
+                  setTasks={setTasks}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
 

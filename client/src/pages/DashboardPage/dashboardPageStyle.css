@@ -73,6 +73,7 @@
 
 .dashboardPage-groups {
   overflow-y: scroll;
+  height: 80%;
 }
 
 .dashboardPage-groups::-webkit-scrollbar {
@@ -89,6 +90,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background: white;
 }
 
 .dashboardPage-addGroupContainer button {
@@ -101,7 +103,7 @@
 
 .dashboardPage-right {
   height: 100%;
-  width: 100%;
+  width: 75%;
 }
 
 .dashboardPage-right .dashboardPage-tasks,
