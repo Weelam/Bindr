@@ -240,7 +240,7 @@ const DashboardPage = ({ currentUser }) => {
             <>
               {rightTab === 0 && (
                 <div className="dashboardPage-tasks">
-                  <Tasks group={selectedGroup} />
+                  <Tasks selectedGroup={selectedGroup} />
                 </div>
               )}
 

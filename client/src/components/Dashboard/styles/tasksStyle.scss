@@ -32,23 +32,41 @@
   }
 }
 
+.tasks-modalCheckbox {
+  display: flex;
+  align-items: center;
+  // height: 10px;
+  input {
+    width: 20px;
+    height: 20px;
+  }
+}
 .tasks-modalMembers {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+.tasks-modalDesc {
+  textarea {
+    background: rgb(235, 235, 235);
+    border: 1px solid black;
+    border-radius: 2px;
+    width: 100%;
+		height: 100px;
+    padding: 10px 5px;
+  }
+}
 .tasks-modalDeadlineField {
-
 }
 
 .tasks-modalName {
 }
 
 .tasks-modalBody {
-	height: 80%;
-	overflow-y: scroll;
-	&::-webkit-scrollbar {
+  height: 80%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
     display: none;
   }
 }

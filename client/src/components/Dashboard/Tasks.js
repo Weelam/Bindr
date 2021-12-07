@@ -9,15 +9,16 @@ import Member from "./Member";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DateTimePicker from "@mui/lab/DateTimePicker";
-import InputUnstyled from '@mui/base/InputUnstyled';
+import InputUnstyled from "@mui/base/InputUnstyled";
+import { createTask, getTasks } from "../../actions/user";
 
 const taskModel = {
   // the id of the users that are responsible for this task
   users: [],
   name: "",
-  task: "",
+  desc: "",
   completed: false,
-  deadline: Date.now(),
+  deadline: new Date(),
   comments: [],
 };
 // mui styles
@@ -45,22 +46,39 @@ const useStyles = makeStyles({
   }),
 });
 
-const Tasks = ({ group }) => {
+const Tasks = ({ selectedGroup }) => {
   const classes = useStyles({ color: "#52b788" });
-  const [tasks, setTasks] = useState(group["tasks"]);
-
+  const [group, setGroup] = useState(selectedGroup);
+  const [tasks, setTasks] = useState(selectedGroup["tasks"]);
   // task creation
   const [openModal, setOpenModal] = useState(false);
   const [newTask, setNewTask] = useState(taskModel);
+
+  useEffect(() => {
+    // get the tasks
+    getTasks(group, setTasks);
+  }, [group]);
 
   const handleModal = (open) => {
     setOpenModal(open);
   };
 
   const handleCreateTask = () => {
-    console.log(newTask);
+    if (!newTask["name"]) {
+      alert("Must select a task name!");
+      return;
+    }
 
+    if (newTask["users"].length === 0) {
+      alert("Must assign at least one member");
+      return;
+    }
+    // call createTask to create and add the task
+    createTask(group, newTask, setGroup);
+
+    // reset newTask back to model and close the modal
     setNewTask(taskModel);
+    setOpenModal(false);
   };
 
   const handleModalName = (name) => {
@@ -77,6 +95,13 @@ const Tasks = ({ group }) => {
     }));
   };
 
+  const handleModalDesc = (desc) => {
+    setNewTask((prev) => ({
+      ...prev,
+      desc: desc,
+    }));
+  };
+
   const handleAssignMembers = (member) => {
     if (newTask["users"].includes(member)) {
       setNewTask((prev) => ({
@@ -90,16 +115,30 @@ const Tasks = ({ group }) => {
       }));
     }
   };
+
+	console.log(tasks);
+
   return (
     <div>
-      <IconButton
-        onClick={() => handleModal(true)}
-        color="primary"
-        size="small"
-      >
-        <AddCircleIcon fontSize="large" color="primary" />
-      </IconButton>
+      <div className="tasks-allTasks">
+        <div className="tasks-unfinishedTasks">
+					{tasks.map((task, index) => {
+						return <p>{task.name}</p>
+					})}
+				</div>
+        <div className="tasks-finishedTasks"></div>
+      </div>
 
+      {/* **************** Creating tasks ********************* */}
+      <div className="tasks-createButton">
+        <IconButton
+          onClick={() => handleModal(true)}
+          color="primary"
+          size="small"
+        >
+          <AddCircleIcon fontSize="large" color="primary" />
+        </IconButton>
+      </div>
       <Modal open={openModal} onClose={() => handleModal(false)}>
         <div className="tasks-modal">
           <div className="tasks-modalBody">
@@ -112,14 +151,27 @@ const Tasks = ({ group }) => {
                 placeholder="task name"
               />
             </div>
+            <h3>Task Description</h3>
+
+            <div className="tasks-modalDesc">
+              <textarea
+                type="text"
+                onChange={(e) => handleModalDesc(e.target.value)}
+                maxLength={150}
+                value={newTask["desc"]}
+                placeholder="task description"
+              />
+            </div>
             <h3>Deadline</h3>
             <div className="tasks-modalDeadline">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateTimePicker
-                  renderInput={(props) => <TextField  fullWidth={true} {...props} />}
+                  renderInput={(props) => (
+                    <TextField fullWidth={true} {...props} />
+                  )}
                   value={newTask["deadline"]}
                   onChange={(newValue) => {
-                    handleModalDeadline(newValue)
+                    handleModalDeadline(newValue);
                   }}
                 />
               </LocalizationProvider>
@@ -128,7 +180,7 @@ const Tasks = ({ group }) => {
             <div className="tasks-modalMembers">
               {group["members"].map((member, index) => {
                 return (
-                  <div key={index} className={classes.modalItem}>
+                  <div key={index} className="tasks-modalCheckbox">
                     <input
                       type="checkbox"
                       onChange={() => handleAssignMembers(member)}

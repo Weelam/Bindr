@@ -235,12 +235,39 @@ export const getFriends= async (username, setFriends) => {
   }
 }
 
+// get user object (only their profile details, not username and password!)
+export const getUser = async (username, setUserObj) => {
+  const url = `${API_HOST}/api/users/${username}`;
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setUserObj(data["currentUser"]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// get all users
+export const getAllUsers = async (setUsers) => {
+  const url = `${API_HOST}/api/users`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    setUsers(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // ({
 //   ...prev,
 //   profile: {
 //     groups: data["groupsObj"]
 //   }
 // })
+
+/*** Group ************************************/
 
 // get a users groups by their username
 export const getGroups = async (username, setGroups) => {
@@ -281,28 +308,47 @@ export const createGroup = async (username, newGroup) => {
   // get groups will be called in a useEffect callback in dashboard page
 }
 
+/*** Tasks ************************************/
 
-// get user object (only their profile details, not username and password!)
-export const getUser = async (username, setUserObj) => {
-  const url = `${API_HOST}/api/users/${username}`;
+
+// get all the tasks for a group
+export const getTasks = async (group, setTasks) => {
+  const url = `${API_HOST}/api/task/${group._id}`;
   let data;
   try {
     const response = await fetch(url);
     data = await response.json();
-    setUserObj(data["currentUser"]);
+    setTasks(data.tasks)
   } catch (error) {
     console.log(error);
   }
-};
+}
 
-// get all users
-export const getAllUsers = async (setUsers) => {
-  const url = `${API_HOST}/api/users`;
+// create a task for a group
+export const createTask = async (group, newTask, setGroup) => {
+  console.log(newTask)
+  const url = `${API_HOST}/api/task/${group._id}`;
+  const request = new Request(
+    url,
+    {
+      method: "put",
+      body: JSON.stringify({ newTask }),
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  let data;
   try {
-    const response = await fetch(url);
-    const data = await response.json();
-    setUsers(data);
+    const response = await fetch(request);
+    data = await response.json();
+    setGroup(prev => ({
+      ...prev,
+      tasks: data.group.tasks
+    }))
   } catch (error) {
     console.log(error);
   }
-};
+}
+

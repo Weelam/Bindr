@@ -39,6 +39,20 @@
   cursor: auto;
 }
 
+.tasks-modalCheckbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.tasks-modalCheckbox input {
+  width: 20px;
+  height: 20px;
+}
+
 .tasks-modalMembers {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -48,6 +62,15 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.tasks-modalDesc textarea {
+  background: #ebebeb;
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 100%;
+  height: 100px;
+  padding: 10px 5px;
 }
 
 .tasks-modalBody {
