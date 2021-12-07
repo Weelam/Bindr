@@ -1,0 +1,79 @@
+.tasks-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 400px;
+  width: 400px;
+  background: white;
+  border: 1px solid #000;
+  -webkit-box-shadow: 24;
+          box-shadow: 24;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.tasks-modal input {
+  background: #ebebeb;
+  border: 1px solid black;
+  border-radius: 2px;
+  width: 100%;
+  padding: 10px 5px;
+}
+
+.tasks-modal::-webkit-scrollbar {
+  display: none;
+}
+
+.tasks-modal h2 {
+  margin: 10px;
+}
+
+.tasks-modal .friend-itemContainer {
+  margin-left: 10px;
+}
+
+.tasks-modal .friend-itemContainer:hover {
+  background-color: white;
+  cursor: auto;
+}
+
+.tasks-modalMembers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.tasks-modalBody {
+  height: 80%;
+  overflow-y: scroll;
+}
+
+.tasks-modalBody::-webkit-scrollbar {
+  display: none;
+}
+
+.tasks-modalFooter {
+  background: white;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tasks-modalFooter button {
+  width: 80%;
+}
+/*# sourceMappingURL=tasksStyle.css.map */

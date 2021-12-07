@@ -5,12 +5,9 @@ import "./styles/memberStyle.css";
 
 const Member = ({ member }) => {
   const [user, setUser] = useState(defaultModel);
-
   useEffect(() => {
     getUserByID(member, setUser);
   }, []);
-
-	console.log(user)
 
   return (
     <div className="member-root">

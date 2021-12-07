@@ -40,10 +40,10 @@ const useStyles = makeStyles({
     },
   },
   button: (props) => ({
-    width: "100%",
+    width: "80%",
     color: "white",
     // flex-grow: 1;
-    margin: "20px 0",
+    margin: "10px 0",
     background: props.color,
     transition: "filter 300ms",
     "&:hover": {
@@ -199,7 +199,7 @@ const DashboardPage = ({ currentUser }) => {
                   })}
                 </div>
                 <div className="dashboardPage-addGroupContainer">
-                  <Divider clasSName="dashboardPage-groupDivider" />
+                  <Divider className="dashboardPage-groupDivider" />
                   <Button
                     onClick={() => handleModal(true)}
                     color="primary"

@@ -141,15 +141,11 @@
   height: 400px;
   width: 400px;
   background: white;
-  border: 2px solid #000;
+  border: 1px solid #000;
   -webkit-box-shadow: 24;
           box-shadow: 24;
   padding: 20px;
-  overflow-y: scroll;
-}
-
-.dashboardPage-groupModal::-webkit-scrollbar {
-  display: none;
+  overflow-y: hidden;
 }
 
 .dashboardPage-groupModal h2 {
@@ -166,10 +162,30 @@
 }
 
 .dashboardPage-modalFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: white;
-  position: absolute;
+  position: fixed;
   bottom: 0px;
-  width: auto;
+  left: 0px;
+  width: 100%;
+}
+
+.dashboardPage-modalFooter input {
+  background: #ebebeb;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 10px 5px;
+  width: 80%;
+  margin: 10px 0;
 }
 
 .dashboardPage-mainDivider {
