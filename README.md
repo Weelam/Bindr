@@ -36,7 +36,7 @@ To logout, the admin can click the logout button at the top right and they will 
 
 
 ### Routes
-<!-- Authentication  -->
+##### Authentication 
 app.post("/users/signup") 
 - creates a new user
 - input
@@ -60,13 +60,13 @@ app.get("/users/check-session")
 - returns
   - {currentUser: req.session.username}
   - 
-<!-- Testing -->
+##### Testing
 app.post("/testUsers")
 - loads in the test users
 - returns
   - "successfully added all students"
 
-<!-- Courses/Programs  -->
+##### Courses/Programs 
 app.get("/api/courses")
 - gets all the courses
 - returns 
@@ -77,7 +77,7 @@ app.get("/api/programs")
 - returns
   - {programs}
 
-<!-- Users -->
+##### Users
 app.delete("/api/users/:userID")
 - deletes a user of userID
 - inputs
@@ -112,7 +112,7 @@ app.put("/api/users/:username")
 - returns
   - {currentUser}, the user object you just updated
 
-<!-- Friends  -->
+##### Friends 
 app.get("/api/friends/:username")
 - gets all the friends of :username
 - input
@@ -127,7 +127,7 @@ app.put("/api/friends")
 - return 
   - {user1, user2}, the user object for both users
 
-<!-- Groups -->
+##### Groups
 app.get("/api/groups/:username")
 - gets the groups of a user by their username
 - input
@@ -143,7 +143,7 @@ app.post("/api/groups/:username")
 - return
   - {updatedUser}, the updated user object of :username
 
-<!-- Tasks  -->
+##### Tasks 
 app.get("/api/task/:groupID")
 - gets all the tasks for :groupID
 - input
@@ -167,7 +167,7 @@ app.put("/api/task/:taskID")
 - returns
   - {tasks}, where tasks is all the tasks of that group you just updated
 
-<!-- Notifications  -->
+##### Notifications 
 app.put("/api/notification/send-notification")
 - sending a notification to a user
 - input
