@@ -498,13 +498,12 @@ app.get("/api/notifications/:username", async (req, res) => {
 /*************************************************/
 
 /*** Build ************************************/
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
     // send index.html
-    
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 // Express server listening...
