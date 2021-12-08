@@ -159,32 +159,6 @@ app.get("/users/check-session", (req, res) => {
 
 /*** create test users  **************************************/
 
-// create a new user (for testing only)
-app.post("/api/users", mongoChecker, async (req, res) => {
-  // create a new user
-  const username = req.body.username;
-  const password = req.body.password;
-  const profile = req.body.profile;
-  const user = new User({
-    username: username,
-    password: password,
-    profile: profile,
-  });
-  try {
-    // Save the user
-    const newUser = await user.save();
-    res.send(newUser);
-  } catch (error) {
-    if (isMongoError(error)) {
-      // check for if mongo server suddenly disconnected before this request.
-      res.status(500).send("Internal server error");
-    } else {
-      console.log(error);
-      res.status(400).send("Bad Request"); // bad request for changing the student.
-    }
-  }
-});
-
 // load test users
 app.post("/testUsers", async (req, res) => {
   exampleUsers.forEach(async (user) => {
@@ -335,7 +309,6 @@ app.put("/api/users/:username", async (req, res) => {
 // get friends
 app.get("/api/friends/:username", async (req, res) => {
   const username = req.params.username;
-
   try {
     let user = await User.find({ username: username });
     user = user[0];
@@ -489,7 +462,7 @@ app.put("/api/notification/send-notification", async (req, res) => {
   }
 });
 
-// for sending notficiations to users
+// for removing notficiations to users
 app.put("/api/notification/remove-notification", async (req, res) => {
   const notification = req.body.notification;
   const recipientID = notification.recipientID;
