@@ -4,6 +4,10 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 
+// build
+const path = require('path');
+
+
 // run 'morgan' middleware
 const morgan = require("morgan");
 app.use(morgan("combined"));
@@ -492,6 +496,16 @@ app.get("/api/notifications/:username", async (req, res) => {
   }
 });
 /*************************************************/
+
+/*** Build ************************************/
+app.use(express.static(path.join(__dirname, "/client/build")));
+
+// All routes other than above will go to index.html
+app.get("*", (req, res) => {
+    // send index.html
+    res.sendFile(path.join(__dirname, "/client/build/index.html"));
+});
+
 // Express server listening...
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

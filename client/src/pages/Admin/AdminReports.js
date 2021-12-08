@@ -11,7 +11,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import "./styles/styleAdminTables.css";
-import {resetID} from "./Helper.js"
+import { resetID } from "./Helper.js";
 
 const reportsData = [
 	{
