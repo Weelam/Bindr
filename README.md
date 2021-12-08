@@ -3,11 +3,11 @@
 ### Login Credentials
 
 To login as a regular user, please use the following credentials.
-- username: user, or user2, .... user11
-- password: user, or user2, .... user11
+  username: user, or user2, .... user11
+  password: user, or user2, .... user11
 To login as an admin, please use the following credentials.
-- username: admin
-- password: admin
+  username: admin
+  password: admin
 
 ### Unauthenticated Users
 Users who have yet to will be greeted by the landing page, consisting of a brief description of the application a button that will direct them to the login page. Alternatively, they can also just click on the login button at the top right. At the top is the navbar: Logo will direct you to the landing page, find will direct you to the login page (since  you are unauthenticated), signup will direct you to the sign up page, and login will direct you to the login page. Keep in mind that although sign up has a page right now, it doesn't create a new user upon completing and submitting the form. This is to respect the handout's wishes where we were directed to only use the login credentials "user" and "user" for username and password. 
