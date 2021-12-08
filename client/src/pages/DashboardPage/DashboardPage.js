@@ -253,7 +253,7 @@ const DashboardPage = ({ currentUser }) => {
               )}
 
               {rightTab === 1 && (
-                <div className="dashboardPage-discussions">in progress...</div>
+                <div className="dashboardPage-discussions">yeah this is not finished...</div>
               )}
               {rightTab === 2 && <Members members={selectedGroup["members"]} />}
             </>

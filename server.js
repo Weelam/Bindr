@@ -387,9 +387,8 @@ app.get("/api/groups/:username", async (req, res) => {
 });
 
 app.post("/api/groups/:username", async (req, res) => {
-  const username = req.params.username;
   const newGroup = req.body.newGroup;
-
+  const currentUser = req.params.username
   // create a new group object, save it, then use that objectID to update user.profile.groups
   const groupDoc = new Group({
     projectName: newGroup.projectName,
@@ -400,11 +399,14 @@ app.post("/api/groups/:username", async (req, res) => {
 
   try {
     await groupDoc.save();
-    let user = await User.find({ username: username });
-    user = user[0];
-    user.profile.groups.push(groupDoc._id);
-    await user.save();
-    res.send({ user });
+    for (const userID of newGroup.members) {
+      let user = await User.findById(userID);
+      user.profile.groups.push(groupDoc._id);
+      await user.save();
+    }
+    let updatedUser = await User.find({ username: currentUser });
+    console.log(updatedUser)
+    res.send({ updatedUser: updatedUser[0] });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");

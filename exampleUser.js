@@ -37,8 +37,8 @@ const exampleUsers = [
 		},
 	},
 	{
-		username: "user1",
-		password: "user1",
+		username: "user",
+		password: "user",
 		profile: {
 			role: "user",
 			name: "william lin",

@@ -353,7 +353,7 @@ export const createGroup = async (username, newGroup, setUserObj) => {
   try {
     const response = await fetch(request);
     data = await response.json();
-    let newGroups = data.user.profile.groups;
+    let newGroups = data.updatedUser.profile.groups;
     setUserObj((prev) => ({
       ...prev,
       profile: {
