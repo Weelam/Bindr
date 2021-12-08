@@ -433,6 +433,24 @@ export const updateTask = async (group, task, newTask, setTasks) => {
   }
 };
 
+/*** Discussion ************************************/
+
+// get all the tasks for a group
+export const getDiscussions = async (group, setTasks) => {
+  const url = `${API_HOST}/api/discussion/${group._id}`;
+  console.log("getDiscussions gid: ", group._id);
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    setTasks(data.discussions);
+    console.log("getDiscussions", data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const sortByDate = (a, b) => {
   return new Date(b.dateAdded) - new Date(a.dateAdded);
 };

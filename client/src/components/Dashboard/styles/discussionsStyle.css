@@ -1,9 +1,9 @@
-.tasks-root {
+.discussions-root {
   height: 90%;
   width: 100%;
 }
 
-.tasks-modal {
+.discussions-modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -19,7 +19,7 @@
   overflow-y: scroll;
 }
 
-.tasks-modal input {
+.discussions-modal input {
   background: #ebebeb;
   border: 1px solid black;
   border-radius: 2px;
@@ -27,24 +27,24 @@
   padding: 10px 5px;
 }
 
-.tasks-modal::-webkit-scrollbar {
+.discussions-modal::-webkit-scrollbar {
   display: none;
 }
 
-.tasks-modal h2 {
+.discussions-modal h2 {
   margin: 10px;
 }
 
-.tasks-modal .friend-itemContainer {
+.discussions-modal .friend-itemContainer {
   margin-left: 10px;
 }
 
-.tasks-modal .friend-itemContainer:hover {
+.discussions-modal .friend-itemContainer:hover {
   background-color: white;
   cursor: auto;
 }
 
-.tasks-modalCheckbox {
+.discussions-modalCheckbox {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,12 +53,12 @@
           align-items: center;
 }
 
-.tasks-modalCheckbox input {
+.discussions-modalCheckbox input {
   width: 20px;
   height: 20px;
 }
 
-.tasks-modalMembers {
+.discussions-modalMembers {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -69,7 +69,7 @@
           justify-content: space-between;
 }
 
-.tasks-modalDesc textarea {
+.discussions-modalDesc textarea {
   background: #ebebeb;
   border: 1px solid black;
   border-radius: 2px;
@@ -78,16 +78,16 @@
   padding: 10px 5px;
 }
 
-.tasks-modalBody {
+.discussions-modalBody {
   height: 80%;
   overflow-y: scroll;
 }
 
-.tasks-modalBody::-webkit-scrollbar {
+.discussions-modalBody::-webkit-scrollbar {
   display: none;
 }
 
-.tasks-modalFooter {
+.discussions-modalFooter {
   background: white;
   position: fixed;
   bottom: 0px;
@@ -101,21 +101,22 @@
           justify-content: center;
 }
 
-.tasks-modalFooter button {
+.discussions-modalFooter button {
   width: 80%;
 }
 
-.tasks-allTasks {
+.discussions-allTasks {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: 90%;
 }
 
-.tasks-allTasks .tasks-unfinishedTasks {
+.discussions-allTasks .discussions-unfinishedTasks {
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -127,11 +128,11 @@
   margin-right: 10px;
 }
 
-.tasks-allTasks .tasks-unfinishedTasks .tasks-sideTitle {
+.discussions-allTasks .discussions-unfinishedTasks .discussions-sideTitle {
   font-weight: bold;
 }
 
-.tasks-allTasks .tasks-finishedTasks {
+.discussions-allTasks .discussions-finishedTasks {
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -143,11 +144,11 @@
   margin-left: 10px;
 }
 
-.tasks-allTasks .tasks-finishedTasks .tasks-sideTitle {
+.discussions-allTasks .discussions-finishedTasks .discussions-sideTitle {
   font-weight: bold;
 }
 
-.tasks-createButton {
+.discussions-createButton {
   height: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -157,15 +158,15 @@
           justify-content: center;
 }
 
-.tasks-taskItems {
+.discussions-taskItems {
   overflow-y: scroll;
 }
 
-.tasks-taskItems::-webkit-scrollbar {
+.discussions-taskItems::-webkit-scrollbar {
   display: none;
 }
 
-.tasks-assignedUsers {
+.discussions-assignedUsers {
   margin-right: 5px;
 }
-/*# sourceMappingURL=tasksStyle.css.map */
+/*# sourceMappingURL=discussionsStyle.css.map */

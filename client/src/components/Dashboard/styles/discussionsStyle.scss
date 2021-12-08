@@ -1,0 +1,135 @@
+.discussions-root {
+    height: 90%;
+    width: 100%;
+  }
+  
+  .discussions-modal {
+    input {
+      background: rgb(235, 235, 235);
+      border: 1px solid black;
+      border-radius: 2px;
+      width: 100%;
+      padding: 10px 5px;
+    }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 400px;
+    width: 400px;
+    background: white;
+    border: 1px solid #000;
+    box-shadow: 24;
+    padding: 20px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    h2 {
+      margin: 10px;
+    }
+    .friend-itemContainer {
+      margin-left: 10px;
+      &:hover {
+        background-color: white;
+        cursor: auto;
+      }
+    }
+  }
+  
+  .discussions-modalCheckbox {
+    display: flex;
+    align-items: center;
+    // height: 10px;
+    input {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .discussions-modalMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .discussions-modalDesc {
+    textarea {
+      background: rgb(235, 235, 235);
+      border: 1px solid black;
+      border-radius: 2px;
+      width: 100%;
+      height: 100px;
+      padding: 10px 5px;
+    }
+  }
+  .discussions-modalDeadlineField {
+  }
+  
+  .discussions-modalName {
+  }
+  
+  .discussions-modalBody {
+    height: 80%;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  .discussions-modalFooter {
+    background: white;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button {
+      width: 80%;
+    }
+  }
+  
+  .discussions-allTasks {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+  
+    .discussions-unfinishedTasks {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      margin-right: 10px;
+      .discussions-sideTitle {
+        font-weight: bold;
+      }
+    }
+  
+    .discussions-finishedTasks {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      .discussions-sideTitle {
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .discussions-createButton {
+    height: 10%;
+      display: flex;
+      justify-content: center;
+  }
+  
+  .discussions-taskItems {
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+      
+  }
+  
+  .discussions-assignedUsers {
+      margin-right: 5px;
+  }
+  
