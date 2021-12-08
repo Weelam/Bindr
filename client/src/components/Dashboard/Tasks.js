@@ -221,7 +221,7 @@ const Tasks = ({ selectedGroup, setSelectedGroup, currentUser }) => {
                   )}
                   value={newTask["deadline"]}
                   onChange={(newValue) => {
-                    handleModalDeadline(newValue);
+                    handleModalDeadline(newValue.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
                   }}
                 />
               </LocalizationProvider>
