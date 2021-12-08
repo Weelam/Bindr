@@ -1,6 +1,24 @@
 // example data
 const exampleUsers = [
 	{
+		username: "admin",
+		password: "admin",
+		profile: {
+			role: "admin",
+			name: "william lin",
+			year: 1,
+			courses: ["CSC309", "CSC373", "CSC311", "CSC343"],
+			program: "Gender Studies",
+			bio: "What's good youtube",
+			profileImg: "https://yt3.ggpht.com/ytc/AKedOLTajmSLhwiVvP_gMjOU2GH5T_rzPR9igKZ7chnM=s900-c-k-c0x00ffffff-no-rj",
+			groups: [],
+			friends: [],
+			wantToMatch: [],
+			rejected: [],
+			notifications: [],
+		},
+	},
+	{
 		username: "weelam",
 		password: "password123",
 		profile: {
@@ -19,8 +37,8 @@ const exampleUsers = [
 		},
 	},
 	{
-		username: "user1",
-		password: "user1",
+		username: "user",
+		password: "user",
 		profile: {
 			role: "user",
 			name: "william lin",

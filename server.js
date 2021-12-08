@@ -10,6 +10,7 @@ app.use(morgan("combined"));
 
 // get test user data
 const { exampleUsers } = require("./exampleUser.js");
+const {defaultModel} = require("./serverDefaultModel");
 
 // enable cors for dev
 const cors = require("cors");
@@ -21,6 +22,7 @@ const { mongoose } = require("./db/mongoose");
 // import the mongoose models
 const { User } = require("./models/user");
 const { Group } = require("./models/group");
+const { Report } = require("./models/report");
 
 // to validate object IDs
 const { ObjectID } = require("mongodb");
@@ -124,7 +126,7 @@ app.post("/users/login", async (req, res) => {
     req.session.userID = user._id;
     req.session.username = user.username;
     console.log(req.session);
-    res.send({ currentUser: user.username });
+    res.send({ user: user });
   } catch (error) {
     console.log("bad username/password");
     res.status(400).send("bad username/password");
@@ -156,32 +158,6 @@ app.get("/users/check-session", (req, res) => {
 /*********************************************************/
 
 /*** create test users  **************************************/
-
-// create a new user (for testing only)
-app.post("/api/users", mongoChecker, async (req, res) => {
-  // create a new user
-  const username = req.body.username;
-  const password = req.body.password;
-  const profile = req.body.profile;
-  const user = new User({
-    username: username,
-    password: password,
-    profile: profile,
-  });
-  try {
-    // Save the user
-    const newUser = await user.save();
-    res.send(newUser);
-  } catch (error) {
-    if (isMongoError(error)) {
-      // check for if mongo server suddenly disconnected before this request.
-      res.status(500).send("Internal server error");
-    } else {
-      console.log(error);
-      res.status(400).send("Bad Request"); // bad request for changing the student.
-    }
-  }
-});
 
 // load test users
 app.post("/testUsers", async (req, res) => {
@@ -220,7 +196,7 @@ app.post("/testUsers", async (req, res) => {
 // 	username, password, profiledetails (object)
 // }
 
-/*** Courses/Programs ************************************/
+/*** Courses/Programs/Reports ************************************/
 
 // get all courses
 app.get("/api/courses", async (req, res) => {
@@ -252,7 +228,23 @@ app.get("/api/programs", async (req, res) => {
   }
 })
 
+// get all reports
+
+
 /*** Users ************************************/
+
+app.delete("/api/users/:userID", async (req, res) => {
+  const userID = req.params.userID;
+
+  try {
+    const users = await User.findByIdAndDelete(userID);
+    const updatedUsers = await User.find(); 
+    res.send({updatedUsers});
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+})
 
 // get all users
 app.get("/api/users", async (req, res) => {
@@ -281,7 +273,10 @@ app.get("/api/users/:username", async (req, res) => {
 app.get("/api/usersID/:userID", async (req, res) => {
   const userID = req.params.userID;
   try {
-    const user = await User.findById(userID);
+    let user = await User.findById(userID);
+    if (!user) {
+      user = defaultModel
+    }
     res.send({ user: user });
   } catch (error) {
     console.log(error);
@@ -314,7 +309,6 @@ app.put("/api/users/:username", async (req, res) => {
 // get friends
 app.get("/api/friends/:username", async (req, res) => {
   const username = req.params.username;
-
   try {
     let user = await User.find({ username: username });
     user = user[0];
@@ -366,9 +360,8 @@ app.get("/api/groups/:username", async (req, res) => {
 });
 
 app.post("/api/groups/:username", async (req, res) => {
-  const username = req.params.username;
   const newGroup = req.body.newGroup;
-
+  const currentUser = req.params.username
   // create a new group object, save it, then use that objectID to update user.profile.groups
   const groupDoc = new Group({
     projectName: newGroup.projectName,
@@ -379,11 +372,14 @@ app.post("/api/groups/:username", async (req, res) => {
 
   try {
     await groupDoc.save();
-    let user = await User.find({ username: username });
-    user = user[0];
-    user.profile.groups.push(groupDoc._id);
-    await user.save();
-    res.send({ user });
+    for (const userID of newGroup.members) {
+      let user = await User.findById(userID);
+      user.profile.groups.push(groupDoc._id);
+      await user.save();
+    }
+    let updatedUser = await User.find({ username: currentUser });
+    console.log(updatedUser)
+    res.send({ updatedUser: updatedUser[0] });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
@@ -466,7 +462,7 @@ app.put("/api/notification/send-notification", async (req, res) => {
   }
 });
 
-// for sending notficiations to users
+// for removing notficiations to users
 app.put("/api/notification/remove-notification", async (req, res) => {
   const notification = req.body.notification;
   const recipientID = notification.recipientID;

@@ -17,16 +17,10 @@ import AdminMessages from "./pages/Admin/AdminMessages";
 import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import { checkSession } from "./actions/user";
-import CssBaseline from '@mui/material/CssBaseline';
-
-// This is the mock data from users.json, and it will be passed around as a prop through out the application
-// each user already has a list of courses, which we will pull externally
-const usersData = data["data"];
-const groups = groupsData["data"];
+import CssBaseline from "@mui/material/CssBaseline";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null); // user object
-  const [users, setUsers] = useState(usersData);
   const [isAdmin, setIsAdmin] = useState(false);
 
   console.log(currentUser);
@@ -37,9 +31,9 @@ function App() {
   }, [currentUser]);
 
   useEffect(() => {
-    console.log("check session")
-    checkSession(setCurrentUser)
-  })
+    console.log("check session");
+    checkSession(setCurrentUser);
+  });
 
   return (
     <div className="App">
@@ -60,9 +54,7 @@ function App() {
                 {!currentUser ? (
                   <Home />
                 ) : (
-                  <DashboardPage
-                    currentUser={currentUser}
-                  />
+                  <DashboardPage currentUser={currentUser} />
                 )}
               </Route>
 
@@ -80,11 +72,18 @@ function App() {
                 {!currentUser ? (
                   <Redirect to="/login" />
                 ) : (
-                  <FindPage users={users} currentUser={currentUser} />
+                  <FindPage  currentUser={currentUser} />
                 )}
               </Route>
               <Route path="/profile">
-                {!currentUser ? <Redirect to="/login" /> : <ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+                {!currentUser ? (
+                  <Redirect to="/login" />
+                ) : (
+                  <ProfilePage
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                  />
+                )}
               </Route>
             </Switch>
           </>
@@ -98,23 +97,13 @@ function App() {
             />
             <Switch>
               <Route exact path="/">
-                <AdminDashboard users={users} currentUser={currentUser} />
+                <AdminDashboard currentUser={currentUser} />
               </Route>
               <Route path="/reports">
-                <AdminReports users={users} currentUser={currentUser} />
+                <AdminReports currentUser={currentUser} />
               </Route>
               <Route path="/users">
-                <AdminUsers
-                  users={users}
-                  setUsers={setUsers}
-                  currentUser={currentUser}
-                />
-              </Route>
-              <Route path="/courses">
-                <AdminCourses users={users} currentUser={currentUser} />
-              </Route>
-              <Route path="/messages">
-                <AdminMessages users={users} currentUser={currentUser} />
+                <AdminUsers currentUser={currentUser} />
               </Route>
             </Switch>
           </>

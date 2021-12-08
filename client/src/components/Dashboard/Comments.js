@@ -5,7 +5,6 @@ import { sortByDate } from "../../actions/user";
 
 const Comments = ({ comments, task, handleAddComment }) => {
   const [newComment, setNewComment] = useState("");
-  console.log(task.name, comments);
 
 	// sort the comments
 	const sortComment = (sortBy, comments) => {
@@ -13,6 +12,7 @@ const Comments = ({ comments, task, handleAddComment }) => {
 			return comments.sort((a, b) => sortByDate(a, b))
 		}
 	}
+  
   return (
     <div className="comments-root">
       <input

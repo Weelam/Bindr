@@ -12,7 +12,10 @@ const Login = ({ setCurrentUser, setIsAdmin }) => {
     e.preventDefault();
     const res = await login(info, setCurrentUser);
     if (res.login) {
-      // console.log(res)
+      console.log(res)
+      if (res.role === "admin") {
+        setIsAdmin(true)
+      }
       history.push("/");
     } else {
       alert(res.message)

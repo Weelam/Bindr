@@ -13,7 +13,7 @@ const FindPage = ( {users, currentUser} ) => {
       <FindBody users={users} handleSelect={handleSelect}/> */}
 
 
-      <Find currentUser={currentUser} users={users}/>
+      <Find currentUser={currentUser}/>
     </div>
   );
 };
