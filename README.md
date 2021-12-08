@@ -61,6 +61,7 @@ app.get("/users/check-session")
   - {currentUser: req.session.username}
   - 
 ##### Testing
+NOTE: if you're running the app locally, please make sure to run this route first in order to load all the mock data
 app.post("/testUsers")
 - loads in the test users
 - returns
