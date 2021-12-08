@@ -1,5 +1,6 @@
 "use strict";
 require("dotenv").config();
+const env = process.env.NODE_ENV // read the environment variable (will be 'production' in production mode)
 
 const express = require("express");
 const app = express();
@@ -18,7 +19,7 @@ const {defaultModel} = require("./serverDefaultModel");
 
 // enable cors for dev
 const cors = require("cors");
-app.use(cors());
+if (env !== 'production') { app.use(cors()) }
 
 // mongoose and mongo connection
 const { mongoose } = require("./db/mongoose");
