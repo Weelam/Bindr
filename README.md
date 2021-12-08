@@ -1,5 +1,13 @@
 # team58
 
+### Access details
+Heroku app: https://bindrr.herokuapp.com/
+
+IMPORTANT: please read the following if you are going to run the application locally
+- npm run dev inside root /team58 to run the local server
+- npm start inside /team58/client to run the react app locally
+
+
 ### Login Credentials
 
 To login as a regular user, please use the following credentials.
@@ -61,7 +69,7 @@ app.get("/users/check-session")
   - {currentUser: req.session.username}
   - 
 ##### Testing
-NOTE: if you're running the app locally, please make sure to run this route first in order to load all the mock data
+NOTE: Don't need to run this route. It's to load all the mock data which has already been done
 app.post("/testUsers")
 - loads in the test users
 - returns
