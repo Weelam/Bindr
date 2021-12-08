@@ -44,7 +44,7 @@ app.post("/users/signup")
   - NOTE: the profileImg must be a url
 - returns 
   - {message: "Account Created Successfully"}
-  - 
+
 app.post("/users/login")
 - logs in the user
 - input 
