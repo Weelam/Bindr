@@ -36,13 +36,158 @@ To logout, the admin can click the logout button at the top right and they will 
 
 
 ### Routes
+<!-- Authentication  -->
 app.post("/users/signup") 
 - creates a new user
 - input
   - body { username, password, name, year, program, profileImg }
-- NOTE: the profileImg must be a url
-- returns {message: "
+  - NOTE: the profileImg must be a url
+- returns 
+  - {message: "Account Created Successfully"}
+  - 
+app.post("/users/login")
+- logs in the user
+- input 
+  - body {username, password}
+- returns
+  - {user} where user is an object of the user   
 
+app.get("/users/logout")
+- logs out the user
 
+app.get("/users/check-session")
+- checks if user is authenticated
+- returns
+  - {currentUser: req.session.username}
+  - 
+<!-- Testing -->
+app.post("/testUsers")
+- loads in the test users
+- returns
+  - "successfully added all students"
+
+<!-- Courses/Programs  -->
+app.get("/api/courses")
+- gets all the courses
+- returns 
+  - {courses}
+
+app.get("/api/programs") 
+- gets all the programs
+- returns
+  - {programs}
+
+<!-- Users -->
+app.delete("/api/users/:userID")
+- deletes a user of userID
+- inputs
+  - userID into :userID
+- returns
+  - {updatedUsers}, the new list of users
+  
+app.get("/api/users")
+- gets all users
+- returns
+  - [ list of all users ]
+ 
+app.get("/api/users/:username")
+- get the user from the username
+- inputs
+  - username into :username
+- returns
+  - {currentUser}, the user object asosciated with username
+
+app.get("/api/users/:userID")
+- get the user from the userID
+- inputs
+  - username into :userID
+- returns
+  - {user}, the user object asosciated with userID. If user doesn't exist it will return a dummy user
+  - 
+app.put("/api/users/:username")
+- updating the user profile and/or username
+- inputs
+  - body {newUser, username}, newUser must be in the format of a user object (check serverDefaultModel.js for example)
+  - username into :username
+- returns
+  - {currentUser}, the user object you just updated
+
+<!-- Friends  -->
+app.get("/api/friends/:username")
+- gets all the friends of :username
+- input
+  - username into :username
+- returns
+  - {friends}, the list of all the id of the friends
+
+app.put("/api/friends")
+- adds 2 users as each others friends
+- input
+  - body {user1, user2}, userID of both user1 and user2
+- return 
+  - {user1, user2}, the user object for both users
+
+<!-- Groups -->
+app.get("/api/groups/:username")
+- gets the groups of a user by their username
+- input
+  - username into :username
+- return
+  - {groupObj}, where groupObj consists of a list of all the groups they are in
+
+app.post("/api/groups/:username")
+- creates a group that was requested by :username and add all related members into the group
+- input 
+  - username into :username
+  - body {newGroup}, a new group object that will be the new group
+- return
+  - {updatedUser}, the updated user object of :username
+
+<!-- Tasks  -->
+app.get("/api/task/:groupID")
+- gets all the tasks for :groupID
+- input
+  - groupID into :groupID
+- returns
+  - {tasks}, where tasks is a list of all the tasks
+
+app.post("/api/task/:groupID")
+- adds a task to :groupID
+- input
+  - groupID into :groupID
+  - body {newTask}, where newTask is a task object
+- returns
+  - {group}, where group is the newly updated group
+  
+app.put("/api/task/:taskID")
+- update the details of :taskID
+- input 
+  - {newTask, groupID}, newTask is the task that will replace the old task
+  - taskID into :taskID
+- returns
+  - {tasks}, where tasks is all the tasks of that group you just updated
+
+<!-- Notifications  -->
+app.put("/api/notification/send-notification")
+- sending a notification to a user
+- input
+  - body {notification}, where notification is a notification object
+- returns
+  - recipient, the user who recieved that notification
+  - 
+app.put("/api/notification/remove-notification")
+- removing a notification from a user
+- input
+  - body {notification}, where notification is a notification object
+- returns
+  - recipient, the user who had that notification removed
+
+app.get("/api/notifications/:username")
+- gets all the notifications from :username
+- input
+  - uesrname into :username
+- returns
+  - {the notifications of the other user}
+  - 
 ### Libraries
 - Material UI
