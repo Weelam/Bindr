@@ -3,10 +3,15 @@
 ### Login Credentials
 
 To login as a regular user, please use the following credentials.
+
   username: user, or user2, .... user11
+  
   password: user, or user2, .... user11
+  
 To login as an admin, please use the following credentials.
+
   username: admin
+  
   password: admin
 
 ### Unauthenticated Users
