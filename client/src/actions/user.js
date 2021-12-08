@@ -1,4 +1,7 @@
-const API_HOST = "http://localhost:5000";
+
+import ENV from './../config'
+const API_HOST = ENV.api_host
+
 // check if a user is logged in through session
 export const checkSession = (setCurrentUser) => {
   const url = `${API_HOST}/users/check-session`;
