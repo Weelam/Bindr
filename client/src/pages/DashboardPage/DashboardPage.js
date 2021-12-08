@@ -20,6 +20,7 @@ import { makeStyles } from "@mui/styles";
 import Group from "../../components/Dashboard/Group";
 import Tasks from "../../components/Dashboard/Tasks";
 import Members from "../../components/Dashboard/Members";
+import Discussions from "../../components/Dashboard/Discussions";
 
 // customize mui theme
 const theme = createTheme({
@@ -51,6 +52,9 @@ const useStyles = makeStyles({
       filter: "brightness(1.2)",
     },
   }),
+  tab: {
+    margin: "20px 0"
+  }
 });
 
 // group model
@@ -236,6 +240,7 @@ const DashboardPage = ({ currentUser }) => {
             indicatorColor="primary"
             aria-label="basic tabs example"
             centered
+            className={classes.tab}
           >
             <Tab label="Tasks" />
             <Tab label="Discussions" />
@@ -246,14 +251,20 @@ const DashboardPage = ({ currentUser }) => {
             <>
               {rightTab === 0 && (
                 <Tasks
-									currentUser={currentUser}
+                  currentUser={currentUser}
                   selectedGroup={selectedGroup}
                   setSelectedGroup={setSelectedGroup}
                 />
               )}
 
               {rightTab === 1 && (
-                <div className="dashboardPage-discussions">yeah this is not finished...</div>
+                <div className="dashboardPage-discussions">
+                  <Discussions
+                    currentUser={currentUser}
+                    selectedGroup={selectedGroup}
+                    setSelectedGroup={setSelectedGroup}
+                  />
+                </div>
               )}
               {rightTab === 2 && <Members members={selectedGroup["members"]} />}
             </>

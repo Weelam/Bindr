@@ -8,7 +8,7 @@ const Signup = () => {
     name: "",
     username: "",
     password: "",
-    year: null,
+    year: 1,
     program: "",
     profileImg: "https://cdn.digg.com/wp-content/uploads/2021/11/08135427/Screen-Shot-2021-11-08-at-8.54.17-AM.jpg"
   });

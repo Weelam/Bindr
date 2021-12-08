@@ -50,7 +50,7 @@ const DiscussionSchema = new mongoose.Schema({
     minlength: 1,
   },
 
-  creationDate: {
+  dateAdded: {
     type: Date,
     required: true
   },

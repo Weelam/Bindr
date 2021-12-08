@@ -1,0 +1,41 @@
+.discussion-root {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.discussion-summary {
+  .MuiAccordionSummary-content {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.discussion-details {
+  display: flex;
+  align-items: center;
+  .tasks-sideTitles {
+    font-weight: bold;
+    margin-right: 1.5rem;
+    width: 100px;
+
+    p {
+      flex-wrap: wrap;
+    }
+  }
+}
+.tasks-commentTitle {
+  font-weight: bold;
+}
+
+.discussion-date {
+  color: rgb(126, 126, 126);
+  margin: 0px 10px;
+}
+
+.discussion-span1 {
+  font-weight: bold;
+}
+
+.discussion-span2 {
+  margin-left: 20px
+}
