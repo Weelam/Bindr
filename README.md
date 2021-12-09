@@ -200,3 +200,4 @@ app.get("/api/notifications/:username")
   - 
 ### Libraries
 - Material UI
+- React Icons
