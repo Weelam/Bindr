@@ -1,12 +1,12 @@
 "use strict";
 require("dotenv").config();
-const env = process.env.NODE_ENV // read the environment variable (will be 'production' in production mode)
+const env = process.env.NODE_ENV; // read the environment variable (will be 'production' in production mode)
 
 const express = require("express");
 const app = express();
 
 // build
-const path = require('path');
+const path = require("path");
 
 // run 'morgan' middleware
 const morgan = require("morgan");
@@ -14,14 +14,17 @@ app.use(morgan("combined"));
 
 // get test user data
 const { exampleUsers } = require("./exampleUser.js");
-const {defaultModel} = require("./serverDefaultModel");
+const { defaultModel } = require("./serverDefaultModel");
 
 // enable cors for dev
 const cors = require("cors");
-if (env !== 'production') { app.use(cors()) }
+if (env !== "production") {
+  app.use(cors());
+}
 
-// mongoose and mongo connection
+// postgresql connection
 const { mongoose } = require("./db/mongoose");
+const { db } = require("./db/postgresql");
 
 // import the mongoose models
 const { User } = require("./models/user");
@@ -38,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // parsing URL-encoded form 
 
 // express-session for managing user sessions
 const session = require("express-session");
-const MongoStore = require("connect-mongo"); // to store session information on the database in production
+const MongoStore = require("connect-mongo"); // to store session information on the database in production **use connect-pg-simple instead**
 const { object } = require("webidl-conversions");
 
 function isMongoError(error) {
@@ -207,33 +210,32 @@ app.get("/api/courses", async (req, res) => {
   let courses = [];
   try {
     const users = await User.find();
-    users.forEach(user => {
-      courses = [...new Set([...courses, ...user.profile.courses])]
-    })
-    res.send({courses});
+    users.forEach((user) => {
+      courses = [...new Set([...courses, ...user.profile.courses])];
+    });
+    res.send({ courses });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 // get all programs
 app.get("/api/programs", async (req, res) => {
   let programs = [];
   try {
     const users = await User.find();
-    users.forEach(user => {
-      programs = [...new Set([...programs, user.profile.program])]
-    })
-    res.send({programs});
+    users.forEach((user) => {
+      programs = [...new Set([...programs, user.profile.program])];
+    });
+    res.send({ programs });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 // get all reports
-
 
 /*** Users ************************************/
 
@@ -242,13 +244,13 @@ app.delete("/api/users/:userID", async (req, res) => {
 
   try {
     const users = await User.findByIdAndDelete(userID);
-    const updatedUsers = await User.find(); 
-    res.send({updatedUsers});
+    const updatedUsers = await User.find();
+    res.send({ updatedUsers });
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
-})
+});
 
 // get all users
 app.get("/api/users", async (req, res) => {
@@ -279,7 +281,7 @@ app.get("/api/usersID/:userID", async (req, res) => {
   try {
     let user = await User.findById(userID);
     if (!user) {
-      user = defaultModel
+      user = defaultModel;
     }
     res.send({ user: user });
   } catch (error) {
@@ -365,7 +367,7 @@ app.get("/api/groups/:username", async (req, res) => {
 
 app.post("/api/groups/:username", async (req, res) => {
   const newGroup = req.body.newGroup;
-  const currentUser = req.params.username
+  const currentUser = req.params.username;
   // create a new group object, save it, then use that objectID to update user.profile.groups
   const groupDoc = new Group({
     projectName: newGroup.projectName,
@@ -382,7 +384,7 @@ app.post("/api/groups/:username", async (req, res) => {
       await user.save();
     }
     let updatedUser = await User.find({ username: currentUser });
-    console.log(updatedUser)
+    console.log(updatedUser);
     res.send({ updatedUser: updatedUser[0] });
   } catch (error) {
     console.log(error);
@@ -397,7 +399,7 @@ app.get("/api/task/:groupID", async (req, res) => {
   const groupID = req.params.groupID;
 
   try {
-    let group = await Group.findById(groupID)
+    let group = await Group.findById(groupID);
     res.send({ tasks: group.tasks });
   } catch (error) {
     console.log(error);
@@ -430,7 +432,7 @@ app.put("/api/task/:taskID", async (req, res) => {
 
   try {
     let group = await Group.findById(groupID);
-    let task = group.tasks.id(taskID)
+    let task = group.tasks.id(taskID);
     // update task
     task.users = newTask.users;
     task.deadline = newTask.deadline;
@@ -438,8 +440,8 @@ app.put("/api/task/:taskID", async (req, res) => {
     task.completed = newTask.completed;
     task.name = newTask.name;
     task.comments = newTask.comments;
-    // 
-    await group.save()
+    //
+    await group.save();
     res.send({ tasks: group.tasks });
   } catch (error) {
     console.log(error);
@@ -502,8 +504,8 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 // All routes other than above will go to index.html
 app.get("*", (req, res) => {
-    // send index.html
-    res.sendFile(path.join(__dirname, "client/build/index.html"));
+  // send index.html
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 // Express server listening...
